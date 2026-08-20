@@ -34,7 +34,7 @@ jobs:
         run: pip install -r requirements-dev.txt
 
       - name: Run regression tests
-        run: pytest
+        run: python -m pytest
 
       - name: Advance paper account and render dashboard
         run: python breakout_dashboard.py --capital 8800 --start 2026-08-05
