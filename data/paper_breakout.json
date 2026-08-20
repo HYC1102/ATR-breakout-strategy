@@ -170,6 +170,21 @@
       "value": 9086.9
     }
   ],
-  "pending": [],
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "BLK",
+      "reason": "1.5-ATR trail"
+    },
+    {
+      "side": "BUY",
+      "ticker": "MRNA",
+      "price_hint": 133.32,
+      "shares_hint": 13.203,
+      "value_hint": 1760.28,
+      "cost_hint": 0.0,
+      "momentum": 100.0
+    }
+  ],
   "last_close": "2026-08-20"
 }
