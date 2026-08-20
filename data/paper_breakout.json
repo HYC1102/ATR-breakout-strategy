@@ -31,7 +31,7 @@
       "shares": 4.701111091191061,
       "entry": 363.06,
       "entry_date": "2026-08-18",
-      "hi": 366.21
+      "hi": 366.5050048828125
     }
   },
   "trades": [
@@ -164,8 +164,24 @@
     {
       "date": "2026-08-19",
       "value": 9147.9
+    },
+    {
+      "date": "2026-08-20",
+      "value": 9086.9
     }
   ],
-  "pending": [],
-  "last_close": "2026-08-19"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "BLK",
+      "reason": "1.5-ATR trail"
+    },
+    {
+      "side": "BUY",
+      "ticker": "MRNA",
+      "price_hint": 142.12,
+      "momentum": 100.0
+    }
+  ],
+  "last_close": "2026-08-20"
 }
