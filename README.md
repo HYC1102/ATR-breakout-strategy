@@ -69,13 +69,19 @@ pytest                                         # offline regression suite
 `.github/workflows/dashboard.yml` runs at **4:30 PM America/New_York**, Monday
 through Friday. It runs the regression suite, advances the paper account once,
 renders `breakout_dashboard.html`, and commits the dashboard plus JSON/CSV paper
-state to the default branch. The workflow can also be run manually from the
-GitHub Actions page.
+state to the default branch. It then publishes the rendered HTML to GitHub Pages
+at `https://hyc1102.github.io/ATR-breakout-strategy/`. The workflow can also be
+run manually from the GitHub Actions page.
 
 Repository contents require write permission for GitHub Actions; the workflow
 declares that permission explicitly. For Tiingo-backed fills and position marks,
 add a repository Actions secret named `TIINGO_API_KEY`. If it is absent, the
 existing yfinance fallback is used.
+
+Before the first deployment, open **Settings → Pages** in the GitHub repository
+and select **GitHub Actions** as the publishing source. Then manually run the
+`refresh dashboard` workflow once. The Pages artifact contains only the rendered
+`index.html`; API credentials, price caches, and raw JSON/CSV state are excluded.
 
 ## Honest-data caveats
 
