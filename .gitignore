@@ -1,0 +1,16 @@
+# Secrets -- the Tiingo token paths read by prices.py:tiingo_token()
+.tiingo_token
+data/tiingo_token.txt
+
+# macOS
+.DS_Store
+
+# Regenerable local caches written by the strategy.
+data/prices_*.pkl
+data/sentiment.pkl
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/

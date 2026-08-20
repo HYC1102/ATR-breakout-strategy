@@ -1,0 +1,171 @@
+{
+  "start_date": "2026-08-05",
+  "capital": 8800.0,
+  "cash": 0.0,
+  "positions": {
+    "SNOW": {
+      "shares": 5.543481684462503,
+      "entry": 317.49,
+      "entry_date": "2026-08-05",
+      "hi": 337.38
+    },
+    "PATH": {
+      "shares": 124.03100775193799,
+      "entry": 14.19,
+      "entry_date": "2026-08-05",
+      "hi": 16.68
+    },
+    "PLTR": {
+      "shares": 10.864197530864198,
+      "entry": 162.0,
+      "entry_date": "2026-08-05",
+      "hi": 179.01
+    },
+    "BLK": {
+      "shares": 1.5443481352038777,
+      "entry": 1138.5,
+      "entry_date": "2026-08-05",
+      "hi": 1182.84
+    },
+    "MPC": {
+      "shares": 4.701111091191061,
+      "entry": 363.06,
+      "entry_date": "2026-08-18",
+      "hi": 366.21
+    }
+  },
+  "trades": [
+    {
+      "date": "2026-08-05",
+      "side": "BUY",
+      "ticker": "SNOW",
+      "shares": 5.543,
+      "price": 317.49,
+      "value": 1760.0,
+      "reason": "breakout",
+      "momentum": 100.0,
+      "sentiment": 64.7,
+      "combined": 85.9
+    },
+    {
+      "date": "2026-08-05",
+      "side": "BUY",
+      "ticker": "PATH",
+      "shares": 124.031,
+      "price": 14.19,
+      "value": 1760.0,
+      "reason": "breakout",
+      "momentum": 87.5,
+      "sentiment": 64.6,
+      "combined": 78.3
+    },
+    {
+      "date": "2026-08-05",
+      "side": "BUY",
+      "ticker": "MSFT",
+      "shares": 3.546,
+      "price": 496.36,
+      "value": 1760.0,
+      "reason": "breakout",
+      "momentum": 75.0,
+      "sentiment": 53.2,
+      "combined": 66.3
+    },
+    {
+      "date": "2026-08-05",
+      "side": "BUY",
+      "ticker": "PLTR",
+      "shares": 10.864,
+      "price": 162.0,
+      "value": 1760.0,
+      "reason": "breakout",
+      "momentum": 62.5,
+      "sentiment": 50.9,
+      "combined": 57.9
+    },
+    {
+      "date": "2026-08-05",
+      "side": "BUY",
+      "ticker": "BLK",
+      "shares": 1.544,
+      "price": 1138.5,
+      "value": 1758.24,
+      "reason": "breakout",
+      "momentum": 50.0,
+      "sentiment": 49.2,
+      "combined": 49.7
+    },
+    {
+      "date": "2026-08-18",
+      "side": "SELL",
+      "ticker": "MSFT",
+      "shares": 3.546,
+      "price": 481.54,
+      "value": 1707.47,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-08-18",
+      "side": "BUY",
+      "ticker": "MPC",
+      "shares": 4.701,
+      "price": 363.06,
+      "value": 1706.79,
+      "reason": "breakout",
+      "momentum": 100.0,
+      "sentiment": 59.2,
+      "combined": 83.7
+    }
+  ],
+  "equity": [
+    {
+      "date": "2026-08-05",
+      "value": 8670.82
+    },
+    {
+      "date": "2026-08-06",
+      "value": 8709.67
+    },
+    {
+      "date": "2026-08-07",
+      "value": 9095.35
+    },
+    {
+      "date": "2026-08-10",
+      "value": 9234.47
+    },
+    {
+      "date": "2026-08-11",
+      "value": 9263.29
+    },
+    {
+      "date": "2026-08-12",
+      "value": 9131.73
+    },
+    {
+      "date": "2026-08-13",
+      "value": 9472.48
+    },
+    {
+      "date": "2026-08-14",
+      "value": 9269.16
+    },
+    {
+      "date": "2026-08-17",
+      "value": 9162.62
+    },
+    {
+      "date": "2026-08-18",
+      "value": 9103.82
+    },
+    {
+      "date": "2026-08-19",
+      "value": 9147.9
+    }
+  ],
+  "pending": [],
+  "last_close": "2026-08-19"
+}
