@@ -110,6 +110,7 @@ def overlay_tiingo(prices, P, names) -> list[str]:
 def build(capital: float, start: str):
     bs.CONFIG.update(sizing="slots", slots=5, regime=True, rank_mode="proxy",
                      sent_weight=0.0,
+                     cost_bps=0.0,
                      atr_stop=1.5, exit_low=10, use_exit_low=True, pct_stop=None,
                      take_profit=None, time_stop=None, universe_size=223,
                      rebuild="W", pool="broad")
@@ -167,15 +168,20 @@ def build(capital: float, start: str):
     positions.sort(key=lambda x: -x["value"])
 
     # measures from the forward equity log
-    m = dict(ret=0.0, sharpe=float("nan"), maxdd=0.0, vol=float("nan"),
-             win=float("nan"), avg_hold=float("nan"), n_closed=0)
+    m = dict(ret=0.0, day_pnl=0.0, day_ret=0.0, sharpe=float("nan"),
+             maxdd=0.0, vol=float("nan"), win=float("nan"),
+             avg_hold=float("nan"), n_closed=0)
     if started:
         eq = pd.Series([e["value"] for e in st["equity"]],
                        index=pd.to_datetime([e["date"] for e in st["equity"]]))
         r = eq.pct_change().dropna()
         closed = episodes(st["trades"])
         wins = [c for c in closed if c["pnl"] > 0]
+        previous_value = eq.iloc[-2] if len(eq) >= 2 else st["capital"]
+        day_pnl = value - previous_value
         m = dict(ret=value / st["capital"] - 1,
+                 day_pnl=day_pnl,
+                 day_ret=day_pnl / previous_value if previous_value else 0.0,
                  sharpe=(r.mean() / r.std() * np.sqrt(252)) if len(r) > 1 and r.std() else float("nan"),
                  vol=r.std() * np.sqrt(252) if len(r) > 1 else float("nan"),
                  maxdd=(eq / eq.cummax() - 1).min(),
@@ -214,23 +220,28 @@ def html(s) -> str:
     else:
         entry_label = f"{bs.CONFIG['breakout']}-day Donchian breakout"
     rc = lambda x: "pos" if x >= 0 else "neg"
+    signed_money = lambda x: f'{"+" if x >= 0 else "-"}${abs(x):,.0f}'
     roomcls = lambda r: "neg" if r < 0.03 else ("amber" if r < 0.08 else "pos")
     start_d = dt.date.fromisoformat(s["start"])
 
     # header cards
     if s["started"]:
-        cards = [("Account value", f"${s['value']:,.0f}"), ("Return", f"{m['ret']*100:+.1f}%"),
-                 ("Sharpe", f"{m['sharpe']:.2f}" if np.isfinite(m['sharpe']) else "—"),
-                 ("Max drawdown", f"{m['maxdd']*100:.0f}%"),
-                 ("Win rate", f"{m['win']*100:.0f}%" if np.isfinite(m['win']) else "—")]
+        cards = [("Account value", f"${s['value']:,.0f}", ""),
+                 ("Today&rsquo;s P&amp;L", signed_money(m.get("day_pnl", 0.0)),
+                  rc(m.get("day_pnl", 0.0))),
+                 ("Return", f"{m['ret']*100:+.1f}%", rc(m["ret"])),
+                 ("Sharpe", f"{m['sharpe']:.2f}" if np.isfinite(m['sharpe']) else "—", ""),
+                 ("Max drawdown", f"{m['maxdd']*100:.0f}%", rc(m["maxdd"])),
+                 ("Win rate", f"{m['win']*100:.0f}%" if np.isfinite(m['win']) else "—", "")]
         status = f"as of {s['asof']:%d %b %Y}"
     else:
-        cards = [("Starting capital", f"${cap:,.0f}"), ("Status", "starts tomorrow"),
-                 ("Start date", f"{start_d:%d %b}")]
+        cards = [("Starting capital", f"${cap:,.0f}", ""),
+                 ("Status", "starts tomorrow", ""),
+                 ("Start date", f"{start_d:%d %b}", "")]
         status = f"forward test begins {start_d:%A %d %b %Y}"
 
-    cards_html = "".join(f'<div class="card"><div class="l">{l}</div><div class="v">{v}</div></div>'
-                         for l, v in cards)
+    cards_html = "".join(f'<div class="card"><div class="l">{l}</div>'
+                         f'<div class="v {cls}">{v}</div></div>' for l, v, cls in cards)
 
     # TODAY'S ACTIONS (top)
     pend = s["pending"]
@@ -239,11 +250,13 @@ def html(s) -> str:
         for o in pend:
             if o["side"] == "SELL":
                 rows += (f'<tr><td class="sell">SELL</td><td><b>{o["ticker"]}</b></td>'
-                         f'<td colspan="{2 if momentum_only else 4}" style="color:var(--mut)">'
+                         f'<td colspan="{4 if momentum_only else 6}" style="color:var(--mut)">'
                          f'exit — {o.get("reason","")}</td></tr>')
             else:
                 rows += (f'<tr><td class="buy">BUY</td><td><b>{o["ticker"]}</b></td>'
                          f'<td class="n">~${o.get("price_hint",0):,.2f}</td>'
+                         f'<td class="n">~{o.get("shares_hint",0):,.3f}</td>'
+                         f'<td class="n">~${o.get("value_hint",0):,.2f}</td>'
                          f'<td class="n"><b>{o.get("momentum","")}</b></td>'
                          + ('' if momentum_only else
                             f'<td class="n">{o.get("sentiment","")}</td>'
@@ -255,7 +268,11 @@ def html(s) -> str:
                          "<th class=\"n\">Combined</th>")
         actions = (f'<div class="act"><b>Today&rsquo;s actions</b> &mdash; place {when}:'
                    f'<table style="margin-top:8px"><tr><th>Action</th><th>Ticker</th>'
-                   f'<th class="n">~Price</th>{score_headers}</tr>{rows}</table></div>')
+                   f'<th class="n">~Price</th><th class="n">Est. shares</th>'
+                   f'<th class="n">Est. total value</th>'
+                   f'{score_headers}</tr>{rows}</table>'
+                   '<p class="sub" style="margin-top:7px">Buy quantities are estimates using '
+                   'the latest close; actual fills are sized again at the next open.</p></div>')
     else:
         actions = ('<div class="act"><b>Today&rsquo;s actions</b> &mdash; none. '
                    'Hold current positions; no qualifying breakouts (or risk-off regime).</div>')
@@ -297,7 +314,7 @@ def html(s) -> str:
                    f'<td class="n {roomcls(p["room"])}">{p["room"]*100:+.1f}%</td>'
                    f'<td class="n">${p["value"]:,.0f}</td>'
                    f'<td class="n {rc(p["ret"])}">{p["ret"]*100:+.1f}%</td>'
-                   f'<td class="n {rc(p["pnl"])}">${p["pnl"]:+,.0f}</td>'
+                   f'<td class="n {rc(p["pnl"])}">{p["pnl"]:+,.0f}</td>'
                    f'<td>{src_cell}</td></tr>')
         prows = "".join(prow(p) for p in s["positions"])
         pos_html = (f'<table><tr><th>Ticker</th><th class="n">Shares</th><th class="n">Entry</th>'
@@ -344,11 +361,15 @@ def html(s) -> str:
 <button id="bR" class="tg">Return (%)</button>
 <span class="leg"><span><span class="sw" style="background:#2a78d6"></span>Strategy</span>
 {spy_legend}</span></div>
-<div style="position:relative;height:220px"><canvas id="eq" style="width:100%;height:100%"></canvas></div>
+<div style="position:relative;height:220px"><canvas id="eq" style="width:100%;height:100%"></canvas>
+<div id="eqTip" style="display:none;position:absolute;pointer-events:none;background:#fff;
+border:1px solid #d7d5ce;border-radius:7px;padding:6px 8px;font:12px -apple-system,sans-serif;
+box-shadow:0 2px 8px #0002;white-space:nowrap;z-index:2"></div></div>
 <script>(()=>{{
 const ED={ed},EV={ev}{spy_var};
 const base=[{{name:"Strategy",values:EV,color:"#2a78d6",dash:[]}}{spy_series}];
-const cv=document.getElementById("eq"),ctx=cv.getContext("2d");let mode="value";
+const cv=document.getElementById("eq"),ctx=cv.getContext("2d"),tip=document.getElementById("eqTip");
+let mode="value",hover=-1,chartState=null;
 const rb=a=>a.map(v=>(v/a[0]-1)*100);
 function draw(){{
  const dpr=window.devicePixelRatio||1,w=cv.clientWidth,h=cv.clientHeight;
@@ -363,11 +384,31 @@ function draw(){{
  for(let i=0;i<5;i++){{const v=lo+span*i/4,yy=y(v);ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(w-pad.r,yy);ctx.stroke();
   const label=mode==="return"?v.toFixed(1)+"%":"$"+Math.round(v).toLocaleString();ctx.fillText(label,2,yy+4);}}
  const ticks=Math.min(6,ED.length);for(let i=0;i<ticks;i++){{const j=Math.round(i*(ED.length-1)/(ticks-1||1));ctx.fillText(ED[j],Math.min(x(j)-16,w-45),h-5);}}
- for(const s of series){{ctx.strokeStyle=s.color;ctx.lineWidth=s.name==="Strategy"?2:1.5;ctx.setLineDash(s.dash);ctx.beginPath();s.values.forEach((v,i)=>{{i?ctx.lineTo(x(i),y(v)):ctx.moveTo(x(i),y(v));}});ctx.stroke();}}
+ for(const s of series){{
+  ctx.strokeStyle=s.color;ctx.lineWidth=s.name==="Strategy"?2:1.5;ctx.setLineDash(s.dash);
+  ctx.beginPath();s.values.forEach((v,i)=>{{i?ctx.lineTo(x(i),y(v)):ctx.moveTo(x(i),y(v));}});ctx.stroke();
+  ctx.setLineDash([]);ctx.fillStyle=s.color;
+  s.values.forEach((v,i)=>{{ctx.beginPath();ctx.arc(x(i),y(v),hover===i?4:2.5,0,Math.PI*2);ctx.fill();}});
+ }}
  ctx.setLineDash([]);
+ chartState={{series,pad,pw,w,h,x}};
 }}
 function setMode(m){{mode=m;draw();document.getElementById("bV").classList.toggle("on",m==="value");document.getElementById("bR").classList.toggle("on",m==="return");}}
 document.getElementById("bV").onclick=()=>setMode("value");document.getElementById("bR").onclick=()=>setMode("return");
+cv.addEventListener("mousemove",e=>{{
+ if(!chartState)return;
+ const rect=cv.getBoundingClientRect(),mx=e.clientX-rect.left;
+ hover=Math.max(0,Math.min(ED.length-1,Math.round((mx-chartState.pad.l)/chartState.pw*(ED.length-1))));
+ draw();
+ const values=chartState.series.map(s=>{{
+  const v=s.values[hover],shown=mode==="return"?(v>=0?"+":"")+v.toFixed(2)+"%":"$"+v.toLocaleString(undefined,{{minimumFractionDigits:2,maximumFractionDigits:2}});
+  return `<span style="color:${{s.color}}">●</span> ${{s.name}}: <b>${{shown}}</b>`;
+ }}).join("<br>");
+ tip.innerHTML=`<b>${{ED[hover]}}</b><br>${{values}}`;tip.style.display="block";
+ tip.style.left=Math.max(4,Math.min(chartState.x(hover)+10,chartState.w-tip.offsetWidth-4))+"px";
+ tip.style.top="8px";
+}});
+cv.addEventListener("mouseleave",()=>{{hover=-1;tip.style.display="none";draw();}});
 new ResizeObserver(draw).observe(cv.parentElement);draw();
 }})();</script>'''
 

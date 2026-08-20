@@ -106,6 +106,20 @@ def _plan(st, asof, prices, P, regime, use_sentiment=True):
     reg = bool(regime.get(asof, False)) if regime is not None else True
     cand = None
     if reg and free > 0:
+        # Estimate next-open sizing from today's close so the dashboard can
+        # provide an actionable share count.  _execute() repeats this sizing
+        # with the actual next-open prices, so gaps can change the final fill.
+        cost = _cost()
+        estimated_equity = _equity(st["positions"], st["cash"], cl)
+        estimated_cash = float(st["cash"])
+        for tk in sells:
+            p = st["positions"].get(tk)
+            mark = cl.get(tk, np.nan)
+            if p and np.isfinite(mark):
+                sale_value = p["shares"] * mark
+                estimated_cash += sale_value * (1 - cost)
+                estimated_equity -= sale_value * cost
+
         # Price frames must be truncated to the decision date when catching up
         # after missed sessions; otherwise the latest bar leaks into old plans.
         cand = bs.rank_breakouts(prices, bs.build_universe(prices, asof), asof=asof,
@@ -114,13 +128,23 @@ def _plan(st, asof, prices, P, regime, use_sentiment=True):
         for _, r in cand.iterrows():
             if r.ticker in held or r.ticker in sells:
                 continue
+            price_hint = float(r.close)
+            budget = min(estimated_equity / bs.CONFIG["slots"],
+                         estimated_cash / (1 + cost))
+            if budget <= 0:
+                break
+            shares_hint = budget / price_hint if price_hint > 0 else 0.0
             order = dict(side="BUY", ticker=r.ticker,
-                         price_hint=round(float(r.close), 2),
+                         price_hint=round(price_hint, 2),
+                         shares_hint=round(shares_hint, 3),
+                         value_hint=round(budget, 2),
+                         cost_hint=round(budget * cost, 2),
                          momentum=round(float(r.momentum), 1))
             if bs.CONFIG.get("sent_weight", 0.0) > 0:
                 order.update(sentiment=round(float(r.sentiment), 1),
                              combined=round(float(r.combined), 1))
             pending.append(order)
+            estimated_cash -= budget * (1 + cost)
             if len([o for o in pending if o["side"] == "BUY"]) >= free:
                 break
     return pending, cand

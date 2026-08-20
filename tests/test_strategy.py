@@ -66,6 +66,29 @@ def test_paper_plan_does_not_see_a_future_breakout():
     assert candidates.empty
 
 
+def test_paper_plan_includes_estimated_buy_quantity_and_cost(monkeypatch):
+    day = pd.Timestamp("2026-08-19")
+    close = pd.DataFrame({"TEST": [100.0]}, index=[day])
+    candidate = pd.DataFrame([
+        {"ticker": "TEST", "close": 100.0, "momentum": 80.0}
+    ])
+    monkeypatch.setattr(bs, "rank_breakouts", lambda *args, **kwargs: candidate)
+    monkeypatch.setattr(bs, "build_universe", lambda *args, **kwargs: ["TEST"])
+    monkeypatch.setitem(bs.CONFIG, "slots", 5)
+    monkeypatch.setitem(bs.CONFIG, "cost_bps", 0.0)
+    monkeypatch.setitem(bs.CONFIG, "sent_weight", 0.0)
+
+    state = pt.init_state(day.date(), 1_000)
+    pending, _ = pt._plan(
+        state, day, {}, {"close": close}, pd.Series(True, index=[day]),
+        use_sentiment=False,
+    )
+
+    assert pending == [{"side": "BUY", "ticker": "TEST", "price_hint": 100.0,
+                        "shares_hint": 2.0, "value_hint": 200.0,
+                        "cost_hint": 0.0, "momentum": 80.0}]
+
+
 def test_broad_universe_explicitly_includes_all_three_sources(monkeypatch):
     monkeypatch.setattr(bs, "sp500_tickers", lambda: ["SPYNAME", "SHARED"])
     monkeypatch.setattr(bs, "nasdaq100_tickers", lambda: ["NDXNAME", "SHARED"])
@@ -81,14 +104,21 @@ def test_dashboard_is_standalone_and_uses_configured_strategy_labels():
         "asof": pd.Timestamp("2026-08-18"),
         "started": True,
         "value": 1_010.0,
-        "positions": [],
-        "pending": [],
+        "positions": [{"ticker": "HELD", "shares": 2.0, "entry": 100.0,
+                       "price": 183.0, "stop": 160.0, "stop_rule": "10-day low",
+                       "room": 0.14375, "value": 366.0, "ret": 0.83,
+                       "pnl": 166.0, "source": "Tiingo",
+                       "asof_date": pd.Timestamp("2026-08-18").date()}],
+        "pending": [{"side": "BUY", "ticker": "TEST", "price_hint": 100.0,
+                     "shares_hint": 2.0, "value_hint": 200.0,
+                     "cost_hint": 0.0, "momentum": 80.0}],
         "trades": [],
         "equity": [{"date": "2026-08-17", "value": 1_000.0},
                    {"date": "2026-08-18", "value": 1_010.0}],
         "cand": pd.DataFrame(),
         "spy_line": [1_000.0, 1_005.0],
-        "m": {"ret": 0.01, "sharpe": 1.0, "vol": 0.1, "maxdd": 0.0,
+        "m": {"ret": 0.01, "day_pnl": 10.0, "day_ret": 0.01,
+              "sharpe": 1.0, "vol": 0.1, "maxdd": 0.0,
               "win": np.nan, "avg_hold": np.nan, "n_closed": 0},
     }
 
@@ -99,3 +129,14 @@ def test_dashboard_is_standalone_and_uses_configured_strategy_labels():
     assert "EMA(20) + 3-ATR breakout" in page
     assert "Chart.js" not in page
     assert "cdnjs.cloudflare.com" not in page
+    assert "Today&rsquo;s P&amp;L" in page
+    assert "+$10" in page
+    assert "Est. shares" in page
+    assert "~2.000" in page
+    assert "Est. total value" in page
+    assert "~$200.00" in page
+    assert "Est. cost" not in page
+    assert ">$+166<" not in page
+    assert ">+166<" in page
+    assert 'id="eqTip"' in page
+    assert "ctx.arc" in page
