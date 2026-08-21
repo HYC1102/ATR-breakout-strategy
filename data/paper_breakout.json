@@ -19,19 +19,19 @@
       "shares": 10.864197530864198,
       "entry": 162.0,
       "entry_date": "2026-08-05",
-      "hi": 179.01
-    },
-    "BLK": {
-      "shares": 1.5443481352038777,
-      "entry": 1138.5,
-      "entry_date": "2026-08-05",
-      "hi": 1182.84
+      "hi": 179.94000244140625
     },
     "MPC": {
       "shares": 4.701111091191061,
       "entry": 363.06,
       "entry_date": "2026-08-18",
       "hi": 366.5050048828125
+    },
+    "MRNA": {
+      "shares": 13.41170260501724,
+      "entry": 132.5,
+      "entry_date": "2026-08-21",
+      "hi": 145.1300048828125
     }
   },
   "trades": [
@@ -118,6 +118,30 @@
       "momentum": 100.0,
       "sentiment": 59.2,
       "combined": 83.7
+    },
+    {
+      "date": "2026-08-21",
+      "side": "SELL",
+      "ticker": "BLK",
+      "shares": 1.544,
+      "price": 1150.68,
+      "value": 1777.05,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-08-21",
+      "side": "BUY",
+      "ticker": "MRNA",
+      "shares": 13.412,
+      "price": 132.5,
+      "value": 1777.05,
+      "reason": "breakout",
+      "momentum": 100.0,
+      "sentiment": null,
+      "combined": null
     }
   ],
   "equity": [
@@ -168,23 +192,12 @@
     {
       "date": "2026-08-20",
       "value": 9086.9
-    }
-  ],
-  "pending": [
-    {
-      "side": "SELL",
-      "ticker": "BLK",
-      "reason": "1.5-ATR trail"
     },
     {
-      "side": "BUY",
-      "ticker": "MRNA",
-      "price_hint": 133.32,
-      "shares_hint": 13.203,
-      "value_hint": 1760.28,
-      "cost_hint": 0.0,
-      "momentum": 100.0
+      "date": "2026-08-21",
+      "value": 9474.76
     }
   ],
-  "last_close": "2026-08-20"
+  "pending": [],
+  "last_close": "2026-08-21"
 }

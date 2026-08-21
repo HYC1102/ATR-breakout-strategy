@@ -6,3 +6,5 @@ date,side,ticker,shares,price,value,reason,momentum,sentiment,combined
 2026-08-05,BUY,BLK,1.544,1138.5,1758.24,breakout,50.0,49.2,49.7
 2026-08-18,SELL,MSFT,3.546,481.54,1707.47,1.5-ATR trail,,,
 2026-08-18,BUY,MPC,4.701,363.06,1706.79,breakout,100.0,59.2,83.7
+2026-08-21,SELL,BLK,1.544,1150.68,1777.05,1.5-ATR trail,,,
+2026-08-21,BUY,MRNA,13.412,132.5,1777.05,breakout,100.0,,
