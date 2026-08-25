@@ -31,7 +31,7 @@
       "shares": 13.41170260501724,
       "entry": 132.5,
       "entry_date": "2026-08-21",
-      "hi": 145.1300048828125
+      "hi": 158.8300018310547
     }
   },
   "trades": [
@@ -200,8 +200,27 @@
     {
       "date": "2026-08-24",
       "value": 9322.42
+    },
+    {
+      "date": "2026-08-25",
+      "value": 9498.83
     }
   ],
-  "pending": [],
-  "last_close": "2026-08-24"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "SNOW",
+      "reason": "1.5-ATR trail"
+    },
+    {
+      "side": "BUY",
+      "ticker": "ABNB",
+      "price_hint": 190.5,
+      "shares_hint": 9.225,
+      "value_hint": 1757.39,
+      "cost_hint": 0.0,
+      "momentum": 92.3
+    }
+  ],
+  "last_close": "2026-08-25"
 }
