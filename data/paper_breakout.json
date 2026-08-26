@@ -1,19 +1,13 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 0.0,
+  "cash": 2.2737367544323206e-13,
   "positions": {
-    "SNOW": {
-      "shares": 5.543481684462503,
-      "entry": 317.49,
-      "entry_date": "2026-08-05",
-      "hi": 337.38
-    },
     "PATH": {
       "shares": 124.03100775193799,
       "entry": 14.19,
       "entry_date": "2026-08-05",
-      "hi": 16.68
+      "hi": 16.76
     },
     "PLTR": {
       "shares": 10.864197530864198,
@@ -32,6 +26,12 @@
       "entry": 132.5,
       "entry_date": "2026-08-21",
       "hi": 158.8300018310547
+    },
+    "ABNB": {
+      "shares": 9.014056607672499,
+      "entry": 190.3,
+      "entry_date": "2026-08-26",
+      "hi": 188.07
     }
   },
   "trades": [
@@ -142,6 +142,30 @@
       "momentum": 100.0,
       "sentiment": null,
       "combined": null
+    },
+    {
+      "date": "2026-08-26",
+      "side": "SELL",
+      "ticker": "SNOW",
+      "shares": 5.543,
+      "price": 309.44,
+      "value": 1715.37,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-08-26",
+      "side": "BUY",
+      "ticker": "ABNB",
+      "shares": 9.014,
+      "price": 190.3,
+      "value": 1715.37,
+      "reason": "breakout",
+      "momentum": 92.3,
+      "sentiment": null,
+      "combined": null
     }
   ],
   "equity": [
@@ -204,23 +228,12 @@
     {
       "date": "2026-08-25",
       "value": 9498.83
-    }
-  ],
-  "pending": [
-    {
-      "side": "SELL",
-      "ticker": "SNOW",
-      "reason": "1.5-ATR trail"
     },
     {
-      "side": "BUY",
-      "ticker": "ABNB",
-      "price_hint": 190.5,
-      "shares_hint": 9.225,
-      "value_hint": 1757.39,
-      "cost_hint": 0.0,
-      "momentum": 92.3
+      "date": "2026-08-26",
+      "value": 9412.7
     }
   ],
-  "last_close": "2026-08-25"
+  "pending": [],
+  "last_close": "2026-08-26"
 }
