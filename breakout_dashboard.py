@@ -22,6 +22,7 @@ import pandas as pd
 import yfinance as yf
 
 import breakout_sentiment as bs
+import etf_breakout as eb
 import paper_trade as pt
 import prices as px                 # Tiingo-first price adapter (local)
 
@@ -55,6 +56,12 @@ cursor:pointer;margin-right:6px;color:var(--mut)}
 .leg{display:inline-flex;gap:14px;font-size:12px;color:var(--mut);margin-left:6px}
 .leg span{display:inline-flex;align-items:center;gap:5px}
 .sw{width:13px;height:3px;display:inline-block}
+.tabs{display:flex;gap:8px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.tab{background:none;border:none;border-bottom:2px solid transparent;padding:9px 4px 11px;
+margin-right:14px;font-size:15px;font-weight:500;color:var(--mut);cursor:pointer;
+font-family:inherit;display:flex;align-items:baseline;gap:8px}
+.tab.on{color:var(--ink);border-bottom-color:var(--blue)}
+.tab .tv{font-size:12px;font-weight:600;font-variant-numeric:tabular-nums}
 """
 
 
@@ -207,18 +214,164 @@ def build(capital: float, start: str):
         cand = bs.rank_breakouts(prices, bs.build_universe(prices))
     return dict(capital=st["capital"], start=st["start_date"], asof=asof, started=started,
                 value=value, positions=positions, pending=st["pending"], trades=st["trades"],
-                equity=st["equity"], cand=cand, m=m, spy_line=spy_line)
+                equity=st["equity"], cand=cand, m=m, spy_line=spy_line,
+                cfg=stock_cfg())
 
 
-def html(s) -> str:
-    cap, m = s["capital"], s["m"]
+def stock_cfg() -> dict:
+    """Panel config for the US-stock account, derived from the active CONFIG.
+    Also the fallback for a state dict built before `cfg` existed."""
     slots = bs.CONFIG["slots"]
-    momentum_only = bs.CONFIG.get("sent_weight", 0.0) == 0
+    return dict(
+        tab="US stocks",
+        title=f"Breakout Momentum &mdash; {slots}-slot swing",
+        slots=slots,
+        sent_weight=bs.CONFIG.get("sent_weight", 0.0),
+        proxy_window=bs.CONFIG["proxy_window"],
+        universe_desc=f"Top-{bs.CONFIG['universe_size']} US stocks by dollar volume (weekly)",
+        entry_label=_entry_label(),
+        exit_desc=(f"{bs.CONFIG['atr_stop']:g}-ATR trail + "
+                   f"{bs.CONFIG['exit_low']}-day-low exit"),
+        sizing_desc=f"{slots} independent slots, 1/{slots} each, rest cash",
+        cost_desc=("gross of costs" if not bs.CONFIG.get("cost_bps") else
+                   f"net of {bs.CONFIG['cost_bps']:g}bps/side"),
+        stop_desc=(f"Stop = live exit trigger (higher of the "
+                   f"{bs.CONFIG['atr_stop']:g}-ATR trail and the "
+                   f"{bs.CONFIG['exit_low']}-day low). Room = cushion to that stop."),
+        foot=("Forward record in data/paper_breakout.json "
+              "(+ paper_trades.csv, paper_equity.csv). Universe = S&amp;P 500 + "
+              "Nasdaq-100 + liquid extras, top "
+              f"{bs.CONFIG['universe_size']} by dollar volume, weekly."),
+    )
+
+
+def _entry_label() -> str:
     if bs.CONFIG.get("entry", "atr") == "atr":
-        entry_label = (f"EMA({bs.CONFIG['atr_break_period']}) + "
-                       f"{bs.CONFIG['atr_break_mult']:g}-ATR breakout")
-    else:
-        entry_label = f"{bs.CONFIG['breakout']}-day Donchian breakout"
+        return (f"EMA({bs.CONFIG['atr_break_period']}) + "
+                f"{bs.CONFIG['atr_break_mult']:g}-ATR breakout")
+    return f"{bs.CONFIG['breakout']}-day Donchian breakout"
+
+
+def build_etf(capital: float, start: str):
+    """The ETF account: equal weight across whatever is held, VT as the default
+    holding for days when nothing is breaking out. Separate engine (paper_etf)
+    and separate state file from the stock account."""
+    import paper_etf as pe
+    cfg = pe.apply_config()
+
+    prices = bs.download_prices(pe.UNIVERSE + ["SPY"], period="max", pool="etf")
+    prices = eb.clean_calendar(prices, verbose=False)
+    tradable = {t: d for t, d in prices.items() if t in pe.UNIVERSE}
+    P = bs.build_panels(tradable)
+    regime = eb.regime_series(prices["SPY"], cfg["regime_ma"])
+
+    st = pe.load_state() or pe.init_state(start, capital)
+    st, asof, cand = pe.advance(st, prices, P, regime)
+    pe.save_state(st)
+
+    started = len(st["equity"]) > 0
+    value = st["equity"][-1]["value"] if started else st["capital"]
+    dflt = cfg["default_asset"]
+
+    positions = []
+    for tk, p in st["positions"].items():
+        col = P["close"][tk] if tk in P["close"].columns else None
+        mark = float(col.loc[asof]) if col is not None else np.nan
+        if col is not None and not np.isfinite(mark):
+            last_ok = col.last_valid_index()
+            mark = float(col.loc[last_ok]) if last_ok is not None else np.nan
+        stale = not np.isfinite(mark)
+        if stale:
+            mark = float(p.get("last_px", p["entry"]))
+        if tk == dflt:
+            stop, rule = 0.0, "default holding"
+        else:
+            try:
+                stop, rule = pt.stop_level(p, tk, prices, asof)
+            except Exception:  # noqa: BLE001
+                stop, rule = 0.0, "no data"
+            if not np.isfinite(stop):
+                stop, rule = 0.0, "no data"
+        last_dt = prices[tk]["Close"].last_valid_index() if tk in prices else None
+        positions.append(dict(ticker=tk, shares=p["shares"], entry=p["entry"],
+                              entry_date=p["entry_date"], price=mark,
+                              value=p["shares"] * mark,
+                              pnl=p["shares"] * (mark - p["entry"]),
+                              ret=mark / p["entry"] - 1 if p["entry"] else 0.0,
+                              stop=stop, stop_rule=rule,
+                              room=mark / stop - 1 if stop > 0 else 0,
+                              source="no data" if stale else "yfinance",
+                              asof_date=last_dt.date() if last_dt is not None else None))
+    positions.sort(key=lambda x: -x["value"])
+
+    m = dict(ret=0.0, day_pnl=0.0, day_ret=0.0, sharpe=float("nan"), maxdd=0.0,
+             vol=float("nan"), win=float("nan"), avg_hold=float("nan"), n_closed=0)
+    if started:
+        eq = pd.Series([e["value"] for e in st["equity"]],
+                       index=pd.to_datetime([e["date"] for e in st["equity"]]))
+        r = eq.pct_change().dropna()
+        closed = episodes([t for t in st["trades"] if t["ticker"] != dflt])
+        wins = [c for c in closed if c["pnl"] > 0]
+        prev = eq.iloc[-2] if len(eq) >= 2 else st["capital"]
+        day_pnl = value - prev
+        m = dict(ret=value / st["capital"] - 1, day_pnl=day_pnl,
+                 day_ret=day_pnl / prev if prev else 0.0,
+                 sharpe=(r.mean() / r.std() * np.sqrt(252)) if len(r) > 1 and r.std() else float("nan"),
+                 vol=r.std() * np.sqrt(252) if len(r) > 1 else float("nan"),
+                 maxdd=(eq / eq.cummax() - 1).min(),
+                 win=len(wins) / len(closed) if closed else float("nan"),
+                 avg_hold=np.mean([(pd.Timestamp(c["exit"]) - pd.Timestamp(c["entry"])).days
+                                   for c in closed]) if closed else float("nan"),
+                 n_closed=len(closed))
+
+    spy_line = []
+    if started:
+        try:
+            s_full = prices["SPY"]["Close"]
+            dates = pd.to_datetime([e["date"] for e in st["equity"]])
+            sc = s_full.reindex(s_full.index.union(dates)).ffill().reindex(dates)
+            if sc.notna().all() and sc.iloc[0] > 0:
+                spy_line = list((st["capital"] * sc / sc.iloc[0]).round(2))
+        except Exception:  # noqa: BLE001
+            spy_line = []
+
+    if cand is None:
+        cand = bs.rank_breakouts(prices, [t for t in pe.UNIVERSE if t in prices],
+                                 asof=asof, use_sentiment=False)
+    return dict(capital=st["capital"], start=st["start_date"], asof=asof, started=started,
+                value=value, positions=positions, pending=st["pending"], trades=st["trades"],
+                equity=st["equity"], cand=cand, m=m, spy_line=spy_line,
+                cfg=dict(
+                    tab="ETFs",
+                    title="ETF Breakout &mdash; equal-weight rotation",
+                    slots=cfg["slots"], sent_weight=0.0,
+                    proxy_window=cfg["proxy_window"],
+                    universe_desc=f"{len(pe.UNIVERSE)} sector / thematic / core ETFs (fixed list)",
+                    entry_label=(f"EMA({cfg['atr_break_period']}) + "
+                                 f"{cfg['atr_break_mult']:g}-ATR breakout"),
+                    exit_desc=f"{cfg['atr_stop']:g}-ATR trail + {cfg['exit_low']}-day-low exit",
+                    sizing_desc=(f"equal weight across held names (max {cfg['slots']}); "
+                                 f"{dflt} held when nothing is breaking out"),
+                    cost_desc=("gross of costs" if not cfg["cost_bps"] else
+                               f"net of {cfg['cost_bps']:g}bps/side"),
+                    stop_desc=(f"Stop = live exit trigger (higher of the {cfg['atr_stop']:g}-ATR "
+                               f"trail and the {cfg['exit_low']}-day low). {dflt} is the default "
+                               f"holding and is not stop-managed."),
+                    foot=("Forward record in data/paper_etf.json (+ paper_etf_trades.csv, "
+                          "paper_etf_equity.csv). Universe is a fixed hand-picked ETF list; "
+                          "see universe_test.py &mdash; on a universe chosen without hindsight "
+                          "these rules underperform SPY."),
+                ))
+
+
+def panel(s, uid: str) -> str:
+    """One strategy's tab body. `uid` suffixes every element id so two panels can
+    coexist on the page without their charts fighting over the same ids."""
+    cap, m = s["capital"], s["m"]
+    cfg = s.get("cfg") or stock_cfg()
+    slots = cfg["slots"]
+    momentum_only = cfg.get("sent_weight", 0.0) == 0
+    entry_label = cfg["entry_label"]
     rc = lambda x: "pos" if x >= 0 else "neg"
     signed_money = lambda x: f'{"+" if x >= 0 else "-"}${abs(x):,.0f}'
     roomcls = lambda r: "neg" if r < 0.03 else ("amber" if r < 0.08 else "pos")
@@ -357,18 +510,18 @@ def html(s) -> str:
         # standalone and usable without access to a CDN.
         chart = f'''
 <div style="margin:6px 0 10px">
-<button id="bV" class="tg on">Account value ($)</button>
-<button id="bR" class="tg">Return (%)</button>
+<button id="bV{uid}" class="tg on">Account value ($)</button>
+<button id="bR{uid}" class="tg">Return (%)</button>
 <span class="leg"><span><span class="sw" style="background:#2a78d6"></span>Strategy</span>
 {spy_legend}</span></div>
-<div style="position:relative;height:220px"><canvas id="eq" style="width:100%;height:100%"></canvas>
-<div id="eqTip" style="display:none;position:absolute;pointer-events:none;background:#fff;
+<div style="position:relative;height:220px"><canvas id="eq{uid}" style="width:100%;height:100%"></canvas>
+<div id="eqTip{uid}" style="display:none;position:absolute;pointer-events:none;background:#fff;
 border:1px solid #d7d5ce;border-radius:7px;padding:6px 8px;font:12px -apple-system,sans-serif;
 box-shadow:0 2px 8px #0002;white-space:nowrap;z-index:2"></div></div>
 <script>(()=>{{
 const ED={ed},EV={ev}{spy_var};
 const base=[{{name:"Strategy",values:EV,color:"#2a78d6",dash:[]}}{spy_series}];
-const cv=document.getElementById("eq"),ctx=cv.getContext("2d"),tip=document.getElementById("eqTip");
+const cv=document.getElementById("eq{uid}"),ctx=cv.getContext("2d"),tip=document.getElementById("eqTip{uid}");
 let mode="value",hover=-1,chartState=null;
 const rb=a=>a.map(v=>(v/a[0]-1)*100);
 function draw(){{
@@ -393,8 +546,8 @@ function draw(){{
  ctx.setLineDash([]);
  chartState={{series,pad,pw,w,h,x}};
 }}
-function setMode(m){{mode=m;draw();document.getElementById("bV").classList.toggle("on",m==="value");document.getElementById("bR").classList.toggle("on",m==="return");}}
-document.getElementById("bV").onclick=()=>setMode("value");document.getElementById("bR").onclick=()=>setMode("return");
+function setMode(m){{mode=m;draw();document.getElementById("bV{uid}").classList.toggle("on",m==="value");document.getElementById("bR{uid}").classList.toggle("on",m==="return");}}
+document.getElementById("bV{uid}").onclick=()=>setMode("value");document.getElementById("bR{uid}").onclick=()=>setMode("return");
 cv.addEventListener("mousemove",e=>{{
  if(!chartState)return;
  const rect=cv.getBoundingClientRect(),mx=e.clientX-rect.left;
@@ -429,12 +582,12 @@ new ResizeObserver(draw).observe(cv.parentElement);draw();
                 + card("Win rate", num(m["win"], ".0f", 100, "%"))
                 + '</div>')
 
-    return f"""<!doctype html><meta charset="utf-8"><title>Breakout strategy</title>
-<style>{CSS}</style><div class="dash">
-<h1>Breakout Momentum &mdash; {slots}-slot swing <span class="pill">forward paper test</span></h1>
-<p class="sub">Top-{bs.CONFIG['universe_size']} US stocks by dollar volume (weekly) &nbsp;·&nbsp; {entry_label} &nbsp;·&nbsp;
-ranked by momentum only &nbsp;·&nbsp; 1.5-ATR trail + 10-day-low exit &nbsp;|&nbsp;
+    return f"""
+<h1>{cfg['title']} <span class="pill">forward paper test</span></h1>
+<p class="sub">{cfg['universe_desc']} &nbsp;·&nbsp; {entry_label} &nbsp;·&nbsp;
+ranked by momentum only &nbsp;·&nbsp; {cfg['exit_desc']} &nbsp;|&nbsp;
 {status} &nbsp;·&nbsp; <span class="pill">${cap:,.0f} account</span></p>
+<p class="sub">Sizing: {cfg['sizing_desc']} &nbsp;·&nbsp; {cfg['cost_desc']}</p>
 
 {actions}
 <div class="cards">{cards_html}</div>
@@ -442,12 +595,11 @@ ranked by momentum only &nbsp;·&nbsp; 1.5-ATR trail + 10-day-low exit &nbsp;|&n
 
 <h2>Today&rsquo;s breakouts &mdash; momentum ranked</h2>
 <p class="sub">Breakouts are ranked solely by the percentile of their trailing
-{bs.CONFIG['proxy_window']}-day return. The top {slots} fill the available slots.</p>
+{cfg['proxy_window']}-day return. The top {slots} fill the available slots.</p>
 {cand_html}
 
 <h2>Current positions</h2>
-<p class="sub">Stop = live exit trigger (higher of the 1.5-ATR trail and the 10-day low).
-Room = cushion to that stop.</p>
+<p class="sub">{cfg['stop_desc']}</p>
 {pos_html}
 
 <h2>Trade log (forward)</h2>
@@ -455,11 +607,39 @@ Room = cushion to that stop.</p>
 
 {meas}
 
-<p class="foot">Generated {dt.datetime.now():%Y-%m-%d %H:%M} by breakout_dashboard.py.
-Forward record stored in data/paper_breakout.json (+ paper_trades.csv, paper_equity.csv).
-Universe = S&amp;P 500 + Nasdaq-100 + liquid extras, top {bs.CONFIG['universe_size']} by dollar volume,
-weekly. Survivorship-aware; a research tool, not investment advice.</p>
-</div>"""
+<p class="foot">{cfg['foot']}<br>
+Generated {dt.datetime.now():%Y-%m-%d %H:%M} by breakout_dashboard.py.
+A research tool, not investment advice.</p>"""
+
+
+def html(s) -> str:
+    """Single-strategy page. Kept as the original entry point."""
+    return page([s])
+
+
+def page(panels) -> str:
+    """Wrap one panel per strategy in a tab bar."""
+    tabs = "".join(
+        f'<button class="tab{" on" if i == 0 else ""}" data-p="p{i}">'
+        f'{(s.get("cfg") or stock_cfg())["tab"]}'
+        f'<span class="tv {"pos" if s["m"]["ret"] >= 0 else "neg"}">'
+        f'{s["m"]["ret"]*100:+.1f}%</span></button>'
+        for i, s in enumerate(panels))
+    bodies = "".join(
+        f'<div class="pane" id="p{i}"{"" if i == 0 else " hidden"}>{panel(s, str(i))}</div>'
+        for i, s in enumerate(panels))
+    return f"""<!doctype html><meta charset="utf-8"><title>Breakout strategies</title>
+<style>{CSS}</style><div class="dash">
+<div class="tabs">{tabs}</div>
+{bodies}
+</div>
+<script>
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===b));
+  document.querySelectorAll(".pane").forEach(p=>p.hidden=(p.id!==b.dataset.p));
+  window.dispatchEvent(new Event("resize"));
+}});
+</script>"""
 
 
 def next_business_day():
@@ -473,16 +653,30 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--capital", type=float, default=8800.0)
     p.add_argument("--start", default=None, help="Forward-test start (default: next business day).")
+    p.add_argument("--etf-capital", type=float, default=10000.0)
+    p.add_argument("--etf-start", default=None,
+                   help="ETF account start (default: today, or its saved start once running).")
+    p.add_argument("--only", choices=["stocks", "etf"], default=None,
+                   help="Advance just one account (both by default).")
     p.add_argument("--out", default="breakout_dashboard.html")
     a = p.parse_args()
     start = a.start or next_business_day().isoformat()
-    print("Building breakout dashboard (advancing paper account)...")
-    s = build(a.capital, start)
+    etf_start = a.etf_start or dt.date.today().isoformat()
+
+    panels = []
+    if a.only != "etf":
+        print("Advancing the US-stock paper account...")
+        panels.append(build(a.capital, start))
+    if a.only != "stocks":
+        print("Advancing the ETF paper account...")
+        panels.append(build_etf(a.etf_capital, etf_start))
+
     with open(a.out, "w") as f:
-        f.write(html(s))
-    n_pend = len(s["pending"])
-    print(f"Wrote {a.out}  (value ${s['value']:,.0f}, {n_pend} orders queued, "
-          f"{len(s['trades'])} trades logged)")
+        f.write(page(panels))
+    for s in panels:
+        print(f"  {s['cfg']['tab']:<10} ${s['value']:>10,.0f}  {s['m']['ret']*100:+6.2f}%  "
+              f"{len(s['pending'])} orders queued, {len(s['trades'])} trades logged")
+    print(f"Wrote {a.out}")
 
 
 if __name__ == "__main__":

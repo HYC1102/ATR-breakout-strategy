@@ -1,0 +1,313 @@
+<title>ETF Breakout Tearsheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#fbfbfa; --surface:#ffffff; --ink:#1a1a19; --mut:#6b6a66; --faint:#8f8d86;
+  --line:#e6e4dd; --line-2:#d6d3c9; --blue:#2a78d6; --blue-soft:#7fb0ea;
+  --green:#1baf7a; --amber:#c98500; --red:#c0392b; --hold:#8a8880;
+  --hi:#f5f2e9; --rule:#1a1a19;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#17171a; --surface:#1e1e21; --ink:#eeece5; --mut:#a3a099; --faint:#807d76;
+    --line:#2e2e32; --line-2:#3d3d42; --blue:#6aa9f0; --blue-soft:#3f6d9e;
+    --green:#3fc999; --amber:#e0a33c; --red:#e0685a; --hold:#8d8a83;
+    --hi:#26261f; --rule:#eeece5;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17171a; --surface:#1e1e21; --ink:#eeece5; --mut:#a3a099; --faint:#807d76;
+  --line:#2e2e32; --line-2:#3d3d42; --blue:#6aa9f0; --blue-soft:#3f6d9e;
+  --green:#3fc999; --amber:#e0a33c; --red:#e0685a; --hold:#8d8a83;
+  --hi:#26261f; --rule:#eeece5;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);margin:0;
+  font-family:"Source Serif 4",Georgia,serif;font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:56px 28px 96px}
+.col{max-width:660px}
+h1,h2,h3,.eyebrow,.verdict-h{font-family:"Bricolage Grotesque","Helvetica Neue",sans-serif}
+h1{font-size:clamp(34px,5vw,50px);line-height:1.04;font-weight:700;letter-spacing:-.02em;
+  text-wrap:balance;margin:0 0 14px}
+h2{font-size:26px;font-weight:600;letter-spacing:-.01em;margin:0 0 6px;text-wrap:balance}
+h3{font-size:16px;font-weight:600;margin:0 0 4px}
+p{margin:0 0 16px}
+.eyebrow{font-size:11.5px;text-transform:uppercase;letter-spacing:.15em;color:var(--faint);
+  font-weight:600;margin:0 0 10px}
+.lede{font-size:20px;line-height:1.5;color:var(--mut);margin:0 0 26px}
+.mono,.n,td.n,.chip,.cv,code{font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-variant-numeric:tabular-nums}
+.meta{display:flex;flex-wrap:wrap;gap:0 26px;padding:14px 0;border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);font-family:"IBM Plex Mono",monospace;font-size:12.5px;
+  color:var(--mut)}
+.meta b{color:var(--ink);font-weight:500}
+section{margin:52px 0 0}
+section.tight{margin-top:34px}
+.verdict{background:var(--surface);border:1px solid var(--line-2);border-radius:3px;
+  padding:24px 26px;margin:30px 0 0}
+.verdict-h{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--faint);
+  font-weight:600;margin:0 0 16px}
+.vlist{display:flex;flex-direction:column;gap:16px;margin:0}
+.vitem{display:grid;grid-template-columns:46px 1fr;gap:16px;align-items:start}
+.vmark{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--blue);
+  padding-top:7px;font-weight:500;text-transform:uppercase;letter-spacing:.08em}
+.vitem p{margin:0;font-size:16.5px;line-height:1.55}
+.vitem b{font-weight:600}
+figure{margin:26px 0 0}
+.chart{width:100%;height:auto;display:block;overflow:visible}
+.gl{stroke:var(--line);stroke-width:1}
+.ax{font-family:"IBM Plex Mono",monospace;font-size:11px;fill:var(--faint)}
+.ar{text-anchor:end}.am{text-anchor:middle}
+.l-strat{fill:none;stroke:var(--blue);stroke-width:2.2;stroke-linejoin:round}
+.l-s20{fill:none;stroke:var(--blue-soft);stroke-width:1.6;stroke-dasharray:5 3}
+.l-hold{fill:none;stroke:var(--hold);stroke-width:1.8}
+.l-spy{fill:none;stroke:var(--amber);stroke-width:1.2;stroke-dasharray:2 3;opacity:.85}
+.a-hold{fill:var(--hold);opacity:.20;stroke:var(--hold);stroke-width:1}
+.a-strat{fill:var(--blue);opacity:.26;stroke:var(--blue);stroke-width:1.2}
+.legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin:14px 0 0;
+  font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--mut)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.sw{width:20px;height:0;border-top-width:2.4px;border-top-style:solid;display:inline-block}
+figcaption{font-size:13.5px;color:var(--mut);margin-top:12px;max-width:660px;line-height:1.5}
+.tw{overflow-x:auto;margin:20px 0 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+th{font-family:"Bricolage Grotesque",sans-serif;font-size:11px;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--faint);font-weight:600;text-align:left;
+  padding:0 14px 9px 0;border-bottom:1.5px solid var(--rule);white-space:nowrap}
+th.n{text-align:right}
+td{padding:9px 14px 9px 0;border-bottom:1px solid var(--line);vertical-align:baseline}
+td:last-child,th:last-child{padding-right:0}
+td.n{text-align:right;font-size:13.5px;white-space:nowrap}
+td.nm{font-family:"Bricolage Grotesque",sans-serif;font-size:14px}
+td.nm.mono{font-family:"IBM Plex Mono",monospace;font-size:13px}
+tr.hi td{background:var(--hi)}
+tr.sep td{border-top:1.5px solid var(--line-2)}
+tr.ell td{color:var(--faint);font-size:12px;text-align:center;
+  font-family:"IBM Plex Mono",monospace;padding:6px 0}
+.pos{color:var(--green)}.neg{color:var(--red)}.mut{color:var(--faint)}
+.cmp{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);margin:22px 0 0}
+.cmp>div{background:var(--surface);padding:18px 20px}
+.cmp .k{font-family:"Bricolage Grotesque",sans-serif;font-size:11px;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--faint);font-weight:600;margin-bottom:8px}
+.cmp .v{font-family:"IBM Plex Mono",monospace;font-size:27px;font-weight:500;
+  letter-spacing:-.02em;line-height:1.1}
+.cmp .s{font-size:13px;color:var(--mut);margin-top:6px;line-height:1.45}
+.slv{margin:0 0 16px}
+.slv-h{font-family:"Bricolage Grotesque",sans-serif;font-size:11px;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--faint);font-weight:600;margin-bottom:9px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;padding:3px 9px;border:1px solid var(--line-2);border-radius:2px;
+  color:var(--mut);background:var(--surface)}
+.cvrow{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 0}
+.cv{font-size:12px;color:var(--mut);border:1px solid var(--line);padding:3px 9px;
+  background:var(--surface)}
+.cv b{color:var(--ink);font-weight:500;margin-right:7px}
+.caveat{border-left:2px solid var(--amber);padding:2px 0 2px 20px;margin:0 0 20px}
+.caveat h3{font-family:"Bricolage Grotesque",sans-serif;font-size:14px;margin-bottom:5px}
+.caveat p{font-size:15.5px;color:var(--mut);margin:0;line-height:1.55}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:14px 16px;
+  overflow-x:auto;font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink);
+  line-height:1.7;margin:16px 0 0}
+hr{border:0;border-top:1px solid var(--line);margin:56px 0 0}
+.foot{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--faint);
+  margin-top:22px;line-height:1.7}
+@media (max-width:640px){
+  .wrap{padding:38px 18px 70px}
+  body{font-size:16px}
+  .vitem{grid-template-columns:40px 1fr;gap:12px}
+}
+</style>
+<div class="wrap">
+
+<header class="col">
+  <p class="eyebrow">Backtest · ATR breakout · ETF universe</p>
+  <h1>The rules survive the switch to ETFs. The edge doesn't.</h1>
+  <p class="lede">Your stock breakout system, run unchanged over 29 core, thematic and
+  sector ETFs. It cuts the worst drawdown roughly in half — and gives up about 40% of the
+  return doing it.</p>
+</header>
+
+<div class="meta">
+  <span><b>2019-01-02</b> → <b>2026-09-01</b></span>
+  <span>7.6 years</span>
+  <span><b>29</b> ETFs · 5 slots</span>
+  <span><b>430</b> entries</span>
+  <span><b>54%</b> avg invested</span>
+  <span>2bps/side · next-open fills</span>
+</div>
+
+<div class="verdict">
+  <p class="verdict-h">What the test says</p>
+  <div class="vlist">
+    <div class="vitem"><span class="vmark">risk</span><p><b>It's a risk manager, not an alpha
+      engine.</b> +10.2% a year against +17.3% for simply holding the
+      same 29 ETFs equally weighted — but a -17% worst drawdown against
+      -33%, and it sat 46% in cash on average.</p></div>
+    <div class="vitem"><span class="vmark">rank</span><p><b>The momentum ranking adds nothing here.</b>
+      Replacing it with a coin flip gives +9.9% a year across
+      12 random seeds (+8.6% to +11.6%) versus
+      +10.2% for momentum. With 29 candidates and 5 slots there is
+      almost nothing left to rank.</p></div>
+    <div class="vitem"><span class="vmark">stop</span><p><b>The 1.5-ATR trail is too tight for ETFs.</b>
+      Widening it to 2.0 lifts return to +13.7% and Sharpe to 1.01, the
+      only setting tested that beats buy-and-hold on risk-adjusted terms. ETFs are diversified
+      internally, so a stop calibrated to single-stock noise whipsaws.</p></div>
+  </div>
+</div>
+
+<section>
+  <h2>Growth of $100,000</h2>
+  <p class="col" style="color:var(--mut);font-size:15.5px;margin-top:8px">The grey line is the
+  benchmark that matters: an equal-weight hold of this same hand-picked basket. It isolates the
+  timing rules from the luck of having chosen these themes.</p>
+  <figure>
+    <svg viewBox="0 0 980 340" class="chart" role="img" aria-label="Equity curves, $100,000 start">
+<line x1="62" y1="298.7" x2="966" y2="298.7" class="gl"/><line x1="62" y1="242.2" x2="966" y2="242.2" class="gl"/><line x1="62" y1="185.6" x2="966" y2="185.6" class="gl"/><line x1="62" y1="129.1" x2="966" y2="129.1" class="gl"/><line x1="62" y1="72.5" x2="966" y2="72.5" class="gl"/><line x1="62" y1="16.0" x2="966" y2="16.0" class="gl"/><text x="53" y="302.7" class="ax ar">$100k</text><text x="53" y="246.2" class="ax ar">$150k</text><text x="53" y="189.6" class="ax ar">$200k</text><text x="53" y="133.1" class="ax ar">$250k</text><text x="53" y="76.5" class="ax ar">$300k</text><text x="53" y="20.0" class="ax ar">$350k</text><text x="62.0" y="332" class="ax am">2019</text><text x="179.9" y="332" class="ax am">2020</text><text x="297.8" y="332" class="ax am">2021</text><text x="415.7" y="332" class="ax am">2022</text><text x="533.7" y="332" class="ax am">2023</text><text x="651.6" y="332" class="ax am">2024</text><text x="769.5" y="332" class="ax am">2025</text><text x="887.4" y="332" class="ax am">2026</text>
+<path d="M 62.0 289.8 L 71.8 285.8 L 81.7 283.5 L 91.5 278.3 L 101.3 286.8 L 111.1 278.1 L 121.0 276.1 L 130.8 278.4 L 140.6 275.8 L 150.4 272.8 L 160.3 267.7 L 170.1 263.5 L 179.9 263.6 L 189.7 275.3 L 199.6 292.4 L 209.4 277.2 L 219.2 270.8 L 229.0 268.3 L 238.9 259.8 L 248.7 249.2 L 258.5 255.3 L 268.3 259.2 L 278.2 242.6 L 288.0 236.4 L 297.8 238.2 L 307.7 233.3 L 317.5 225.2 L 327.3 215.4 L 337.1 214.1 L 347.0 209.6 L 356.8 204.7 L 366.6 198.5 L 376.4 208.5 L 386.3 194.2 L 396.1 196.0 L 405.9 186.0 L 415.7 197.9 L 425.6 204.2 L 435.4 196.4 L 445.2 215.3 L 455.0 214.9 L 464.9 231.1 L 474.7 214.5 L 484.5 222.5 L 494.3 240.0 L 504.2 226.0 L 514.0 215.7 L 523.8 227.0 L 533.7 215.4 L 543.5 220.3 L 553.3 213.2 L 563.1 210.1 L 573.0 209.1 L 582.8 196.0 L 592.6 188.9 L 602.4 192.6 L 612.3 203.0 L 622.1 207.5 L 631.9 188.8 L 641.7 178.7 L 651.6 174.9 L 661.4 162.6 L 671.2 154.4 L 681.0 164.8 L 690.9 152.3 L 700.7 143.2 L 710.5 139.9 L 720.3 133.6 L 730.2 127.7 L 740.0 130.2 L 749.8 113.5 L 759.7 120.6 L 769.5 112.8 L 779.3 116.6 L 789.1 133.1 L 799.0 135.5 L 808.8 118.1 L 818.6 103.0 L 828.4 95.9 L 838.3 89.4 L 848.1 78.0 L 857.9 70.0 L 867.7 69.3 L 877.6 69.1 L 887.4 64.0 L 897.2 67.0 L 907.0 84.0 L 916.9 49.6 L 926.7 30.5 L 936.5 34.5 L 946.3 34.3 L 956.2 24.2 L 966.0 25.9" class="l-spy"/>
+<path d="M 62.0 288.7 L 71.8 284.4 L 81.7 282.6 L 91.5 279.2 L 101.3 286.9 L 111.1 278.1 L 121.0 278.3 L 130.8 281.1 L 140.6 279.3 L 150.4 277.0 L 160.3 272.8 L 170.1 268.4 L 179.9 269.5 L 189.7 277.2 L 199.6 295.8 L 209.4 280.4 L 219.2 271.3 L 229.0 265.6 L 238.9 256.4 L 248.7 247.2 L 258.5 250.7 L 268.3 251.5 L 278.2 229.0 L 288.0 214.1 L 297.8 212.9 L 307.7 204.0 L 317.5 201.5 L 327.3 195.2 L 337.1 192.5 L 347.0 188.8 L 356.8 189.0 L 366.6 181.6 L 376.4 188.7 L 386.3 173.0 L 396.1 178.3 L 405.9 178.7 L 415.7 194.6 L 425.6 191.1 L 435.4 186.1 L 445.2 209.5 L 455.0 210.7 L 464.9 228.3 L 474.7 211.7 L 484.5 216.5 L 494.3 235.5 L 504.2 225.7 L 514.0 214.8 L 523.8 224.8 L 533.7 206.8 L 543.5 213.8 L 553.3 209.1 L 563.1 210.8 L 573.0 209.9 L 582.8 197.6 L 592.6 188.8 L 602.4 198.4 L 612.3 208.6 L 622.1 217.1 L 631.9 198.8 L 641.7 182.5 L 651.6 186.8 L 661.4 172.4 L 671.2 162.9 L 681.0 173.7 L 690.9 163.4 L 700.7 163.8 L 710.5 156.9 L 720.3 154.6 L 730.2 146.1 L 740.0 148.0 L 749.8 128.0 L 759.7 141.9 L 769.5 131.8 L 779.3 139.3 L 789.1 149.3 L 799.0 143.0 L 808.8 124.9 L 818.6 106.7 L 828.4 103.1 L 838.3 93.9 L 848.1 74.3 L 857.9 63.0 L 867.7 70.0 L 877.6 68.4 L 887.4 52.8 L 897.2 52.1 L 907.0 71.9 L 916.9 44.3 L 926.7 28.2 L 936.5 37.6 L 946.3 46.0 L 956.2 25.9 L 966.0 29.1" class="l-hold"/>
+<path d="M 62.0 298.7 L 71.8 294.1 L 81.7 296.1 L 91.5 293.8 L 101.3 294.8 L 111.1 292.3 L 121.0 293.9 L 130.8 291.2 L 140.6 294.7 L 150.4 296.4 L 160.3 295.0 L 170.1 294.8 L 179.9 291.9 L 189.7 292.1 L 199.6 290.2 L 209.4 290.2 L 219.2 290.5 L 229.0 285.2 L 238.9 280.7 L 248.7 271.5 L 258.5 275.1 L 268.3 274.2 L 278.2 263.8 L 288.0 249.6 L 297.8 244.1 L 307.7 239.3 L 317.5 239.6 L 327.3 239.4 L 337.1 237.9 L 347.0 237.9 L 356.8 240.7 L 366.6 246.5 L 376.4 252.1 L 386.3 250.4 L 396.1 256.1 L 405.9 258.2 L 415.7 257.6 L 425.6 255.1 L 435.4 254.1 L 445.2 255.6 L 455.0 255.4 L 464.9 255.4 L 474.7 255.4 L 484.5 262.5 L 494.3 262.5 L 504.2 262.5 L 514.0 262.5 L 523.8 263.7 L 533.7 256.8 L 543.5 263.7 L 553.3 262.7 L 563.1 267.8 L 573.0 264.6 L 582.8 259.5 L 592.6 253.8 L 602.4 258.3 L 612.3 255.9 L 622.1 256.5 L 631.9 250.4 L 641.7 237.1 L 651.6 243.8 L 661.4 234.2 L 671.2 223.8 L 681.0 224.0 L 690.9 225.4 L 700.7 224.3 L 710.5 230.4 L 720.3 241.1 L 730.2 241.4 L 740.0 246.7 L 749.8 221.6 L 759.7 231.3 L 769.5 233.7 L 779.3 234.3 L 789.1 236.3 L 799.0 238.0 L 808.8 237.6 L 818.6 213.5 L 828.4 208.2 L 838.3 209.5 L 848.1 190.5 L 857.9 183.4 L 867.7 185.6 L 877.6 183.2 L 887.4 167.4 L 897.2 156.6 L 907.0 158.3 L 916.9 141.3 L 926.7 111.8 L 936.5 114.6 L 946.3 116.8 L 956.2 106.4 L 966.0 109.4" class="l-s20"/>
+<path d="M 62.0 298.7 L 71.8 294.2 L 81.7 297.3 L 91.5 294.6 L 101.3 295.2 L 111.1 292.7 L 121.0 295.6 L 130.8 291.7 L 140.6 294.6 L 150.4 296.0 L 160.3 294.0 L 170.1 294.1 L 179.9 290.6 L 189.7 293.4 L 199.6 291.7 L 209.4 291.7 L 219.2 292.0 L 229.0 286.8 L 238.9 280.3 L 248.7 274.5 L 258.5 277.5 L 268.3 276.3 L 278.2 268.0 L 288.0 255.2 L 297.8 250.4 L 307.7 241.7 L 317.5 243.1 L 327.3 243.9 L 337.1 243.3 L 347.0 246.1 L 356.8 243.9 L 366.6 248.2 L 376.4 248.1 L 386.3 242.8 L 396.1 244.0 L 405.9 244.8 L 415.7 247.0 L 425.6 247.2 L 435.4 246.9 L 445.2 246.8 L 455.0 246.8 L 464.9 246.8 L 474.7 246.8 L 484.5 254.3 L 494.3 254.3 L 504.2 254.3 L 514.0 254.3 L 523.8 256.5 L 533.7 250.6 L 543.5 254.5 L 553.3 253.5 L 563.1 258.1 L 573.0 256.8 L 582.8 251.2 L 592.6 247.0 L 602.4 249.9 L 612.3 247.0 L 622.1 247.7 L 631.9 241.0 L 641.7 231.1 L 651.6 240.7 L 661.4 242.9 L 671.2 232.1 L 681.0 233.6 L 690.9 234.3 L 700.7 235.2 L 710.5 238.4 L 720.3 251.6 L 730.2 252.5 L 740.0 256.8 L 749.8 238.2 L 759.7 245.7 L 769.5 248.7 L 779.3 249.1 L 789.1 251.0 L 799.0 251.1 L 808.8 250.8 L 818.6 231.8 L 828.4 229.4 L 838.3 231.6 L 848.1 221.3 L 857.9 208.1 L 867.7 210.2 L 877.6 211.4 L 887.4 197.4 L 897.2 187.1 L 907.0 188.6 L 916.9 173.6 L 926.7 160.6 L 936.5 166.4 L 946.3 168.8 L 956.2 171.5 L 966.0 173.6" class="l-strat"/>
+</svg>
+    <div class="legend">
+      <span><i class="sw" style="border-color:var(--blue)"></i>ATR breakout, 1.5 trail</span>
+      <span><i class="sw" style="border-color:var(--blue-soft);border-top-style:dashed"></i>same, 2.0 trail</span>
+      <span><i class="sw" style="border-color:var(--hold)"></i>equal-weight hold, same 29</span>
+      <span><i class="sw" style="border-color:var(--amber);border-top-style:dotted"></i>SPY</span>
+    </div>
+  </figure>
+  <figure>
+    <h3 style="font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);margin:34px 0 0">Drawdown from peak</h3>
+    <svg viewBox="0 0 980 190" class="chart" role="img" aria-label="Drawdown from peak">
+<line x1="62" y1="14.0" x2="966" y2="14.0" class="gl"/><line x1="62" y1="56.9" x2="966" y2="56.9" class="gl"/><line x1="62" y1="99.7" x2="966" y2="99.7" class="gl"/><line x1="62" y1="142.6" x2="966" y2="142.6" class="gl"/><text x="53" y="18.0" class="ax ar">0%</text><text x="53" y="60.9" class="ax ar">-10%</text><text x="53" y="103.7" class="ax ar">-20%</text><text x="53" y="146.6" class="ax ar">-30%</text>
+<path d="M 62.0 14.0 L 62.0 14.0 L 71.8 17.6 L 81.7 17.3 L 91.5 15.2 L 101.3 40.0 L 111.1 14.0 L 121.0 21.8 L 130.8 30.6 L 140.6 24.8 L 150.4 17.8 L 160.3 16.2 L 170.1 15.4 L 179.9 30.2 L 189.7 59.6 L 199.6 112.6 L 209.4 68.7 L 219.2 43.0 L 229.0 26.7 L 238.9 17.3 L 248.7 15.1 L 258.5 31.0 L 268.3 37.4 L 278.2 16.7 L 288.0 14.1 L 297.8 34.5 L 307.7 36.3 L 317.5 31.6 L 327.3 19.2 L 337.1 14.0 L 347.0 14.9 L 356.8 16.4 L 366.6 14.0 L 376.4 33.5 L 386.3 15.3 L 396.1 39.0 L 405.9 39.7 L 415.7 67.3 L 425.6 61.2 L 435.4 52.5 L 445.2 92.9 L 455.0 95.1 L 464.9 125.5 L 474.7 96.8 L 484.5 105.1 L 494.3 137.9 L 504.2 121.0 L 514.0 102.2 L 523.8 119.4 L 533.7 88.3 L 543.5 100.5 L 553.3 92.4 L 563.1 95.2 L 573.0 93.6 L 582.8 72.4 L 592.6 57.2 L 602.4 73.8 L 612.3 91.4 L 622.1 106.1 L 631.9 74.4 L 641.7 46.3 L 651.6 53.8 L 661.4 28.8 L 671.2 14.0 L 681.0 32.7 L 690.9 23.6 L 700.7 24.2 L 710.5 24.7 L 720.3 20.8 L 730.2 15.3 L 740.0 24.3 L 749.8 14.0 L 759.7 38.3 L 769.5 23.1 L 779.3 34.3 L 789.1 49.4 L 799.0 39.9 L 808.8 18.7 L 818.6 14.0 L 828.4 25.0 L 838.3 16.5 L 848.1 14.0 L 857.9 16.3 L 867.7 24.9 L 877.6 22.9 L 887.4 27.0 L 897.2 26.3 L 907.0 49.2 L 916.9 17.2 L 926.7 14.0 L 936.5 25.8 L 946.3 35.1 L 956.2 20.2 L 966.0 23.7 L 966.0 14.0 Z" class="a-hold"/>
+<path d="M 62.0 14.0 L 62.0 14.0 L 71.8 15.9 L 81.7 27.1 L 91.5 20.4 L 101.3 22.7 L 111.1 14.4 L 121.0 26.4 L 130.8 15.3 L 140.6 27.7 L 150.4 32.7 L 160.3 25.7 L 170.1 26.1 L 179.9 24.1 L 189.7 35.5 L 199.6 29.6 L 209.4 29.6 L 219.2 30.6 L 229.0 26.6 L 238.9 23.1 L 248.7 14.8 L 258.5 31.2 L 268.3 27.5 L 278.2 17.3 L 288.0 14.6 L 297.8 41.9 L 307.7 40.1 L 317.5 43.4 L 327.3 45.4 L 337.1 44.0 L 347.0 50.6 L 356.8 45.3 L 366.6 55.5 L 376.4 55.2 L 386.3 42.7 L 396.1 45.5 L 405.9 47.4 L 415.7 52.8 L 425.6 53.1 L 435.4 52.4 L 445.2 52.2 L 455.0 52.2 L 464.9 52.2 L 474.7 52.2 L 484.5 69.9 L 494.3 69.9 L 504.2 69.9 L 514.0 69.9 L 523.8 75.0 L 533.7 61.1 L 543.5 70.5 L 553.3 68.0 L 563.1 79.0 L 573.0 75.8 L 582.8 62.6 L 592.6 52.7 L 602.4 59.5 L 612.3 52.8 L 622.1 54.4 L 631.9 38.6 L 641.7 22.0 L 651.6 44.4 L 661.4 49.5 L 671.2 24.5 L 681.0 27.8 L 690.9 29.5 L 700.7 31.6 L 710.5 39.0 L 720.3 69.8 L 730.2 71.9 L 740.0 82.0 L 749.8 38.6 L 759.7 56.1 L 769.5 63.1 L 779.3 64.0 L 789.1 68.4 L 799.0 68.7 L 808.8 68.0 L 818.6 23.8 L 828.4 20.9 L 838.3 25.8 L 848.1 14.0 L 857.9 24.7 L 867.7 29.0 L 877.6 31.4 L 887.4 36.1 L 897.2 17.2 L 907.0 20.2 L 916.9 14.0 L 926.7 20.4 L 936.5 37.4 L 946.3 41.2 L 956.2 45.7 L 966.0 49.2 L 966.0 14.0 Z" class="a-strat"/>
+</svg>
+    <figcaption>Where the strategy earns its keep. It never gives back more than
+    -17%; holding the basket costs -33% in the 2022 drawdown and
+    again in early 2020.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>Headline results</h2>
+  <div class="tw"><table>
+    <tr><th>Approach</th><th class="n">CAGR</th><th class="n">Sharpe</th><th class="n">Vol</th>
+        <th class="n">Max DD</th><th class="n">End value</th></tr>
+    <tr><td class="nm">ATR breakout — 1.5 ATR trail (as configured)</td><td class="n">+10.2%</td><td class="n">0.82</td><td class="n">13%</td><td class="n neg">-17%</td><td class="n">$210,626</td></tr><tr><td class="nm">ATR breakout — 2.0 ATR trail</td><td class="n">+13.7%</td><td class="n">1.01</td><td class="n">14%</td><td class="n neg">-25%</td><td class="n">$267,428</td></tr><tr class="hi"><td class="nm">Equal-weight hold, same 29 ETFs</td><td class="n">+17.3%</td><td class="n">0.91</td><td class="n">20%</td><td class="n neg">-33%</td><td class="n">$338,452</td></tr><tr><td class="nm">SPY buy & hold</td><td class="n">+17.4%</td><td class="n">0.93</td><td class="n">19%</td><td class="n neg">-34%</td><td class="n">$341,215</td></tr><tr><td class="nm">ACWI buy & hold</td><td class="n">+14.7%</td><td class="n">0.84</td><td class="n">18%</td><td class="n neg">-34%</td><td class="n">$285,534</td></tr>
+  </table></div>
+  <figcaption>Highlighted row is the like-for-like benchmark. Vol-matching the strategy up to the
+  basket's 20% volatility would scale its return to roughly
+  16% before borrowing costs — still short of
+  holding, with a shallower worst case.</figcaption>
+</section>
+
+<section>
+  <h2>Year by year</h2>
+  <div class="tw"><table style="min-width:420px">
+    <tr><th>Year</th><th class="n">Strategy</th><th class="n">Equal-weight hold</th><th class="n">SPY</th></tr>
+    <tr><td class="nm mono">2019</td><td class="n pos">+4.0%</td><td class="n pos">+26.8%</td><td class="n pos">+31.1%</td></tr><tr><td class="nm mono">2020</td><td class="n pos">+33.1%</td><td class="n pos">+37.8%</td><td class="n pos">+18.3%</td></tr><tr><td class="nm mono">2021</td><td class="n pos">+6.6%</td><td class="n pos">+17.9%</td><td class="n pos">+28.7%</td></tr><tr><td class="nm mono">2022</td><td class="n neg">-7.0%</td><td class="n neg">-19.8%</td><td class="n neg">-18.2%</td></tr><tr><td class="nm mono">2023</td><td class="n pos">+16.3%</td><td class="n pos">+22.6%</td><td class="n pos">+26.2%</td></tr><tr><td class="nm mono">2024</td><td class="n neg">-8.1%</td><td class="n pos">+17.7%</td><td class="n pos">+24.9%</td></tr><tr><td class="nm mono">2025</td><td class="n pos">+20.7%</td><td class="n pos">+27.3%</td><td class="n pos">+17.7%</td></tr><tr><td class="nm mono">2026</td><td class="n pos">+18.9%</td><td class="n pos">+11.4%</td><td class="n pos">+12.6%</td></tr>
+  </table></div>
+  <figcaption>2022 is the whole argument for the system: −7.0% while the basket lost 19.8%. 2024 is
+  the argument against it — −8.1% in a year the basket made 17.7%, as repeated stop-outs
+  in a choppy uptrend cost more than the trend paid.</figcaption>
+</section>
+
+<section>
+  <h2>Does the ranking do anything?</h2>
+  <p class="col">The stock version scores candidates on 63-day momentum and takes the best. That step
+  only has value when more names break out than there are slots to fill. Across 29 ETFs it
+  rarely does — so momentum ranking and random selection are statistically indistinguishable.</p>
+  <div class="cmp">
+    <div><div class="k">Momentum ranking</div><div class="v">+10.2%</div>
+      <div class="s">Sharpe 0.82 — the configured behaviour</div></div>
+    <div><div class="k">Random ranking</div><div class="v">+9.9%</div>
+      <div class="s">Sharpe 0.81 — mean of 12 seeds, spanning
+      +8.6% to +11.6%</div></div>
+    <div><div class="k">Verdict</div><div class="v" style="color:var(--amber)">no edge</div>
+      <div class="s">Momentum lands inside the random range. Nothing here says the ranking works.</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Stop width is the one parameter that matters</h2>
+  <p class="col">A smooth plateau rather than a lone spike, which is what a real effect looks like
+  as opposed to a curve-fit. Every other knob barely moves the result.</p>
+  <div class="tw"><table style="min-width:460px">
+    <tr><th>Trailing stop</th><th class="n">CAGR</th><th class="n">Sharpe</th><th class="n">Max DD</th><th class="n">Entries</th></tr>
+    <tr><td class="nm mono">1.0 ATR</td><td class="n">+6.8%</td><td class="n">0.59</td><td class="n neg">-18%</td><td class="n">595</td></tr><tr><td class="nm mono">1.5 ATR</td><td class="n">+10.2%</td><td class="n">0.82</td><td class="n neg">-17%</td><td class="n">430</td></tr><tr class=hi><td class="nm mono">2.0 ATR</td><td class="n">+13.7%</td><td class="n">1.01</td><td class="n neg">-25%</td><td class="n">347</td></tr><tr><td class="nm mono">2.5 ATR</td><td class="n">+13.7%</td><td class="n">0.98</td><td class="n neg">-24%</td><td class="n">289</td></tr><tr><td class="nm mono">3.0 ATR</td><td class="n">+12.9%</td><td class="n">0.90</td><td class="n neg">-27%</td><td class="n">270</td></tr><tr><td class="nm mono">3.5 ATR</td><td class="n">+12.2%</td><td class="n">0.84</td><td class="n neg">-26%</td><td class="n">262</td></tr><tr><td class="nm mono">4.0 ATR</td><td class="n">+11.4%</td><td class="n">0.79</td><td class="n neg">-28%</td><td class="n">258</td></tr>
+  </table></div>
+  <div class="tw"><table style="min-width:520px">
+    <tr><th>Other variants</th><th class="n">CAGR</th><th class="n">Sharpe</th><th class="n">Max DD</th><th class="n">Entries</th></tr>
+    <tr><td class="nm">5 slots, regime on (baseline)</td><td class="n">+10.2%</td><td class="n">0.82</td><td class="n neg">-17%</td><td class="n">430</td></tr><tr><td class="nm">3 slots</td><td class="n">+13.4%</td><td class="n">0.89</td><td class="n neg">-28%</td><td class="n">302</td></tr><tr><td class="nm">8 slots</td><td class="n">+8.6%</td><td class="n">0.82</td><td class="n neg">-12%</td><td class="n">555</td></tr><tr><td class="nm">no SPY regime filter</td><td class="n">+10.7%</td><td class="n">0.83</td><td class="n neg">-17%</td><td class="n">467</td></tr><tr><td class="nm">no 10-day-low exit</td><td class="n">+10.3%</td><td class="n">0.82</td><td class="n neg">-17%</td><td class="n">428</td></tr><tr><td class="nm">2.0 ATR entry band (vs 3.0)</td><td class="n">+12.1%</td><td class="n">0.85</td><td class="n neg">-28%</td><td class="n">571</td></tr>
+  </table></div>
+  <figcaption>The SPY regime filter and the 10-day-low exit are both inert in this universe —
+  removing either changes almost nothing. Fewer slots simply means more concentration risk taken.</figcaption>
+</section>
+
+<section>
+  <h2>Split sample</h2>
+  <p class="col">The wider stop is not a free lunch: its advantage lives almost entirely in the
+  2023-onward bull run. In the harder first half it was slightly worse than the tight stop.</p>
+  <div class="tw"><table style="min-width:520px">
+    <tr><th>Window</th><th>Configuration</th><th class="n">CAGR</th><th class="n">Sharpe</th><th class="n">Max DD</th></tr>
+    <tr><td class="nm mono">2019–2022</td><td class="nm">baseline (1.5 ATR)</td><td class="n">+8.3%</td><td class="n">0.74</td><td class="n neg">-14%</td></tr><tr><td class="nm mono">2019–2022</td><td class="nm">2.0 ATR trail</td><td class="n">+7.0%</td><td class="n">0.61</td><td class="n neg">-21%</td></tr><tr><td class="nm mono">2019–2022</td><td class="nm">random ranking</td><td class="n">+8.4%</td><td class="n">0.77</td><td class="n neg">-14%</td></tr><tr><td class="nm mono">2019–2022</td><td class="nm">equal-weight hold</td><td class="n">+13.4%</td><td class="n">0.67</td><td class="n neg">-33%</td></tr><tr class="sep"><td class="nm mono">2023–26</td><td class="nm">baseline (1.5 ATR)</td><td class="n">+12.5%</td><td class="n">0.89</td><td class="n neg">-17%</td></tr><tr><td class="nm mono">2023–26</td><td class="nm">2.0 ATR trail</td><td class="n">+21.4%</td><td class="n">1.35</td><td class="n neg">-14%</td></tr><tr><td class="nm mono">2023–26</td><td class="nm">random ranking</td><td class="n">+18.0%</td><td class="n">1.25</td><td class="n neg">-10%</td></tr><tr><td class="nm mono">2023–26</td><td class="nm">equal-weight hold</td><td class="n">+21.8%</td><td class="n">1.30</td><td class="n neg">-18%</td></tr>
+  </table></div>
+  <figcaption>Read the two halves as one warning: the strategy trails a plain hold in both, and the
+  parameter that looks best over the full sample is period-dependent.</figcaption>
+</section>
+
+<section>
+  <h2>Where the money came from</h2>
+  <div class="tw"><table style="min-width:520px">
+    <tr><th>ETF</th><th class="n">Net P&amp;L</th><th class="n">Entries</th><th class="n">ADV</th><th class="n">Listed</th></tr>
+    <tr><td class="nm mono">BLOK</td><td class="n pos">$+25,489</td><td class="n">21</td><td class="n">$14M</td><td class="n mut">2018-01</td></tr><tr><td class="nm mono">COPX</td><td class="n pos">$+23,488</td><td class="n">20</td><td class="n">$256M</td><td class="n mut">2010-04</td></tr><tr><td class="nm mono">XLE</td><td class="n pos">$+13,439</td><td class="n">10</td><td class="n">$1,720M</td><td class="n mut">1998-12</td></tr><tr><td class="nm mono">LIT</td><td class="n pos">$+12,044</td><td class="n">23</td><td class="n">$23M</td><td class="n mut">2010-07</td></tr><tr><td class="nm mono">ICLN</td><td class="n pos">$+11,600</td><td class="n">15</td><td class="n">$110M</td><td class="n mut">2008-06</td></tr><tr><td class="nm mono">GLDM</td><td class="n pos">$+10,802</td><td class="n">20</td><td class="n">$368M</td><td class="n mut">2018-06</td></tr><tr><td class="nm mono">QTUM</td><td class="n pos">$+10,579</td><td class="n">20</td><td class="n">$81M</td><td class="n mut">2018-09</td></tr><tr><td class="nm mono">SMH</td><td class="n pos">$+9,793</td><td class="n">22</td><td class="n">$6,395M</td><td class="n mut">2000-06</td></tr><tr class="ell"><td colspan="5">… 16 more between …</td></tr><tr><td class="nm mono">PAVE</td><td class="n neg">$-3,589</td><td class="n">16</td><td class="n">$104M</td><td class="n mut">2017-03</td></tr><tr><td class="nm mono">XLP</td><td class="n neg">$-3,623</td><td class="n">16</td><td class="n">$921M</td><td class="n mut">1998-12</td></tr><tr><td class="nm mono">ARKX</td><td class="n neg">$-4,338</td><td class="n">7</td><td class="n">$36M</td><td class="n mut">2021-03</td></tr><tr><td class="nm mono">FINX</td><td class="n neg">$-4,379</td><td class="n">14</td><td class="n">$2M</td><td class="n mut">2016-09</td></tr><tr><td class="nm mono">URA</td><td class="n neg">$-5,478</td><td class="n">16</td><td class="n">$143M</td><td class="n mut">2010-11</td></tr>
+  </table></div>
+  <figcaption>Concentrated in a handful of high-beta thematic sleeves — blockchain, copper, energy,
+  lithium. Note the ADV column: several names trade thin enough that the 2bps cost assumption
+  flatters them.</figcaption>
+</section>
+
+<section>
+  <h2>The universe</h2>
+  <div class="slv"><div class="slv-h">core / diversifier · 4</div><div class="chips"><span class="chip">VT</span><span class="chip">BND</span><span class="chip">TLT</span><span class="chip">GLDM</span></div></div><div class="slv"><div class="slv-h">thematic · 21</div><div class="chips"><span class="chip">SMH</span><span class="chip">IGV</span><span class="chip">BOTZ</span><span class="chip">ICLN</span><span class="chip">URA</span><span class="chip">CIBR</span><span class="chip">XBI</span><span class="chip">ITA</span><span class="chip">IBIT</span><span class="chip">BLOK</span><span class="chip">FIW</span><span class="chip">PAVE</span><span class="chip">FINX</span><span class="chip">LIT</span><span class="chip">COPX</span><span class="chip">QTUM</span><span class="chip">OZEM</span><span class="chip">ARKX</span><span class="chip">ESPO</span><span class="chip">MOO</span><span class="chip">INDA</span></div></div><div class="slv"><div class="slv-h">sector tilt · 4</div><div class="chips"><span class="chip">XLF</span><span class="chip">XLE</span><span class="chip">XLP</span><span class="chip">XLY</span></div></div>
+  <p class="col" style="margin-top:20px;font-size:15.5px;color:var(--mut)">Both sides of the pairs
+  you left open are included — XLP and XLY, IBIT and BLOK — so the breakout rules pick whichever
+  actually fires rather than the choice being made in advance. Tradable names by year:</p>
+  <div class="cvrow"><span class="cv"><b>2019</b>26</span> <span class="cv"><b>2020</b>26</span> <span class="cv"><b>2021</b>26</span> <span class="cv"><b>2022</b>27</span> <span class="cv"><b>2023</b>27</span> <span class="cv"><b>2024</b>27</span> <span class="cv"><b>2025</b>29</span> <span class="cv"><b>2026</b>29</span></div>
+</section>
+
+<section>
+  <h2>Read these before acting on any of it</h2>
+  <div class="caveat"><h3>The universe is the biggest bias in the test</h3>
+    <p>This list was written in 2026 naming AI, nuclear, quantum, GLP-1 and spot bitcoin as sleeves.
+    Those are known winners; a 2019 version of the list would not have contained them. That's why
+    every comparison here is against an equal-weight hold of the same basket — it carries the
+    identical bias, so the gap between the two is the part attributable to the rules.</p></div>
+  <div class="caveat"><h3>Three funds barely exist in the sample</h3>
+    <p>IBIT starts 2024-01, OZEM 2024-05, ARKX 2021-03. Early years trade a materially smaller
+    universe than the headline count suggests.</p></div>
+  <div class="caveat"><h3>Costs are optimistic for the thin names</h3>
+    <p>FINX, ESPO, OZEM and FIW all run under roughly $10M a day. Two basis points per side is
+    reasonable for SMH or XLF and not for these at size.</p></div>
+  <div class="caveat"><h3>One data repair was needed</h3>
+    <p>A single date (2026-08-28) came back from Yahoo for only 4 of 29 ETFs and is dropped.
+    Left in, it registered as a 60% loss followed by a 150% gain. The mark-to-market in the engine
+    was also fixed to carry the last known price rather than dropping an unpriced position out of
+    equity entirely.</p></div>
+</section>
+
+<hr>
+<section class="tight col">
+  <h2>Reproducing this</h2>
+  <pre>python etf_breakout.py --start 2019-01-01 --variants --robust</pre>
+  <p class="foot">Universe, config and benchmarks live in <b>etf_breakout.py</b>; the strategy engine
+  is <b>breakout_sentiment.py</b>, unchanged apart from the mark-to-market fix. Prices from Yahoo
+  via yfinance, split- and dividend-adjusted, cached in data/prices_etf_max.pkl.<br>
+  Research tooling, not investment advice.</p>
+</section>
+
+</div>
