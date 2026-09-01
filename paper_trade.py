@@ -51,11 +51,17 @@ def _cost():
 
 
 def _equity(positions, cash, price_row):
+    """Book value. A missing quote falls back to the last known mark (then entry)
+    rather than dropping the position from equity, which would read as a total
+    loss on that name for the day and a matching bounce when data returns."""
     v = cash
     for tk, p in positions.items():
         px = price_row.get(tk, np.nan)
         if np.isfinite(px):
-            v += p["shares"] * px
+            p["last_px"] = float(px)
+        else:
+            px = p.get("last_px", p["entry"])
+        v += p["shares"] * px
     return v
 
 

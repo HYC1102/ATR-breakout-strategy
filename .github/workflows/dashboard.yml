@@ -38,8 +38,11 @@ jobs:
       - name: Run regression tests
         run: python -m pytest
 
-      - name: Advance paper account and render dashboard
-        run: python breakout_dashboard.py --capital 8800 --start 2026-08-05
+      - name: Advance paper accounts and render dashboard
+        run: >
+          python breakout_dashboard.py
+          --capital 8800 --start 2026-08-05
+          --etf-capital 10000 --etf-start 2026-09-01
 
       - name: Commit refreshed dashboard and paper state
         run: |
@@ -49,6 +52,7 @@ jobs:
             data/paper_breakout.json \
             data/paper_trades.csv \
             data/paper_equity.csv \
+            'data/paper_etf*' \
             data/extras_*.json
           if git diff --cached --quiet; then
             echo "No dashboard or paper-state changes to commit."

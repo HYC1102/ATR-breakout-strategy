@@ -53,6 +53,8 @@ CONFIG = dict(
                             # | "full" = re-equalize whole book each change | "risk" = ATR risk-sized
     weight_mode="fixed",    # (full mode only) "fixed"=1/slots each | "equal"=1/held | "invvol"
     risk_frac=0.01,         # capital risked per slot to its stop (sizing="risk" only)
+    default_asset=None,     # park otherwise-idle capital in this ticker instead of cash
+                            # (sizing="full" only; None = hold cash, the default)
     regime=True,            # only OPEN positions when SPY > its 200-day MA
     regime_ma=200,
     take_profit=None,       # exit if up >= this fraction from entry (None = let winners run)
@@ -476,21 +478,34 @@ def backtest(prices=None, capital=None, P=None, regime_full=None,
         regime_ok = (regime_full.reindex(dates).ffill().fillna(False)
                      if regime_full is not None else spy_regime(dates))
 
+    dflt = CONFIG.get("default_asset")
+
     def target_weights(held, at_row):
-        """Target weights over the held set."""
+        """Target weights over the held set. Any weight left unallocated goes to
+        `default_asset` when one is configured, so idle capital earns that asset's
+        return instead of sitting in cash."""
         if not held:
-            return {}
+            return {dflt: 1.0} if dflt else {}
         wm = CONFIG.get("weight_mode")
         if wm == "fixed":                               # 1/slots each; empty slots -> cash
-            return {t: 1.0 / CONFIG["slots"] for t in held}
+            return _with_default({t: 1.0 / CONFIG["slots"] for t in held})
         if wm == "invvol":                              # inverse ATR% (risk-parity-ish)
             iv = {t: (P["close"].loc[day].get(t, np.nan) / at_row.get(t, np.nan))
                   for t in held}
             iv = {t: v for t, v in iv.items() if np.isfinite(v) and v > 0}
             s = sum(iv.values())
             if s > 0:
-                return {t: v / s for t, v in iv.items()}
-        return {t: 1.0 / len(held) for t in held}       # equal weight over held
+                return _with_default({t: v / s for t, v in iv.items()})
+        w = {t: 1.0 / len(held) for t in held}          # equal weight over held
+        return _with_default(w)
+
+    def _with_default(w):
+        if not dflt:
+            return w
+        residual = 1.0 - sum(w.values())
+        if residual > 1e-9:
+            w = dict(w); w[dflt] = w.get(dflt, 0.0) + residual
+        return w
 
     cash = capital
     pos: dict[str, dict] = {}                  # ticker -> {shares, hi}
@@ -522,7 +537,8 @@ def backtest(prices=None, capital=None, P=None, regime_full=None,
                             pos[t]["shares"] = tgt / price
                         else:                            # new position
                             pos[t] = dict(shares=tgt / price, hi=float(cl.get(t, price)),
-                                          entry=float(price), entry_i=i)
+                                          entry=float(price), entry_i=i,
+                                          last_px=float(price))
                     else:
                         pos.pop(t, None)
                 pend_tgt = None
@@ -551,7 +567,7 @@ def backtest(prices=None, capital=None, P=None, regime_full=None,
                     continue
                 cash -= shares * price * (1 + cost)
                 pos[t] = dict(shares=shares, hi=float(cl.get(t, price)),
-                              entry=float(price), entry_i=i)
+                              entry=float(price), entry_i=i, last_px=float(price))
                 trades.append(dict(date=day, ticker=t, side="BUY", px=float(price),
                                    shares=shares, value=shares * price))
 
@@ -576,9 +592,14 @@ def backtest(prices=None, capital=None, P=None, regime_full=None,
                                        shares=sh, value=val))
                     del pos[t]
 
-        # 2) mark to market
-        equity = cash + sum(p["shares"] * cl.get(t, np.nan) for t, p in pos.items()
-                            if np.isfinite(cl.get(t, np.nan)))
+        # 2) mark to market. A missing close must NOT drop the position out of
+        #    equity -- that reads as an instant 100% loss on the name and a
+        #    matching gain when the data returns. Carry the last known mark.
+        for t, p in pos.items():
+            c_now = cl.get(t, np.nan)
+            if np.isfinite(c_now):
+                p["last_px"] = float(c_now)
+        equity = cash + sum(p["shares"] * p.get("last_px", p["entry"]) for p in pos.values())
         eq_curve.append(equity)
         deploy.append((equity - cash) / equity if equity > 0 else 0)
         holds.append((day, cash, {t: p["shares"] * cl.get(t, np.nan) for t, p in pos.items()}))
@@ -598,6 +619,8 @@ def backtest(prices=None, capital=None, P=None, regime_full=None,
         ps, use_lo = CONFIG.get("pct_stop"), CONFIG.get("use_exit_low", True)
         pend_sell = []
         for t, p in pos.items():
+            if t == dflt:                     # parking asset: not stop-managed
+                continue
             c = cl.get(t, np.nan)
             if not np.isfinite(c):
                 pend_sell.append(t); continue
@@ -626,7 +649,7 @@ def backtest(prices=None, capital=None, P=None, regime_full=None,
             free = 0                                     # risk-off: no new entries
         if free > 0:
             cand = [(t, px[t]) for t in uni
-                    if bool(bo.get(t, False)) and t not in pos
+                    if bool(bo.get(t, False)) and t not in pos and t != dflt
                     and np.isfinite(px.get(t, np.nan)) and np.isfinite(at.get(t, np.nan))
                     and at.get(t, 0) > 0]
             rmode = CONFIG.get("rank_mode", "proxy")
@@ -637,8 +660,9 @@ def backtest(prices=None, capital=None, P=None, regime_full=None,
             picks = [t for t, _ in cand[:free]]
 
         if sizing == "full":
-            new_held = (set(pos) - set(pend_sell)) | set(picks)
-            pend_tgt = target_weights(new_held, at) if new_held != set(pos) else None
+            new_held = (set(pos) - set(pend_sell) - {dflt}) | set(picks)
+            pend_tgt = (target_weights(new_held, at)
+                        if new_held != (set(pos) - {dflt}) else None)
         else:
             pend_buy = [dict(ticker=t, atr=float(at[t]), equity=equity) for t in picks]
 

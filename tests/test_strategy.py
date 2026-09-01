@@ -138,5 +138,5 @@ def test_dashboard_is_standalone_and_uses_configured_strategy_labels():
     assert "Est. cost" not in page
     assert ">$+166<" not in page
     assert ">+166<" in page
-    assert 'id="eqTip"' in page
+    assert 'id="eqTip0"' in page          # ids are suffixed per panel since the tabs landed
     assert "ctx.arc" in page
