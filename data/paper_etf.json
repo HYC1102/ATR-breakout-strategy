@@ -14,8 +14,8 @@
     {
       "side": "BUY",
       "ticker": "IBIT",
-      "price_hint": 43.89,
-      "shares_hint": 113.921,
+      "price_hint": 43.76,
+      "shares_hint": 114.26,
       "value_hint": 5000.0,
       "target_weight": 50.0,
       "reason": "breakout",
@@ -24,8 +24,8 @@
     {
       "side": "BUY",
       "ticker": "MOO",
-      "price_hint": 86.8,
-      "shares_hint": 57.604,
+      "price_hint": 87.43,
+      "shares_hint": 57.189,
       "value_hint": 5000.0,
       "target_weight": 50.0,
       "reason": "breakout",
