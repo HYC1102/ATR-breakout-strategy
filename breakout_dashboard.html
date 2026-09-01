@@ -1,4 +1,4 @@
-<!doctype html><meta charset="utf-8"><title>Breakout strategy</title>
+<!doctype html><meta charset="utf-8"><title>Breakout strategies</title>
 <style>
 :root{--bg:#fbfbfa;--card:#fff;--ink:#1a1a19;--mut:#6b6a66;--line:#e6e4dd;
 --blue:#2a78d6;--green:#1baf7a;--amber:#c98500;--red:#c0392b}
@@ -29,28 +29,37 @@ cursor:pointer;margin-right:6px;color:var(--mut)}
 .leg{display:inline-flex;gap:14px;font-size:12px;color:var(--mut);margin-left:6px}
 .leg span{display:inline-flex;align-items:center;gap:5px}
 .sw{width:13px;height:3px;display:inline-block}
+.tabs{display:flex;gap:8px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.tab{background:none;border:none;border-bottom:2px solid transparent;padding:9px 4px 11px;
+margin-right:14px;font-size:15px;font-weight:500;color:var(--mut);cursor:pointer;
+font-family:inherit;display:flex;align-items:baseline;gap:8px}
+.tab.on{color:var(--ink);border-bottom-color:var(--blue)}
+.tab .tv{font-size:12px;font-weight:600;font-variant-numeric:tabular-nums}
 </style><div class="dash">
+<div class="tabs"><button class="tab on" data-p="p0">US stocks<span class="tv pos">+9.2%</span></button><button class="tab" data-p="p1">ETFs<span class="tv pos">+0.0%</span></button></div>
+<div class="pane" id="p0">
 <h1>Breakout Momentum &mdash; 5-slot swing <span class="pill">forward paper test</span></h1>
 <p class="sub">Top-223 US stocks by dollar volume (weekly) &nbsp;·&nbsp; EMA(20) + 3-ATR breakout &nbsp;·&nbsp;
 ranked by momentum only &nbsp;·&nbsp; 1.5-ATR trail + 10-day-low exit &nbsp;|&nbsp;
-as of 31 Aug 2026 &nbsp;·&nbsp; <span class="pill">$8,800 account</span></p>
+as of 01 Sep 2026 &nbsp;·&nbsp; <span class="pill">$8,800 account</span></p>
+<p class="sub">Sizing: 5 independent slots, 1/5 each, rest cash &nbsp;·&nbsp; gross of costs</p>
 
 <div class="act"><b>Today&rsquo;s actions</b> &mdash; none. Hold current positions; no qualifying breakouts (or risk-off regime).</div>
-<div class="cards"><div class="card"><div class="l">Account value</div><div class="v ">$9,629</div></div><div class="card"><div class="l">Today&rsquo;s P&amp;L</div><div class="v pos">+$62</div></div><div class="card"><div class="l">Return</div><div class="v pos">+9.4%</div></div><div class="card"><div class="l">Sharpe</div><div class="v ">4.80</div></div><div class="card"><div class="l">Max drawdown</div><div class="v neg">-4%</div></div><div class="card"><div class="l">Win rate</div><div class="v ">33%</div></div></div>
+<div class="cards"><div class="card"><div class="l">Account value</div><div class="v ">$9,610</div></div><div class="card"><div class="l">Today&rsquo;s P&amp;L</div><div class="v neg">-$20</div></div><div class="card"><div class="l">Return</div><div class="v pos">+9.2%</div></div><div class="card"><div class="l">Sharpe</div><div class="v ">4.57</div></div><div class="card"><div class="l">Max drawdown</div><div class="v neg">-4%</div></div><div class="card"><div class="l">Win rate</div><div class="v ">33%</div></div></div>
 
 <div style="margin:6px 0 10px">
-<button id="bV" class="tg on">Account value ($)</button>
-<button id="bR" class="tg">Return (%)</button>
+<button id="bV0" class="tg on">Account value ($)</button>
+<button id="bR0" class="tg">Return (%)</button>
 <span class="leg"><span><span class="sw" style="background:#2a78d6"></span>Strategy</span>
 <span><span class="sw" style="background:#898781"></span>SPY</span></span></div>
-<div style="position:relative;height:220px"><canvas id="eq" style="width:100%;height:100%"></canvas>
-<div id="eqTip" style="display:none;position:absolute;pointer-events:none;background:#fff;
+<div style="position:relative;height:220px"><canvas id="eq0" style="width:100%;height:100%"></canvas>
+<div id="eqTip0" style="display:none;position:absolute;pointer-events:none;background:#fff;
 border:1px solid #d7d5ce;border-radius:7px;padding:6px 8px;font:12px -apple-system,sans-serif;
 box-shadow:0 2px 8px #0002;white-space:nowrap;z-index:2"></div></div>
 <script>(()=>{
-const ED=["08-05", "08-06", "08-07", "08-10", "08-11", "08-12", "08-13", "08-14", "08-17", "08-18", "08-19", "08-20", "08-21", "08-24", "08-25", "08-26", "08-27", "08-28", "08-31"],EV=[8670.82, 8709.67, 9095.35, 9234.47, 9263.29, 9131.73, 9472.48, 9269.16, 9162.62, 9103.82, 9147.9, 9086.9, 9474.76, 9322.42, 9498.83, 9412.7, 9579.49, 9567.18, 9629.3],SPY=[8800.0, 8785.94, 8839.67, 8837.04, 8808.8, 8830.87, 8892.48, 8874.88, 8832.92, 8773.25, 8791.65, 8717.81, 8753.47, 8727.75, 8755.65, 8757.59, 8814.98, 8794.97, 8768.68];
+const ED=["08-05", "08-06", "08-07", "08-10", "08-11", "08-12", "08-13", "08-14", "08-17", "08-18", "08-19", "08-20", "08-21", "08-24", "08-25", "08-26", "08-27", "08-28", "08-31", "09-01"],EV=[8670.82, 8709.67, 9095.35, 9234.47, 9263.29, 9131.73, 9472.48, 9269.16, 9162.62, 9103.82, 9147.9, 9086.9, 9474.76, 9322.42, 9498.83, 9412.7, 9579.49, 9567.18, 9629.3, 9609.62],SPY=[8800.0, 8785.94, 8839.67, 8837.04, 8808.8, 8830.87, 8892.48, 8874.88, 8832.92, 8773.25, 8791.65, 8717.81, 8753.47, 8727.75, 8755.65, 8757.59, 8814.98, 8794.97, 8768.68, 8768.68];
 const base=[{name:"Strategy",values:EV,color:"#2a78d6",dash:[]},{name:"SPY",values:SPY,color:"#898781",dash:[4,3]}];
-const cv=document.getElementById("eq"),ctx=cv.getContext("2d"),tip=document.getElementById("eqTip");
+const cv=document.getElementById("eq0"),ctx=cv.getContext("2d"),tip=document.getElementById("eqTip0");
 let mode="value",hover=-1,chartState=null;
 const rb=a=>a.map(v=>(v/a[0]-1)*100);
 function draw(){
@@ -75,8 +84,8 @@ function draw(){
  ctx.setLineDash([]);
  chartState={series,pad,pw,w,h,x};
 }
-function setMode(m){mode=m;draw();document.getElementById("bV").classList.toggle("on",m==="value");document.getElementById("bR").classList.toggle("on",m==="return");}
-document.getElementById("bV").onclick=()=>setMode("value");document.getElementById("bR").onclick=()=>setMode("return");
+function setMode(m){mode=m;draw();document.getElementById("bV0").classList.toggle("on",m==="value");document.getElementById("bR0").classList.toggle("on",m==="return");}
+document.getElementById("bV0").onclick=()=>setMode("value");document.getElementById("bR0").onclick=()=>setMode("return");
 cv.addEventListener("mousemove",e=>{
  if(!chartState)return;
  const rect=cv.getBoundingClientRect(),mx=e.clientX-rect.left;
@@ -97,20 +106,52 @@ new ResizeObserver(draw).observe(cv.parentElement);draw();
 <h2>Today&rsquo;s breakouts &mdash; momentum ranked</h2>
 <p class="sub">Breakouts are ranked solely by the percentile of their trailing
 63-day return. The top 5 fill the available slots.</p>
-<table><tr><th>#</th><th>Ticker</th><th class="n">Price</th><th class="n">3-mo mom</th><th class="n">Momentum idx</th><th class="n">ATR stop</th></tr><tr class="hold"><td>1</td><td><b>PATH</b> <span class="tag">held</span></td><td class="n">$18.67</td><td class="n">+43%</td><td class="n"><b>100</b></td><td class="n">$17.45</td></tr><tr><td>2</td><td><b>BMNR</b> <span class="tag" style="color:var(--green);background:#eef7f2">top pick</span></td><td class="n">$25.32</td><td class="n">+34%</td><td class="n"><b>80</b></td><td class="n">$23.16</td></tr><tr><td>3</td><td><b>CRM</b> <span class="tag" style="color:var(--green);background:#eef7f2">top pick</span></td><td class="n">$257.54</td><td class="n">+23%</td><td class="n"><b>60</b></td><td class="n">$241.52</td></tr><tr><td>4</td><td><b>SLB</b></td><td class="n">$60.10</td><td class="n">+10%</td><td class="n"><b>40</b></td><td class="n">$57.39</td></tr><tr><td>5</td><td><b>NOW</b></td><td class="n">$147.99</td><td class="n">+9%</td><td class="n"><b>20</b></td><td class="n">$138.09</td></tr></table>
+<table><tr><th>#</th><th>Ticker</th><th class="n">Price</th><th class="n">3-mo mom</th><th class="n">Momentum idx</th><th class="n">ATR stop</th></tr><tr class="hold"><td>1</td><td><b>MRNA</b> <span class="tag">held</span></td><td class="n">$148.11</td><td class="n">+225%</td><td class="n"><b>100</b></td><td class="n">$126.80</td></tr><tr class="hold"><td>2</td><td><b>PATH</b> <span class="tag">held</span></td><td class="n">$18.07</td><td class="n">+48%</td><td class="n"><b>86</b></td><td class="n">$16.86</td></tr><tr class="hold"><td>3</td><td><b>MPC</b> <span class="tag">held</span></td><td class="n">$375.49</td><td class="n">+43%</td><td class="n"><b>71</b></td><td class="n">$360.01</td></tr><tr><td>4</td><td><b>PSX</b></td><td class="n">$248.51</td><td class="n">+37%</td><td class="n"><b>57</b></td><td class="n">$238.36</td></tr><tr><td>5</td><td><b>CRM</b></td><td class="n">$255.14</td><td class="n">+27%</td><td class="n"><b>43</b></td><td class="n">$239.45</td></tr><tr><td>6</td><td><b>PFE</b></td><td class="n">$28.55</td><td class="n">+14%</td><td class="n"><b>29</b></td><td class="n">$27.66</td></tr><tr><td>7</td><td><b>SLB</b></td><td class="n">$58.10</td><td class="n">+3%</td><td class="n"><b>14</b></td><td class="n">$55.36</td></tr></table>
 
 <h2>Current positions</h2>
-<p class="sub">Stop = live exit trigger (higher of the 1.5-ATR trail and the 10-day low).
-Room = cushion to that stop.</p>
-<table><tr><th>Ticker</th><th class="n">Shares</th><th class="n">Entry</th><th class="n">Price</th><th class="n">Stop</th><th class="n">Room</th><th class="n">Value</th><th class="n">Return</th><th class="n">P&amp;L $</th><th>Source / as of</th></tr><tr><td><b>PATH</b></td><td class="n">124.0</td><td class="n">$14.19</td><td class="n">$18.67</td><td class="n">$17.45<br><span style="font-size:10px;color:var(--mut)">1.5-ATR trail</span></td><td class="n amber">+7.0%</td><td class="n">$2,316</td><td class="n pos">+31.6%</td><td class="n pos">+556</td><td>Tiingo<br><span style="font-size:10px;color:var(--mut)">31 Aug 26</span></td></tr><tr><td><b>PLTR</b></td><td class="n">10.9</td><td class="n">$162.00</td><td class="n">$186.38</td><td class="n">$175.20<br><span style="font-size:10px;color:var(--mut)">1.5-ATR trail</span></td><td class="n amber">+6.4%</td><td class="n">$2,025</td><td class="n pos">+15.0%</td><td class="n pos">+265</td><td>Tiingo<br><span style="font-size:10px;color:var(--mut)">31 Aug 26</span></td></tr><tr><td><b>MRNA</b></td><td class="n">13.4</td><td class="n">$132.50</td><td class="n">$140.34</td><td class="n">$137.33<br><span style="font-size:10px;color:var(--mut)">1.5-ATR trail</span></td><td class="n neg">+2.2%</td><td class="n">$1,882</td><td class="n pos">+5.9%</td><td class="n pos">+105</td><td>Tiingo<br><span style="font-size:10px;color:var(--mut)">31 Aug 26</span></td></tr><tr><td><b>MPC</b></td><td class="n">4.7</td><td class="n">$363.06</td><td class="n">$373.32</td><td class="n">$357.59<br><span style="font-size:10px;color:var(--mut)">1.5-ATR trail</span></td><td class="n amber">+4.4%</td><td class="n">$1,755</td><td class="n pos">+2.8%</td><td class="n pos">+48</td><td>Tiingo<br><span style="font-size:10px;color:var(--mut)">31 Aug 26</span></td></tr><tr><td><b>ABNB</b></td><td class="n">9.0</td><td class="n">$190.30</td><td class="n">$183.22</td><td class="n">$180.92<br><span style="font-size:10px;color:var(--mut)">1.5-ATR trail</span></td><td class="n neg">+1.3%</td><td class="n">$1,652</td><td class="n neg">-3.7%</td><td class="n neg">-64</td><td>Tiingo<br><span style="font-size:10px;color:var(--mut)">31 Aug 26</span></td></tr></table>
+<p class="sub">Stop = live exit trigger (higher of the 1.5-ATR trail and the 10-day low). Room = cushion to that stop.</p>
+<table><tr><th>Ticker</th><th class="n">Shares</th><th class="n">Entry</th><th class="n">Price</th><th class="n">Stop</th><th class="n">Room</th><th class="n">Value</th><th class="n">Return</th><th class="n">P&amp;L $</th><th>Source / as of</th></tr><tr><td><b>PATH</b></td><td class="n">124.0</td><td class="n">$14.19</td><td class="n">$18.07</td><td class="n">$17.47<br><span style="font-size:10px;color:var(--mut)">1.5-ATR trail</span></td><td class="n amber">+3.4%</td><td class="n">$2,241</td><td class="n pos">+27.3%</td><td class="n pos">+481</td><td>Tiingo<br><span style="font-size:10px;color:var(--mut)">01 Sep 26</span></td></tr><tr><td><b>MRNA</b></td><td class="n">13.4</td><td class="n">$132.50</td><td class="n">$148.11</td><td class="n">$137.52<br><span style="font-size:10px;color:var(--mut)">1.5-ATR trail</span></td><td class="n amber">+7.7%</td><td class="n">$1,986</td><td class="n pos">+11.8%</td><td class="n pos">+209</td><td>Tiingo<br><span style="font-size:10px;color:var(--mut)">01 Sep 26</span></td></tr><tr><td><b>PLTR</b></td><td class="n">10.9</td><td class="n">$162.00</td><td class="n">$182.32</td><td class="n">$175.43<br><span style="font-size:10px;color:var(--mut)">1.5-ATR trail</span></td><td class="n amber">+3.9%</td><td class="n">$1,981</td><td class="n pos">+12.5%</td><td class="n pos">+221</td><td>Tiingo<br><span style="font-size:10px;color:var(--mut)">01 Sep 26</span></td></tr><tr><td><b>MPC</b></td><td class="n">4.7</td><td class="n">$363.06</td><td class="n">$375.49</td><td class="n">$360.01<br><span style="font-size:10px;color:var(--mut)">1.5-ATR trail</span></td><td class="n amber">+4.3%</td><td class="n">$1,765</td><td class="n pos">+3.4%</td><td class="n pos">+58</td><td>Tiingo<br><span style="font-size:10px;color:var(--mut)">01 Sep 26</span></td></tr><tr><td><b>ABNB</b></td><td class="n">9.0</td><td class="n">$190.30</td><td class="n">$181.57</td><td class="n">$181.16<br><span style="font-size:10px;color:var(--mut)">1.5-ATR trail</span></td><td class="n neg">+0.2%</td><td class="n">$1,637</td><td class="n neg">-4.6%</td><td class="n neg">-79</td><td>Tiingo<br><span style="font-size:10px;color:var(--mut)">01 Sep 26</span></td></tr></table>
 
 <h2>Trade log (forward)</h2>
 <table><tr><th>Date</th><th>Action</th><th>Ticker</th><th class="n">Shares</th><th class="n">Price</th><th class="n">$ value</th><th class="n">Sent</th><th>Note</th></tr><tr><td>2026-08-26</td><td class="sell">SELL</td><td><b>SNOW</b></td><td class="n">5.5</td><td class="n">$309.44</td><td class="n">$1,715</td><td class="n">&mdash;</td><td style="color:var(--mut)">1.5-ATR trail</td></tr><tr><td>2026-08-26</td><td class="buy">BUY</td><td><b>ABNB</b></td><td class="n">9.0</td><td class="n">$190.30</td><td class="n">$1,715</td><td class="n">&mdash;</td><td style="color:var(--mut)">breakout</td></tr><tr><td>2026-08-21</td><td class="sell">SELL</td><td><b>BLK</b></td><td class="n">1.5</td><td class="n">$1,150.68</td><td class="n">$1,777</td><td class="n">&mdash;</td><td style="color:var(--mut)">1.5-ATR trail</td></tr><tr><td>2026-08-21</td><td class="buy">BUY</td><td><b>MRNA</b></td><td class="n">13.4</td><td class="n">$132.50</td><td class="n">$1,777</td><td class="n">&mdash;</td><td style="color:var(--mut)">breakout</td></tr><tr><td>2026-08-18</td><td class="sell">SELL</td><td><b>MSFT</b></td><td class="n">3.5</td><td class="n">$481.54</td><td class="n">$1,707</td><td class="n">&mdash;</td><td style="color:var(--mut)">1.5-ATR trail</td></tr><tr><td>2026-08-18</td><td class="buy">BUY</td><td><b>MPC</b></td><td class="n">4.7</td><td class="n">$363.06</td><td class="n">$1,707</td><td class="n">59.2</td><td style="color:var(--mut)">breakout</td></tr><tr><td>2026-08-05</td><td class="buy">BUY</td><td><b>SNOW</b></td><td class="n">5.5</td><td class="n">$317.49</td><td class="n">$1,760</td><td class="n">64.7</td><td style="color:var(--mut)">breakout</td></tr><tr><td>2026-08-05</td><td class="buy">BUY</td><td><b>PATH</b></td><td class="n">124.0</td><td class="n">$14.19</td><td class="n">$1,760</td><td class="n">64.6</td><td style="color:var(--mut)">breakout</td></tr><tr><td>2026-08-05</td><td class="buy">BUY</td><td><b>MSFT</b></td><td class="n">3.5</td><td class="n">$496.36</td><td class="n">$1,760</td><td class="n">53.2</td><td style="color:var(--mut)">breakout</td></tr><tr><td>2026-08-05</td><td class="buy">BUY</td><td><b>PLTR</b></td><td class="n">10.9</td><td class="n">$162.00</td><td class="n">$1,760</td><td class="n">50.9</td><td style="color:var(--mut)">breakout</td></tr><tr><td>2026-08-05</td><td class="buy">BUY</td><td><b>BLK</b></td><td class="n">1.5</td><td class="n">$1,138.50</td><td class="n">$1,758</td><td class="n">49.2</td><td style="color:var(--mut)">breakout</td></tr></table>
 
-<h2>Strategy measures</h2><div class="cards"><div class="card"><div class="l">Total return</div><div class="v pos">+9.4%</div></div><div class="card"><div class="l">Sharpe</div><div class="v ">4.80</div></div><div class="card"><div class="l">Volatility</div><div class="v ">32%</div></div><div class="card"><div class="l">Max drawdown</div><div class="v ">-4%</div></div><div class="card"><div class="l">Round-trips</div><div class="v ">3</div></div><div class="card"><div class="l">Win rate</div><div class="v ">33%</div></div></div>
+<h2>Strategy measures</h2><div class="cards"><div class="card"><div class="l">Total return</div><div class="v pos">+9.2%</div></div><div class="card"><div class="l">Sharpe</div><div class="v ">4.57</div></div><div class="card"><div class="l">Volatility</div><div class="v ">31%</div></div><div class="card"><div class="l">Max drawdown</div><div class="v ">-4%</div></div><div class="card"><div class="l">Round-trips</div><div class="v ">3</div></div><div class="card"><div class="l">Win rate</div><div class="v ">33%</div></div></div>
 
-<p class="foot">Generated 2026-08-31 19:59 by breakout_dashboard.py.
-Forward record stored in data/paper_breakout.json (+ paper_trades.csv, paper_equity.csv).
-Universe = S&amp;P 500 + Nasdaq-100 + liquid extras, top 223 by dollar volume,
-weekly. Survivorship-aware; a research tool, not investment advice.</p>
+<p class="foot">Forward record in data/paper_breakout.json (+ paper_trades.csv, paper_equity.csv). Universe = S&amp;P 500 + Nasdaq-100 + liquid extras, top 223 by dollar volume, weekly.<br>
+Generated 2026-09-01 12:31 by breakout_dashboard.py.
+A research tool, not investment advice.</p></div><div class="pane" id="p1" hidden>
+<h1>ETF Breakout &mdash; equal-weight rotation <span class="pill">forward paper test</span></h1>
+<p class="sub">29 sector / thematic / core ETFs (fixed list) &nbsp;·&nbsp; EMA(20) + 3-ATR breakout &nbsp;·&nbsp;
+ranked by momentum only &nbsp;·&nbsp; 1.5-ATR trail + 10-day-low exit &nbsp;|&nbsp;
+as of 01 Sep 2026 &nbsp;·&nbsp; <span class="pill">$10,000 account</span></p>
+<p class="sub">Sizing: equal weight across held names (max 5); VT held when nothing is breaking out &nbsp;·&nbsp; gross of costs</p>
+
+<div class="act"><b>Today&rsquo;s actions</b> &mdash; place at the open on the next session:<table style="margin-top:8px"><tr><th>Action</th><th>Ticker</th><th class="n">~Price</th><th class="n">Est. shares</th><th class="n">Est. total value</th><th class="n">Momentum</th></tr><tr><td class="buy">BUY</td><td><b>IBIT</b></td><td class="n">~$43.89</td><td class="n">~113.921</td><td class="n">~$5,000.00</td><td class="n"><b>100.0</b></td></tr><tr><td class="buy">BUY</td><td><b>MOO</b></td><td class="n">~$86.80</td><td class="n">~57.604</td><td class="n">~$5,000.00</td><td class="n"><b>50.0</b></td></tr></table><p class="sub" style="margin-top:7px">Buy quantities are estimates using the latest close; actual fills are sized again at the next open.</p></div>
+<div class="cards"><div class="card"><div class="l">Account value</div><div class="v ">$10,000</div></div><div class="card"><div class="l">Today&rsquo;s P&amp;L</div><div class="v pos">+$0</div></div><div class="card"><div class="l">Return</div><div class="v pos">+0.0%</div></div><div class="card"><div class="l">Sharpe</div><div class="v ">—</div></div><div class="card"><div class="l">Max drawdown</div><div class="v pos">0%</div></div><div class="card"><div class="l">Win rate</div><div class="v ">—</div></div></div>
+
+
+<h2>Today&rsquo;s breakouts &mdash; momentum ranked</h2>
+<p class="sub">Breakouts are ranked solely by the percentile of their trailing
+63-day return. The top 5 fill the available slots.</p>
+<table><tr><th>#</th><th>Ticker</th><th class="n">Price</th><th class="n">3-mo mom</th><th class="n">Momentum idx</th><th class="n">ATR stop</th></tr><tr><td>1</td><td><b>IBIT</b> <span class="tag" style="color:var(--green);background:#eef7f2">top pick</span></td><td class="n">$43.89</td><td class="n">+15%</td><td class="n"><b>100</b></td><td class="n">$42.11</td></tr><tr><td>2</td><td><b>MOO</b> <span class="tag" style="color:var(--green);background:#eef7f2">top pick</span></td><td class="n">$86.80</td><td class="n">+9%</td><td class="n"><b>50</b></td><td class="n">$85.22</td></tr></table>
+
+<h2>Current positions</h2>
+<p class="sub">Stop = live exit trigger (higher of the 1.5-ATR trail and the 10-day low). VT is the default holding and is not stop-managed.</p>
+<p class="sub">No open positions yet.</p>
+
+<h2>Trade log (forward)</h2>
+<p class="sub">No trades yet — the log fills from the first session.</p>
+
+<h2>Strategy measures</h2><div class="cards"><div class="card"><div class="l">Total return</div><div class="v pos">+0.0%</div></div><div class="card"><div class="l">Sharpe</div><div class="v ">&mdash;</div></div><div class="card"><div class="l">Volatility</div><div class="v ">&mdash;</div></div><div class="card"><div class="l">Max drawdown</div><div class="v ">0%</div></div><div class="card"><div class="l">Round-trips</div><div class="v ">0</div></div><div class="card"><div class="l">Win rate</div><div class="v ">&mdash;</div></div></div>
+
+<p class="foot">Forward record in data/paper_etf.json (+ paper_etf_trades.csv, paper_etf_equity.csv). Universe is a fixed hand-picked ETF list; see universe_test.py &mdash; on a universe chosen without hindsight these rules underperform SPY.<br>
+Generated 2026-09-01 12:31 by breakout_dashboard.py.
+A research tool, not investment advice.</p></div>
 </div>
+<script>
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===b));
+  document.querySelectorAll(".pane").forEach(p=>p.hidden=(p.id!==b.dataset.p));
+  window.dispatchEvent(new Event("resize"));
+});
+</script>
