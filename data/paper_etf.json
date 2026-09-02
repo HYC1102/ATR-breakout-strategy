@@ -1,40 +1,54 @@
 {
   "start_date": "2026-09-01",
   "capital": 10000.0,
-  "cash": 10000.0,
-  "positions": {},
-  "trades": [],
+  "cash": 0.0,
+  "positions": {
+    "IBIT": {
+      "shares": 114.96895394408894,
+      "entry": 43.49,
+      "entry_date": "2026-09-02",
+      "hi": 43.790000915527344,
+      "last_px": 43.790000915527344
+    },
+    "MOO": {
+      "shares": 57.28689356015456,
+      "entry": 87.28,
+      "entry_date": "2026-09-02",
+      "hi": 88.8499984741211,
+      "last_px": 88.8499984741211
+    }
+  },
+  "trades": [
+    {
+      "date": "2026-09-02",
+      "side": "BUY",
+      "ticker": "IBIT",
+      "shares": 114.969,
+      "price": 43.49,
+      "value": 5000.0,
+      "reason": "breakout"
+    },
+    {
+      "date": "2026-09-02",
+      "side": "BUY",
+      "ticker": "MOO",
+      "shares": 57.287,
+      "price": 87.28,
+      "value": 5000.0,
+      "reason": "breakout"
+    }
+  ],
   "equity": [
     {
       "date": "2026-09-01",
       "value": 10000.0
-    }
-  ],
-  "pending": [
-    {
-      "side": "BUY",
-      "ticker": "IBIT",
-      "price_hint": 43.76,
-      "shares_hint": 114.26,
-      "value_hint": 5000.0,
-      "target_weight": 50.0,
-      "reason": "breakout",
-      "momentum": 100.0
     },
     {
-      "side": "BUY",
-      "ticker": "MOO",
-      "price_hint": 87.43,
-      "shares_hint": 57.189,
-      "value_hint": 5000.0,
-      "target_weight": 50.0,
-      "reason": "breakout",
-      "momentum": 50.0
+      "date": "2026-09-02",
+      "value": 10124.43
     }
   ],
-  "target": {
-    "IBIT": 0.5,
-    "MOO": 0.5
-  },
-  "last_close": "2026-09-01"
+  "pending": [],
+  "target": {},
+  "last_close": "2026-09-02"
 }

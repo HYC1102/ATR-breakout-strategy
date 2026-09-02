@@ -8,35 +8,35 @@
       "entry": 14.19,
       "entry_date": "2026-08-05",
       "hi": 18.67,
-      "last_px": 18.065000534057617
+      "last_px": 17.99
     },
     "PLTR": {
       "shares": 10.864197530864198,
       "entry": 162.0,
       "entry_date": "2026-08-05",
       "hi": 186.38,
-      "last_px": 182.32000732421875
+      "last_px": 169.46
     },
     "MPC": {
       "shares": 4.701111091191061,
       "entry": 363.06,
       "entry_date": "2026-08-18",
-      "hi": 375.489990234375,
-      "last_px": 375.489990234375
+      "hi": 387.0,
+      "last_px": 387.0
     },
     "MRNA": {
       "shares": 13.41170260501724,
       "entry": 132.5,
       "entry_date": "2026-08-21",
       "hi": 158.8300018310547,
-      "last_px": 148.1051025390625
+      "last_px": 150.81
     },
     "ABNB": {
       "shares": 9.014056607672499,
       "entry": 190.3,
       "entry_date": "2026-08-26",
       "hi": 189.43,
-      "last_px": 181.57000732421875
+      "last_px": 183.26
     }
   },
   "trades": [
@@ -253,8 +253,27 @@
     {
       "date": "2026-09-01",
       "value": 9609.62
+    },
+    {
+      "date": "2026-09-02",
+      "value": 9566.23
     }
   ],
-  "pending": [],
-  "last_close": "2026-09-01"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "PLTR",
+      "reason": "1.5-ATR trail"
+    },
+    {
+      "side": "BUY",
+      "ticker": "APH",
+      "price_hint": 160.08,
+      "shares_hint": 11.501,
+      "value_hint": 1841.05,
+      "cost_hint": 0.0,
+      "momentum": 85.7
+    }
+  ],
+  "last_close": "2026-09-02"
 }
