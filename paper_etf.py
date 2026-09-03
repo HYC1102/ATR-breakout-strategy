@@ -247,6 +247,10 @@ def advance(st, prices, P, regime):
 
     Returns (state, asof, cand)."""
     close = P["close"]; asof = close.index[-1]
+    # Same split re-basing as the stock account; the parking asset is included
+    # since it is a real position with stored shares.
+    for tk, factor in pt.reconcile_splits(st, P, asof):
+        print(f"  split adjustment: {tk} {factor:g}-for-1")
     start = pd.Timestamp(st["start_date"]); processed = False; cand = None
     dflt = bs.CONFIG.get("default_asset")
     if asof >= start:

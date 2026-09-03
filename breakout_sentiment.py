@@ -261,6 +261,72 @@ def is_breakout(df: pd.DataFrame, n: int) -> bool:
     return df["Close"].iloc[-1] > prior_high
 
 
+BASIS_BREAK = 0.35          # a one-day move this large warrants a split check
+SPLIT_WINDOW_DAYS = 10      # how near a split must be to explain such a move
+
+_SPLITS_CACHE: dict = {}
+
+
+def reported_splits(ticker: str) -> pd.Series:
+    """Split factors by ex-date as reported by the vendor, tz-naive.
+
+    Cached per process, and an EMPTY series on any failure -- callers treat
+    "no split information" as "cannot confirm a basis change"."""
+    if ticker in _SPLITS_CACHE:
+        return _SPLITS_CACHE[ticker]
+    out = pd.Series(dtype=float)
+    try:
+        s = yf.Ticker(ticker).splits
+        if s is not None and len(s):
+            idx = pd.DatetimeIndex(s.index)
+            if idx.tz is not None:
+                idx = idx.tz_localize(None)
+            out = pd.Series([float(v) for v in s.values], index=idx, dtype=float)
+    except Exception:  # noqa: BLE001
+        pass
+    _SPLITS_CACHE[ticker] = out
+    return out
+
+
+def basis_break(df: pd.DataFrame, window: int, ticker: str | None = None,
+                threshold: float = BASIS_BREAK) -> bool:
+    """True if the last `window` bars carry a PRICE-BASIS change rather than a
+    real move -- i.e. a large one-day step that a reported split explains.
+
+    yfinance restates a ticker's whole history onto the post-split basis as soon
+    as a split is announced, while still serving recent bars on the pre-split
+    basis. The series then holds a step (2x for a 2-for-1) that inflates both
+    momentum_proxy and ATR. APH did exactly this ahead of its 2026-09-03 split:
+    160.08 / ~74 - 1 read as +116% momentum against a true move of +8-11%, and
+    ATR(14) came out near 5.4% of price against a normal ~2% -- enough to rank it
+    #2 and win it a slot on a signal that did not exist.
+
+    MNST was worse than a single step: around its 2026-08-11 2-for-1 the feed
+    flipped individual bars between bases for three weeks (97.50, 47.72, 93.56,
+    ...), so the whole series was untrustworthy, not just its momentum.
+
+    The step size alone is not sufficient evidence: MRNA genuinely moved +177%
+    on 2026-08-19 with no split against it, and that name must stay tradable. So
+    a large move is only called a basis change when the vendor also reports a
+    split within SPLIT_WINDOW_DAYS of it. On the real 688-name panel that
+    excludes 1 name (MNST) and leaves six genuine movers alone. `ticker=None`
+    skips confirmation and flags on size alone."""
+    if df is None or len(df) < 2:
+        return False
+    r = df["Close"].tail(window + 1).pct_change().abs()
+    big = r[r > threshold]
+    if big.empty:
+        return False
+    if ticker is None:
+        return True
+    splits = reported_splits(ticker)
+    if splits.empty:
+        return False                       # real move, or unverifiable -> allow
+    slack = pd.Timedelta(days=SPLIT_WINDOW_DAYS)
+    return any(((splits.index >= when - slack) & (splits.index <= when + slack)).any()
+               for when in big.index)
+
+
 def momentum_proxy(df: pd.DataFrame, n: int) -> float:
     """Phase-1 stand-in for sentiment: trailing n-day total return."""
     if len(df) < n + 1:
@@ -335,7 +401,7 @@ def rank_breakouts(prices: dict[str, pd.DataFrame], universe: list[str],
                    use_sentiment: bool = True) -> pd.DataFrame:
     """Today's fresh breakouts in `universe`, scored by a MOMENTUM index and a
     SENTIMENT score, combined into a single rank (sent_weight controls the mix)."""
-    rows = []
+    rows, skipped_basis = [], []
     w = CONFIG.get("sent_weight", 0.0)
     score_sentiment = use_sentiment and w > 0
     for t in universe:
@@ -343,6 +409,9 @@ def rank_breakouts(prices: dict[str, pd.DataFrame], universe: list[str],
         if df is not None and asof is not None:
             df = df.loc[:asof]
         if df is None or df.empty or not is_breakout(df, CONFIG["breakout"]):
+            continue
+        if basis_break(df, CONFIG["proxy_window"], ticker=t):
+            skipped_basis.append(t)                  # split-restated series -> not tradable
             continue
         a = atr(df, CONFIG["atr_window"]).iloc[-1]
         px = float(df["Close"].iloc[-1])
@@ -352,6 +421,9 @@ def rank_breakouts(prices: dict[str, pd.DataFrame], universe: list[str],
                          stop=px - CONFIG["atr_stop"] * float(a),
                          mom_ret=momentum_proxy(df, CONFIG["proxy_window"]),
                          sentiment=sentiment_score(t, df) if score_sentiment else 50.0))
+    if skipped_basis:
+        print(f"  skipped {len(skipped_basis)} name(s) with a split-restated price "
+              f"series: {', '.join(sorted(skipped_basis))}")
     cols = ["ticker", "close", "atr", "stop", "mom_ret", "sentiment",
             "momentum", "combined"]
     if not rows:

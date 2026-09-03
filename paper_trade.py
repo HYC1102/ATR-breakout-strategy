@@ -90,6 +90,67 @@ def stop_level(p, ticker, prices, asof=None):
             else (low, f"{bs.CONFIG['exit_low']}-day low"))
 
 
+def _split_factor(ticker, asof, ratio, tolerance=0.02, window_days=10):
+    """Confirm `ratio` against the vendor's split calendar and return the split
+    factor, or None.
+
+    The ratio alone is not enough: a genuine -33% day also gives ~1.5, which is a
+    real 3-for-2 ratio. So a basis change is only accepted when the vendor
+    actually reports a split near `asof` AND its factor matches the observed
+    ratio. Returns None (leave the position alone) on any doubt, including when
+    the lookup fails -- a missed adjustment shows up as an odd mark, whereas a
+    wrongly applied one silently rewrites the position."""
+    if not np.isfinite(ratio) or abs(ratio - 1.0) < 0.10:
+        return None
+    splits = bs.reported_splits(ticker)
+    if splits.empty:
+        return None
+    lo = pd.Timestamp(asof) - pd.Timedelta(days=window_days)
+    hi = pd.Timestamp(asof) + pd.Timedelta(days=window_days)
+    for when, factor in zip(splits.index, splits.values):
+        if lo <= when <= hi and abs(ratio - float(factor)) <= tolerance * float(factor):
+            return float(factor)
+    return None
+
+
+def reconcile_splits(st, P, asof=None):
+    """Re-base held positions when the price feed has applied a split.
+
+    Stored `shares`/`entry`/`hi` are in the pre-split basis. Once the feed
+    restates, book value jumps by the split factor and -- worse -- the
+    unadjusted `hi` leaves stop_level() far above the new price, so the position
+    is force-exited at the next open at a fabricated loss. Detect the basis
+    change by comparing the stored mark against the feed for the same date,
+    confirm it against the split calendar, then scale.
+
+    Returns a list of (ticker, factor) actually applied."""
+    last = st.get("last_close")
+    if not last:
+        return []
+    d = pd.Timestamp(last)
+    close = P["close"]
+    if d not in close.index:
+        return []
+    row = close.loc[d]
+    applied = []
+    for tk, p in st["positions"].items():
+        old = p.get("last_px")
+        new = row.get(tk, np.nan)
+        if not old or not np.isfinite(new) or new <= 0:
+            continue
+        factor = _split_factor(tk, asof or d, float(old) / float(new))
+        if not factor:
+            continue
+        p["shares"] *= factor
+        for key in ("entry", "hi", "last_px"):
+            if p.get(key):
+                p[key] = float(p[key]) / factor
+        applied.append((tk, factor))
+        st.setdefault("splits", []).append(
+            dict(date=str(d.date()), ticker=tk, factor=factor))
+    return applied
+
+
 def _plan(st, asof, prices, P, regime, use_sentiment=True):
     """Orders to place at the NEXT open, decided on the `asof` close.
 
@@ -196,6 +257,11 @@ def advance(st, prices, P, regime):
 
     Returns (state, asof, cand) -- see _plan() for `cand`."""
     close = P["close"]; asof = close.index[-1]
+    # Re-base for any split the feed has applied since the last run. Must happen
+    # BEFORE stops are evaluated, or an unadjusted `hi` force-exits the position.
+    for tk, factor in reconcile_splits(st, P, asof):
+        print(f"  split adjustment: {tk} {factor:g}-for-1 "
+              f"(shares scaled up, entry/hi scaled down)")
     start = pd.Timestamp(st["start_date"]); processed = False; cand = None
     if asof >= start:
         last = pd.Timestamp(st["last_close"]) if st.get("last_close") else None
