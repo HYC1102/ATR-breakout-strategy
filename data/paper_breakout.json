@@ -264,15 +264,6 @@
       "side": "SELL",
       "ticker": "PLTR",
       "reason": "1.5-ATR trail"
-    },
-    {
-      "side": "BUY",
-      "ticker": "APH",
-      "price_hint": 160.08,
-      "shares_hint": 11.501,
-      "value_hint": 1841.05,
-      "cost_hint": 0.0,
-      "momentum": 85.7
     }
   ],
   "last_close": "2026-09-02"
