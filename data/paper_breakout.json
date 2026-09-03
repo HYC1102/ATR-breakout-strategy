@@ -8,28 +8,28 @@
       "entry": 14.19,
       "entry_date": "2026-08-05",
       "hi": 18.68000030517578,
-      "last_px": 18.68000030517578
+      "last_px": 18.22
     },
     "MPC": {
       "shares": 4.701111091191061,
       "entry": 363.06,
       "entry_date": "2026-08-18",
       "hi": 391.5101013183594,
-      "last_px": 391.5101013183594
+      "last_px": 387.71
     },
     "MRNA": {
       "shares": 13.41170260501724,
       "entry": 132.5,
       "entry_date": "2026-08-21",
       "hi": 158.8300018310547,
-      "last_px": 145.60000610351562
+      "last_px": 148.87
     },
     "ABNB": {
       "shares": 9.014056607672499,
       "entry": 190.3,
       "entry_date": "2026-08-26",
       "hi": 189.43,
-      "last_px": 185.88999938964844
+      "last_px": 185.25
     }
   },
   "trades": [
@@ -272,8 +272,8 @@
     {
       "side": "BUY",
       "ticker": "TEAM",
-      "price_hint": 197.01,
-      "shares_hint": 9.504,
+      "price_hint": 194.68,
+      "shares_hint": 9.618,
       "value_hint": 1872.44,
       "cost_hint": 0.0,
       "momentum": 100.0
