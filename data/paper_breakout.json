@@ -1,42 +1,35 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 2.2737367544323206e-13,
+  "cash": 1872.444510754244,
   "positions": {
     "PATH": {
       "shares": 124.03100775193799,
       "entry": 14.19,
       "entry_date": "2026-08-05",
-      "hi": 18.67,
-      "last_px": 17.99
-    },
-    "PLTR": {
-      "shares": 10.864197530864198,
-      "entry": 162.0,
-      "entry_date": "2026-08-05",
-      "hi": 186.38,
-      "last_px": 169.46
+      "hi": 18.68000030517578,
+      "last_px": 18.68000030517578
     },
     "MPC": {
       "shares": 4.701111091191061,
       "entry": 363.06,
       "entry_date": "2026-08-18",
-      "hi": 387.0,
-      "last_px": 387.0
+      "hi": 391.5101013183594,
+      "last_px": 391.5101013183594
     },
     "MRNA": {
       "shares": 13.41170260501724,
       "entry": 132.5,
       "entry_date": "2026-08-21",
       "hi": 158.8300018310547,
-      "last_px": 150.81
+      "last_px": 145.60000610351562
     },
     "ABNB": {
       "shares": 9.014056607672499,
       "entry": 190.3,
       "entry_date": "2026-08-26",
       "hi": 189.43,
-      "last_px": 183.26
+      "last_px": 185.88999938964844
     }
   },
   "trades": [
@@ -171,6 +164,18 @@
       "momentum": 92.3,
       "sentiment": null,
       "combined": null
+    },
+    {
+      "date": "2026-09-03",
+      "side": "SELL",
+      "ticker": "PLTR",
+      "shares": 10.864,
+      "price": 172.35,
+      "value": 1872.44,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
     }
   ],
   "equity": [
@@ -257,14 +262,22 @@
     {
       "date": "2026-09-02",
       "value": 9566.23
+    },
+    {
+      "date": "2026-09-03",
+      "value": 9658.24
     }
   ],
   "pending": [
     {
-      "side": "SELL",
-      "ticker": "PLTR",
-      "reason": "1.5-ATR trail"
+      "side": "BUY",
+      "ticker": "TEAM",
+      "price_hint": 197.01,
+      "shares_hint": 9.504,
+      "value_hint": 1872.44,
+      "cost_hint": 0.0,
+      "momentum": 100.0
     }
   ],
-  "last_close": "2026-09-02"
+  "last_close": "2026-09-03"
 }

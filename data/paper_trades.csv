@@ -10,3 +10,4 @@ date,side,ticker,shares,price,value,reason,momentum,sentiment,combined
 2026-08-21,BUY,MRNA,13.412,132.5,1777.05,breakout,100.0,,
 2026-08-26,SELL,SNOW,5.543,309.44,1715.37,1.5-ATR trail,,,
 2026-08-26,BUY,ABNB,9.014,190.3,1715.37,breakout,92.3,,
+2026-09-03,SELL,PLTR,10.864,172.35,1872.44,1.5-ATR trail,,,
