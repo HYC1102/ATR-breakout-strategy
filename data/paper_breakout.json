@@ -1,35 +1,42 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 1872.444510754244,
+  "cash": 0.0,
   "positions": {
     "PATH": {
       "shares": 124.03100775193799,
       "entry": 14.19,
       "entry_date": "2026-08-05",
       "hi": 18.68000030517578,
-      "last_px": 18.22
+      "last_px": 15.19
     },
     "MPC": {
       "shares": 4.701111091191061,
       "entry": 363.06,
       "entry_date": "2026-08-18",
       "hi": 391.5101013183594,
-      "last_px": 387.71
+      "last_px": 388.9
     },
     "MRNA": {
       "shares": 13.41170260501724,
       "entry": 132.5,
       "entry_date": "2026-08-21",
       "hi": 158.8300018310547,
-      "last_px": 148.87
+      "last_px": 145.55
     },
     "ABNB": {
       "shares": 9.014056607672499,
       "entry": 190.3,
       "entry_date": "2026-08-26",
       "hi": 189.43,
-      "last_px": 185.25
+      "last_px": 181.94
+    },
+    "TEAM": {
+      "shares": 9.870035900871034,
+      "entry": 189.71,
+      "entry_date": "2026-09-04",
+      "hi": 189.58,
+      "last_px": 189.58
     }
   },
   "trades": [
@@ -176,6 +183,18 @@
       "momentum": "",
       "sentiment": "",
       "combined": ""
+    },
+    {
+      "date": "2026-09-04",
+      "side": "BUY",
+      "ticker": "TEAM",
+      "shares": 9.87,
+      "price": 189.71,
+      "value": 1872.44,
+      "reason": "breakout",
+      "momentum": 100.0,
+      "sentiment": null,
+      "combined": null
     }
   ],
   "equity": [
@@ -266,18 +285,27 @@
     {
       "date": "2026-09-03",
       "value": 9658.24
+    },
+    {
+      "date": "2026-09-04",
+      "value": 9175.55
     }
   ],
   "pending": [
     {
+      "side": "SELL",
+      "ticker": "PATH",
+      "reason": "1.5-ATR trail"
+    },
+    {
       "side": "BUY",
-      "ticker": "TEAM",
-      "price_hint": 194.68,
-      "shares_hint": 9.618,
-      "value_hint": 1872.44,
+      "ticker": "HOOD",
+      "price_hint": 122.11,
+      "shares_hint": 15.028,
+      "value_hint": 1835.11,
       "cost_hint": 0.0,
-      "momentum": 100.0
+      "momentum": 80.0
     }
   ],
-  "last_close": "2026-09-03"
+  "last_close": "2026-09-04"
 }

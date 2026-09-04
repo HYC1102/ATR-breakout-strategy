@@ -11,3 +11,4 @@ date,side,ticker,shares,price,value,reason,momentum,sentiment,combined
 2026-08-26,SELL,SNOW,5.543,309.44,1715.37,1.5-ATR trail,,,
 2026-08-26,BUY,ABNB,9.014,190.3,1715.37,breakout,92.3,,
 2026-09-03,SELL,PLTR,10.864,172.35,1872.44,1.5-ATR trail,,,
+2026-09-04,BUY,TEAM,9.87,189.71,1872.44,breakout,100.0,,
