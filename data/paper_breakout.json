@@ -1,42 +1,42 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 0.0,
+  "cash": 48.44106488872876,
   "positions": {
-    "PATH": {
-      "shares": 124.03100775193799,
-      "entry": 14.19,
-      "entry_date": "2026-08-05",
-      "hi": 18.68000030517578,
-      "last_px": 15.19
-    },
     "MPC": {
       "shares": 4.701111091191061,
       "entry": 363.06,
       "entry_date": "2026-08-18",
-      "hi": 391.5101013183594,
-      "last_px": 388.9
+      "hi": 397.77,
+      "last_px": 397.77
     },
     "MRNA": {
       "shares": 13.41170260501724,
       "entry": 132.5,
       "entry_date": "2026-08-21",
       "hi": 158.8300018310547,
-      "last_px": 145.55
+      "last_px": 140.33
     },
     "ABNB": {
       "shares": 9.014056607672499,
       "entry": 190.3,
       "entry_date": "2026-08-26",
       "hi": 189.43,
-      "last_px": 181.94
+      "last_px": 174.54
     },
     "TEAM": {
       "shares": 9.870035900871034,
       "entry": 189.71,
       "entry_date": "2026-09-04",
       "hi": 189.58,
-      "last_px": 189.58
+      "last_px": 176.42
+    },
+    "HOOD": {
+      "shares": 14.6467499210894,
+      "entry": 125.07,
+      "entry_date": "2026-09-08",
+      "hi": 117.34,
+      "last_px": 117.34
     }
   },
   "trades": [
@@ -195,6 +195,30 @@
       "momentum": 100.0,
       "sentiment": null,
       "combined": null
+    },
+    {
+      "date": "2026-09-08",
+      "side": "SELL",
+      "ticker": "PATH",
+      "shares": 124.031,
+      "price": 15.16,
+      "value": 1880.31,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-09-08",
+      "side": "BUY",
+      "ticker": "HOOD",
+      "shares": 14.647,
+      "price": 125.07,
+      "value": 1831.87,
+      "reason": "breakout",
+      "momentum": 80.0,
+      "sentiment": null,
+      "combined": null
     }
   ],
   "equity": [
@@ -289,23 +313,27 @@
     {
       "date": "2026-09-04",
       "value": 9175.55
+    },
+    {
+      "date": "2026-09-08",
+      "value": 8833.7
     }
   ],
   "pending": [
     {
       "side": "SELL",
-      "ticker": "PATH",
+      "ticker": "ABNB",
       "reason": "1.5-ATR trail"
     },
     {
       "side": "BUY",
-      "ticker": "HOOD",
-      "price_hint": 122.11,
-      "shares_hint": 15.028,
-      "value_hint": 1835.11,
+      "ticker": "VLO",
+      "price_hint": 382.85,
+      "shares_hint": 4.236,
+      "value_hint": 1621.75,
       "cost_hint": 0.0,
-      "momentum": 80.0
+      "momentum": 85.7
     }
   ],
-  "last_close": "2026-09-04"
+  "last_close": "2026-09-08"
 }
