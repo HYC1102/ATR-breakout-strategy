@@ -1,42 +1,42 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 48.44106488872876,
+  "cash": -2.2737367544323206e-13,
   "positions": {
     "MPC": {
       "shares": 4.701111091191061,
       "entry": 363.06,
       "entry_date": "2026-08-18",
-      "hi": 397.77,
-      "last_px": 397.77
+      "hi": 399.44,
+      "last_px": 399.44
     },
     "MRNA": {
       "shares": 13.41170260501724,
       "entry": 132.5,
       "entry_date": "2026-08-21",
       "hi": 158.8300018310547,
-      "last_px": 140.33
-    },
-    "ABNB": {
-      "shares": 9.014056607672499,
-      "entry": 190.3,
-      "entry_date": "2026-08-26",
-      "hi": 189.43,
-      "last_px": 174.54
+      "last_px": 135.61
     },
     "TEAM": {
       "shares": 9.870035900871034,
       "entry": 189.71,
       "entry_date": "2026-09-04",
       "hi": 189.58,
-      "last_px": 176.42
+      "last_px": 177.74
     },
     "HOOD": {
       "shares": 14.6467499210894,
       "entry": 125.07,
       "entry_date": "2026-09-08",
       "hi": 117.34,
-      "last_px": 117.34
+      "last_px": 115.28
+    },
+    "VLO": {
+      "shares": 4.160901484589589,
+      "entry": 386.37,
+      "entry_date": "2026-09-09",
+      "hi": 388.95,
+      "last_px": 388.95
     }
   },
   "trades": [
@@ -219,6 +219,30 @@
       "momentum": 80.0,
       "sentiment": null,
       "combined": null
+    },
+    {
+      "date": "2026-09-09",
+      "side": "SELL",
+      "ticker": "ABNB",
+      "shares": 9.014,
+      "price": 172.97,
+      "value": 1559.21,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-09-09",
+      "side": "BUY",
+      "ticker": "VLO",
+      "shares": 4.161,
+      "price": 386.37,
+      "value": 1607.65,
+      "reason": "breakout",
+      "momentum": 85.7,
+      "sentiment": null,
+      "combined": null
     }
   ],
   "equity": [
@@ -317,23 +341,27 @@
     {
       "date": "2026-09-08",
       "value": 8833.7
+    },
+    {
+      "date": "2026-09-09",
+      "value": 8757.73
     }
   ],
   "pending": [
     {
       "side": "SELL",
-      "ticker": "ABNB",
+      "ticker": "MRNA",
       "reason": "1.5-ATR trail"
     },
     {
       "side": "BUY",
-      "ticker": "VLO",
-      "price_hint": 382.85,
-      "shares_hint": 4.236,
-      "value_hint": 1621.75,
+      "ticker": "PSX",
+      "price_hint": 260.78,
+      "shares_hint": 6.717,
+      "value_hint": 1751.55,
       "cost_hint": 0.0,
-      "momentum": 85.7
+      "momentum": 60.0
     }
   ],
-  "last_close": "2026-09-08"
+  "last_close": "2026-09-09"
 }
