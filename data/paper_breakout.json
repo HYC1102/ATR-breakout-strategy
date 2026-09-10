@@ -1,42 +1,42 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": -2.2737367544323206e-13,
+  "cash": 64.17239361765928,
   "positions": {
     "MPC": {
       "shares": 4.701111091191061,
       "entry": 363.06,
       "entry_date": "2026-08-18",
       "hi": 399.44,
-      "last_px": 399.44
-    },
-    "MRNA": {
-      "shares": 13.41170260501724,
-      "entry": 132.5,
-      "entry_date": "2026-08-21",
-      "hi": 158.8300018310547,
-      "last_px": 135.61
+      "last_px": 392.42
     },
     "TEAM": {
       "shares": 9.870035900871034,
       "entry": 189.71,
       "entry_date": "2026-09-04",
       "hi": 189.58,
-      "last_px": 177.74
+      "last_px": 179.57
     },
     "HOOD": {
       "shares": 14.6467499210894,
       "entry": 125.07,
       "entry_date": "2026-09-08",
       "hi": 117.34,
-      "last_px": 115.28
+      "last_px": 113.33
     },
     "VLO": {
       "shares": 4.160901484589589,
       "entry": 386.37,
       "entry_date": "2026-09-09",
       "hi": 388.95,
-      "last_px": 388.95
+      "last_px": 385.43
+    },
+    "PSX": {
+      "shares": 6.614080299116491,
+      "entry": 263.76,
+      "entry_date": "2026-09-10",
+      "hi": 258.51,
+      "last_px": 258.51
     }
   },
   "trades": [
@@ -243,6 +243,30 @@
       "momentum": 85.7,
       "sentiment": null,
       "combined": null
+    },
+    {
+      "date": "2026-09-10",
+      "side": "SELL",
+      "ticker": "MRNA",
+      "shares": 13.412,
+      "price": 134.86,
+      "value": 1808.7,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-09-10",
+      "side": "BUY",
+      "ticker": "PSX",
+      "shares": 6.614,
+      "price": 263.76,
+      "value": 1744.53,
+      "reason": "breakout",
+      "momentum": 60.0,
+      "sentiment": null,
+      "combined": null
     }
   ],
   "equity": [
@@ -345,23 +369,12 @@
     {
       "date": "2026-09-09",
       "value": 8757.73
-    }
-  ],
-  "pending": [
-    {
-      "side": "SELL",
-      "ticker": "MRNA",
-      "reason": "1.5-ATR trail"
     },
     {
-      "side": "BUY",
-      "ticker": "PSX",
-      "price_hint": 260.78,
-      "shares_hint": 6.717,
-      "value_hint": 1751.55,
-      "cost_hint": 0.0,
-      "momentum": 60.0
+      "date": "2026-09-10",
+      "value": 8654.8
     }
   ],
-  "last_close": "2026-09-09"
+  "pending": [],
+  "last_close": "2026-09-10"
 }

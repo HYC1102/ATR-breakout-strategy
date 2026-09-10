@@ -8,14 +8,14 @@
       "entry": 43.49,
       "entry_date": "2026-09-02",
       "hi": 45.22999954223633,
-      "last_px": 44.290000915527344
+      "last_px": 43.68000030517578
     },
     "MOO": {
       "shares": 57.28689356015456,
       "entry": 87.28,
       "entry_date": "2026-09-02",
       "hi": 88.8499984741211,
-      "last_px": 87.69000244140625
+      "last_px": 86.79000091552734
     }
   },
   "trades": [
@@ -62,9 +62,34 @@
     {
       "date": "2026-09-09",
       "value": 10115.46
+    },
+    {
+      "date": "2026-09-10",
+      "value": 9993.77
     }
   ],
-  "pending": [],
-  "target": {},
-  "last_close": "2026-09-09"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "MOO",
+      "price_hint": 86.79,
+      "shares_hint": 57.287,
+      "value_hint": 4971.93,
+      "target_weight": 0.0,
+      "reason": "exit \u2014 1.5-ATR trail"
+    },
+    {
+      "side": "BUY",
+      "ticker": "IBIT",
+      "price_hint": 43.68,
+      "shares_hint": 113.826,
+      "value_hint": 4971.93,
+      "target_weight": 100.0,
+      "reason": "rebalance to equal weight"
+    }
+  ],
+  "target": {
+    "IBIT": 1.0
+  },
+  "last_close": "2026-09-10"
 }
