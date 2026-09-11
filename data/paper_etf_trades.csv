@@ -1,3 +1,5 @@
 date,side,ticker,shares,price,value,reason
 2026-09-02,BUY,IBIT,114.969,43.49,5000.0,breakout
 2026-09-02,BUY,MOO,57.287,87.28,5000.0,breakout
+2026-09-11,BUY,IBIT,113.712,43.85,4986.25,rebalance
+2026-09-11,SELL,MOO,57.287,87.04,4986.25,exit
