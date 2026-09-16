@@ -7,36 +7,36 @@
       "shares": 4.701111091191061,
       "entry": 363.06,
       "entry_date": "2026-08-18",
-      "hi": 410.84,
-      "last_px": 410.84
+      "hi": 413.92,
+      "last_px": 413.92
     },
     "TEAM": {
       "shares": 9.870035900871034,
       "entry": 189.71,
       "entry_date": "2026-09-04",
       "hi": 192.77,
-      "last_px": 189.81
+      "last_px": 190.28
     },
     "HOOD": {
       "shares": 14.6467499210894,
       "entry": 125.07,
       "entry_date": "2026-09-08",
       "hi": 117.34,
-      "last_px": 110.45
+      "last_px": 104.42
     },
     "VLO": {
       "shares": 4.160901484589589,
       "entry": 386.37,
       "entry_date": "2026-09-09",
-      "hi": 397.04,
-      "last_px": 397.04
+      "hi": 403.28,
+      "last_px": 403.28
     },
     "PSX": {
       "shares": 6.614080299116491,
       "entry": 263.76,
       "entry_date": "2026-09-10",
       "hi": 264.93,
-      "last_px": 264.93
+      "last_px": 264.63
     }
   },
   "trades": [
@@ -385,8 +385,27 @@
     {
       "date": "2026-09-15",
       "value": 8891.05
+    },
+    {
+      "date": "2026-09-16",
+      "value": 8845.83
     }
   ],
-  "pending": [],
-  "last_close": "2026-09-15"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "HOOD",
+      "reason": "1.5-ATR trail"
+    },
+    {
+      "side": "BUY",
+      "ticker": "META",
+      "price_hint": 673.31,
+      "shares_hint": 2.367,
+      "value_hint": 1593.59,
+      "cost_hint": 0.0,
+      "momentum": 33.3
+    }
+  ],
+  "last_close": "2026-09-16"
 }

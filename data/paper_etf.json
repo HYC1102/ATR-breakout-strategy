@@ -1,14 +1,14 @@
 {
   "start_date": "2026-09-01",
   "capital": 10000.0,
-  "cash": 9.094947017729282e-13,
+  "cash": 0.0,
   "positions": {
-    "IBIT": {
-      "shares": 228.6805033496448,
-      "entry": 43.49,
-      "entry_date": "2026-09-02",
-      "hi": 45.22999954223633,
-      "last_px": 43.11000061035156
+    "VT": {
+      "shares": 61.728029811679555,
+      "entry": 158.67,
+      "entry_date": "2026-09-16",
+      "hi": 157.41000366210938,
+      "last_px": 157.41000366210938
     }
   },
   "trades": [
@@ -47,6 +47,24 @@
       "price": 87.04,
       "value": 4986.25,
       "reason": "exit"
+    },
+    {
+      "date": "2026-09-16",
+      "side": "SELL",
+      "ticker": "IBIT",
+      "shares": 228.681,
+      "price": 42.83,
+      "value": 9794.39,
+      "reason": "exit"
+    },
+    {
+      "date": "2026-09-16",
+      "side": "BUY",
+      "ticker": "VT",
+      "shares": 61.728,
+      "price": 158.67,
+      "value": 9794.39,
+      "reason": "default holding"
     }
   ],
   "equity": [
@@ -89,30 +107,13 @@
     {
       "date": "2026-09-15",
       "value": 9858.42
-    }
-  ],
-  "pending": [
-    {
-      "side": "SELL",
-      "ticker": "IBIT",
-      "price_hint": 43.11,
-      "shares_hint": 228.681,
-      "value_hint": 9858.42,
-      "target_weight": 0.0,
-      "reason": "exit \u2014 10-day low"
     },
     {
-      "side": "BUY",
-      "ticker": "VT",
-      "price_hint": 158.03,
-      "shares_hint": 62.383,
-      "value_hint": 9858.42,
-      "target_weight": 100.0,
-      "reason": "default holding (nothing breaking out)"
+      "date": "2026-09-16",
+      "value": 9716.61
     }
   ],
-  "target": {
-    "VT": 1.0
-  },
-  "last_close": "2026-09-15"
+  "pending": [],
+  "target": {},
+  "last_close": "2026-09-16"
 }
