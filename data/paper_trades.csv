@@ -18,3 +18,5 @@ date,side,ticker,shares,price,value,reason,momentum,sentiment,combined
 2026-09-09,BUY,VLO,4.161,386.37,1607.65,breakout,85.7,,
 2026-09-10,SELL,MRNA,13.412,134.86,1808.7,1.5-ATR trail,,,
 2026-09-10,BUY,PSX,6.614,263.76,1744.53,breakout,60.0,,
+2026-09-17,SELL,HOOD,14.647,110.1,1612.61,1.5-ATR trail,,,
+2026-09-17,BUY,META,2.457,682.44,1676.78,breakout,33.3,,

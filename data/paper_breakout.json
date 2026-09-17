@@ -1,42 +1,42 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 64.17239361765928,
+  "cash": -2.2737367544323206e-13,
   "positions": {
     "MPC": {
       "shares": 4.701111091191061,
       "entry": 363.06,
       "entry_date": "2026-08-18",
-      "hi": 413.92,
-      "last_px": 413.92
+      "hi": 421.96,
+      "last_px": 421.96
     },
     "TEAM": {
       "shares": 9.870035900871034,
       "entry": 189.71,
       "entry_date": "2026-09-04",
       "hi": 192.77,
-      "last_px": 190.28
-    },
-    "HOOD": {
-      "shares": 14.6467499210894,
-      "entry": 125.07,
-      "entry_date": "2026-09-08",
-      "hi": 117.34,
-      "last_px": 104.42
+      "last_px": 192.53
     },
     "VLO": {
       "shares": 4.160901484589589,
       "entry": 386.37,
       "entry_date": "2026-09-09",
-      "hi": 403.28,
-      "last_px": 403.28
+      "hi": 412.53,
+      "last_px": 412.53
     },
     "PSX": {
       "shares": 6.614080299116491,
       "entry": 263.76,
       "entry_date": "2026-09-10",
-      "hi": 264.93,
-      "last_px": 264.63
+      "hi": 274.21,
+      "last_px": 274.21
+    },
+    "META": {
+      "shares": 2.4570358711822315,
+      "entry": 682.44,
+      "entry_date": "2026-09-17",
+      "hi": 682.31,
+      "last_px": 682.31
     }
   },
   "trades": [
@@ -267,6 +267,30 @@
       "momentum": 60.0,
       "sentiment": null,
       "combined": null
+    },
+    {
+      "date": "2026-09-17",
+      "side": "SELL",
+      "ticker": "HOOD",
+      "shares": 14.647,
+      "price": 110.1,
+      "value": 1612.61,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-09-17",
+      "side": "BUY",
+      "ticker": "META",
+      "shares": 2.457,
+      "price": 682.44,
+      "value": 1676.78,
+      "reason": "breakout",
+      "momentum": 33.3,
+      "sentiment": null,
+      "combined": null
     }
   ],
   "equity": [
@@ -389,23 +413,12 @@
     {
       "date": "2026-09-16",
       "value": 8845.83
-    }
-  ],
-  "pending": [
-    {
-      "side": "SELL",
-      "ticker": "HOOD",
-      "reason": "1.5-ATR trail"
     },
     {
-      "side": "BUY",
-      "ticker": "META",
-      "price_hint": 673.31,
-      "shares_hint": 2.367,
-      "value_hint": 1593.59,
-      "cost_hint": 0.0,
-      "momentum": 33.3
+      "date": "2026-09-17",
+      "value": 9090.56
     }
   ],
-  "last_close": "2026-09-16"
+  "pending": [],
+  "last_close": "2026-09-17"
 }
