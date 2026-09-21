@@ -8,35 +8,35 @@
       "entry": 363.06,
       "entry_date": "2026-08-18",
       "hi": 424.89,
-      "last_px": 424.89
+      "last_px": 402.38
     },
     "TEAM": {
       "shares": 9.870035900871034,
       "entry": 189.71,
       "entry_date": "2026-09-04",
-      "hi": 192.77,
-      "last_px": 192.02
+      "hi": 195.67,
+      "last_px": 195.67
     },
     "VLO": {
       "shares": 4.160901484589589,
       "entry": 386.37,
       "entry_date": "2026-09-09",
       "hi": 413.28,
-      "last_px": 413.28
+      "last_px": 393.27
     },
     "PSX": {
       "shares": 6.614080299116491,
       "entry": 263.76,
       "entry_date": "2026-09-10",
       "hi": 274.21,
-      "last_px": 273.13
+      "last_px": 261.75
     },
     "META": {
       "shares": 2.4570358711822315,
       "entry": 682.44,
       "entry_date": "2026-09-17",
-      "hi": 682.31,
-      "last_px": 665.75
+      "hi": 741.245,
+      "last_px": 741.245
     }
   },
   "trades": [
@@ -421,8 +421,41 @@
     {
       "date": "2026-09-18",
       "value": 9054.59
+    },
+    {
+      "date": "2026-09-21",
+      "value": 9011.76
     }
   ],
-  "pending": [],
-  "last_close": "2026-09-18"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "MPC",
+      "reason": "1.5-ATR trail"
+    },
+    {
+      "side": "SELL",
+      "ticker": "PSX",
+      "reason": "1.5-ATR trail"
+    },
+    {
+      "side": "BUY",
+      "ticker": "MRNA",
+      "price_hint": 172.94,
+      "shares_hint": 10.422,
+      "value_hint": 1802.35,
+      "cost_hint": 0.0,
+      "momentum": 100.0
+    },
+    {
+      "side": "BUY",
+      "ticker": "MSTR",
+      "price_hint": 168.5,
+      "shares_hint": 10.696,
+      "value_hint": 1802.35,
+      "cost_hint": 0.0,
+      "momentum": 70.0
+    }
+  ],
+  "last_close": "2026-09-21"
 }

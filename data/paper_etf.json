@@ -8,7 +8,7 @@
       "entry": 158.67,
       "entry_date": "2026-09-16",
       "hi": 157.41000366210938,
-      "last_px": 158.5500030517578
+      "last_px": 160.88999938964844
     }
   },
   "trades": [
@@ -119,9 +119,35 @@
     {
       "date": "2026-09-18",
       "value": 9786.98
+    },
+    {
+      "date": "2026-09-21",
+      "value": 9931.42
     }
   ],
-  "pending": [],
-  "target": {},
-  "last_close": "2026-09-18"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "VT",
+      "price_hint": 160.89,
+      "shares_hint": 61.728,
+      "value_hint": 9931.42,
+      "target_weight": 0.0,
+      "reason": "default holding (nothing breaking out)"
+    },
+    {
+      "side": "BUY",
+      "ticker": "IBIT",
+      "price_hint": 49.01,
+      "shares_hint": 202.641,
+      "value_hint": 9931.42,
+      "target_weight": 100.0,
+      "reason": "breakout",
+      "momentum": 50.0
+    }
+  ],
+  "target": {
+    "IBIT": 1.0
+  },
+  "last_close": "2026-09-21"
 }
