@@ -20,3 +20,7 @@ date,side,ticker,shares,price,value,reason,momentum,sentiment,combined
 2026-09-10,BUY,PSX,6.614,263.76,1744.53,breakout,60.0,,
 2026-09-17,SELL,HOOD,14.647,110.1,1612.61,1.5-ATR trail,,,
 2026-09-17,BUY,META,2.457,682.44,1676.78,breakout,33.3,,
+2026-09-22,SELL,MPC,4.701,391.68,1841.33,1.5-ATR trail,,,
+2026-09-22,SELL,PSX,6.614,256.88,1699.02,1.5-ATR trail,,,
+2026-09-22,BUY,MRNA,10.579,168.5,1782.59,breakout,100.0,,
+2026-09-22,BUY,MSTR,10.491,167.54,1757.76,breakout,70.0,,

@@ -5,3 +5,5 @@ date,side,ticker,shares,price,value,reason
 2026-09-11,SELL,MOO,57.287,87.04,4986.25,exit
 2026-09-16,SELL,IBIT,228.681,42.83,9794.39,exit
 2026-09-16,BUY,VT,61.728,158.67,9794.39,default holding
+2026-09-22,BUY,IBIT,204.857,48.54,9943.77,breakout
+2026-09-22,SELL,VT,61.728,161.09,9943.77,default holding

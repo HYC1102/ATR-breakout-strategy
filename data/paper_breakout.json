@@ -1,42 +1,42 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": -2.2737367544323206e-13,
+  "cash": 0.0,
   "positions": {
-    "MPC": {
-      "shares": 4.701111091191061,
-      "entry": 363.06,
-      "entry_date": "2026-08-18",
-      "hi": 424.89,
-      "last_px": 402.38
-    },
     "TEAM": {
       "shares": 9.870035900871034,
       "entry": 189.71,
       "entry_date": "2026-09-04",
       "hi": 195.67,
-      "last_px": 195.67
+      "last_px": 188.65
     },
     "VLO": {
       "shares": 4.160901484589589,
       "entry": 386.37,
       "entry_date": "2026-09-09",
       "hi": 413.28,
-      "last_px": 393.27
-    },
-    "PSX": {
-      "shares": 6.614080299116491,
-      "entry": 263.76,
-      "entry_date": "2026-09-10",
-      "hi": 274.21,
-      "last_px": 261.75
+      "last_px": 377.14
     },
     "META": {
       "shares": 2.4570358711822315,
       "entry": 682.44,
       "entry_date": "2026-09-17",
       "hi": 741.245,
-      "last_px": 741.245
+      "last_px": 736.595
+    },
+    "MRNA": {
+      "shares": 10.579193278587756,
+      "entry": 168.5,
+      "entry_date": "2026-09-22",
+      "hi": 182.56,
+      "last_px": 182.56
+    },
+    "MSTR": {
+      "shares": 10.49128336860379,
+      "entry": 167.54,
+      "entry_date": "2026-09-22",
+      "hi": 167.33,
+      "last_px": 167.33
     }
   },
   "trades": [
@@ -291,6 +291,54 @@
       "momentum": 33.3,
       "sentiment": null,
       "combined": null
+    },
+    {
+      "date": "2026-09-22",
+      "side": "SELL",
+      "ticker": "MPC",
+      "shares": 4.701,
+      "price": 391.68,
+      "value": 1841.33,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-09-22",
+      "side": "SELL",
+      "ticker": "PSX",
+      "shares": 6.614,
+      "price": 256.88,
+      "value": 1699.02,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-09-22",
+      "side": "BUY",
+      "ticker": "MRNA",
+      "shares": 10.579,
+      "price": 168.5,
+      "value": 1782.59,
+      "reason": "breakout",
+      "momentum": 100.0,
+      "sentiment": null,
+      "combined": null
+    },
+    {
+      "date": "2026-09-22",
+      "side": "BUY",
+      "ticker": "MSTR",
+      "shares": 10.491,
+      "price": 167.54,
+      "value": 1757.76,
+      "reason": "breakout",
+      "momentum": 70.0,
+      "sentiment": null,
+      "combined": null
     }
   ],
   "equity": [
@@ -425,37 +473,27 @@
     {
       "date": "2026-09-21",
       "value": 9011.76
+    },
+    {
+      "date": "2026-09-22",
+      "value": 8927.91
     }
   ],
   "pending": [
     {
       "side": "SELL",
-      "ticker": "MPC",
-      "reason": "1.5-ATR trail"
-    },
-    {
-      "side": "SELL",
-      "ticker": "PSX",
+      "ticker": "VLO",
       "reason": "1.5-ATR trail"
     },
     {
       "side": "BUY",
-      "ticker": "MRNA",
-      "price_hint": 172.94,
-      "shares_hint": 10.422,
-      "value_hint": 1802.35,
+      "ticker": "AMD",
+      "price_hint": 623.77,
+      "shares_hint": 2.516,
+      "value_hint": 1569.24,
       "cost_hint": 0.0,
-      "momentum": 100.0
-    },
-    {
-      "side": "BUY",
-      "ticker": "MSTR",
-      "price_hint": 168.5,
-      "shares_hint": 10.696,
-      "value_hint": 1802.35,
-      "cost_hint": 0.0,
-      "momentum": 70.0
+      "momentum": 62.5
     }
   ],
-  "last_close": "2026-09-21"
+  "last_close": "2026-09-22"
 }
