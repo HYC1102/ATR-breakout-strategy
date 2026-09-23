@@ -8,35 +8,35 @@
       "entry": 189.71,
       "entry_date": "2026-09-04",
       "hi": 195.67,
-      "last_px": 188.65
-    },
-    "VLO": {
-      "shares": 4.160901484589589,
-      "entry": 386.37,
-      "entry_date": "2026-09-09",
-      "hi": 413.28,
-      "last_px": 377.14
+      "last_px": 195.08
     },
     "META": {
       "shares": 2.4570358711822315,
       "entry": 682.44,
       "entry_date": "2026-09-17",
-      "hi": 741.245,
-      "last_px": 736.595
+      "hi": 744.1,
+      "last_px": 744.1
     },
     "MRNA": {
       "shares": 10.579193278587756,
       "entry": 168.5,
       "entry_date": "2026-09-22",
       "hi": 182.56,
-      "last_px": 182.56
+      "last_px": 182.11
     },
     "MSTR": {
       "shares": 10.49128336860379,
       "entry": 167.54,
       "entry_date": "2026-09-22",
       "hi": 167.33,
-      "last_px": 167.33
+      "last_px": 162.2
+    },
+    "AMD": {
+      "shares": 2.5469370064822296,
+      "entry": 621.5,
+      "entry_date": "2026-09-23",
+      "hi": 614.61,
+      "last_px": 614.61
     }
   },
   "trades": [
@@ -339,6 +339,30 @@
       "momentum": 70.0,
       "sentiment": null,
       "combined": null
+    },
+    {
+      "date": "2026-09-23",
+      "side": "SELL",
+      "ticker": "VLO",
+      "shares": 4.161,
+      "price": 380.43,
+      "value": 1582.92,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-09-23",
+      "side": "BUY",
+      "ticker": "AMD",
+      "shares": 2.547,
+      "price": 621.5,
+      "value": 1582.92,
+      "reason": "breakout",
+      "momentum": 62.5,
+      "sentiment": null,
+      "combined": null
     }
   ],
   "equity": [
@@ -477,23 +501,12 @@
     {
       "date": "2026-09-22",
       "value": 8927.91
-    }
-  ],
-  "pending": [
-    {
-      "side": "SELL",
-      "ticker": "VLO",
-      "reason": "1.5-ATR trail"
     },
     {
-      "side": "BUY",
-      "ticker": "AMD",
-      "price_hint": 623.77,
-      "shares_hint": 2.516,
-      "value_hint": 1569.24,
-      "cost_hint": 0.0,
-      "momentum": 62.5
+      "date": "2026-09-23",
+      "value": 8947.36
     }
   ],
-  "last_close": "2026-09-22"
+  "pending": [],
+  "last_close": "2026-09-23"
 }

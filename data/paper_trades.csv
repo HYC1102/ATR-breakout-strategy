@@ -24,3 +24,5 @@ date,side,ticker,shares,price,value,reason,momentum,sentiment,combined
 2026-09-22,SELL,PSX,6.614,256.88,1699.02,1.5-ATR trail,,,
 2026-09-22,BUY,MRNA,10.579,168.5,1782.59,breakout,100.0,,
 2026-09-22,BUY,MSTR,10.491,167.54,1757.76,breakout,70.0,,
+2026-09-23,SELL,VLO,4.161,380.43,1582.92,1.5-ATR trail,,,
+2026-09-23,BUY,AMD,2.547,621.5,1582.92,breakout,62.5,,
