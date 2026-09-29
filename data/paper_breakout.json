@@ -1,42 +1,28 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 0.0,
+  "cash": 3535.5524872689266,
   "positions": {
-    "TEAM": {
-      "shares": 9.870035900871034,
-      "entry": 189.71,
-      "entry_date": "2026-09-04",
-      "hi": 195.67,
-      "last_px": 178.54
-    },
-    "META": {
-      "shares": 2.4570358711822315,
-      "entry": 682.44,
-      "entry_date": "2026-09-17",
-      "hi": 777.59,
-      "last_px": 715.62
-    },
     "MRNA": {
       "shares": 10.579193278587756,
       "entry": 168.5,
       "entry_date": "2026-09-22",
-      "hi": 198.88,
-      "last_px": 197.28
+      "hi": 203.46,
+      "last_px": 203.46
     },
     "MSTR": {
       "shares": 10.49128336860379,
       "entry": 167.54,
       "entry_date": "2026-09-22",
       "hi": 167.33,
-      "last_px": 157.14
+      "last_px": 154.67
     },
     "AMD": {
       "shares": 2.5469370064822296,
       "entry": 621.5,
       "entry_date": "2026-09-23",
       "hi": 630.63,
-      "last_px": 607.87
+      "last_px": 607.57
     }
   },
   "trades": [
@@ -363,6 +349,30 @@
       "momentum": 62.5,
       "sentiment": null,
       "combined": null
+    },
+    {
+      "date": "2026-09-29",
+      "side": "SELL",
+      "ticker": "TEAM",
+      "shares": 9.87,
+      "price": 177.73,
+      "value": 1754.2,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-09-29",
+      "side": "SELL",
+      "ticker": "META",
+      "shares": 2.457,
+      "price": 725.0,
+      "value": 1781.35,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
     }
   ],
   "equity": [
@@ -517,19 +527,31 @@
     {
       "date": "2026-09-28",
       "value": 8804.37
+    },
+    {
+      "date": "2026-09-29",
+      "value": 8858.12
     }
   ],
   "pending": [
     {
-      "side": "SELL",
-      "ticker": "TEAM",
-      "reason": "1.5-ATR trail"
+      "side": "BUY",
+      "ticker": "ILMN",
+      "price_hint": 272.0,
+      "shares_hint": 6.513,
+      "value_hint": 1771.62,
+      "cost_hint": 0.0,
+      "momentum": 66.7
     },
     {
-      "side": "SELL",
-      "ticker": "META",
-      "reason": "1.5-ATR trail"
+      "side": "BUY",
+      "ticker": "WBD",
+      "price_hint": 30.85,
+      "shares_hint": 57.178,
+      "value_hint": 1763.93,
+      "cost_hint": 0.0,
+      "momentum": 33.3
     }
   ],
-  "last_close": "2026-09-28"
+  "last_close": "2026-09-29"
 }
