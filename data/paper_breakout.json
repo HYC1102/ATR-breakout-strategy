@@ -8,35 +8,35 @@
       "entry": 189.71,
       "entry_date": "2026-09-04",
       "hi": 195.67,
-      "last_px": 187.74
+      "last_px": 178.54
     },
     "META": {
       "shares": 2.4570358711822315,
       "entry": 682.44,
       "entry_date": "2026-09-17",
       "hi": 777.59,
-      "last_px": 751.66
+      "last_px": 715.62
     },
     "MRNA": {
       "shares": 10.579193278587756,
       "entry": 168.5,
       "entry_date": "2026-09-22",
       "hi": 198.88,
-      "last_px": 198.88
+      "last_px": 197.28
     },
     "MSTR": {
       "shares": 10.49128336860379,
       "entry": 167.54,
       "entry_date": "2026-09-22",
       "hi": 167.33,
-      "last_px": 158.61
+      "last_px": 157.14
     },
     "AMD": {
       "shares": 2.5469370064822296,
       "entry": 621.5,
       "entry_date": "2026-09-23",
       "hi": 630.63,
-      "last_px": 630.63
+      "last_px": 607.87
     }
   },
   "trades": [
@@ -513,8 +513,23 @@
     {
       "date": "2026-09-25",
       "value": 9074.04
+    },
+    {
+      "date": "2026-09-28",
+      "value": 8804.37
     }
   ],
-  "pending": [],
-  "last_close": "2026-09-25"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "TEAM",
+      "reason": "1.5-ATR trail"
+    },
+    {
+      "side": "SELL",
+      "ticker": "META",
+      "reason": "1.5-ATR trail"
+    }
+  ],
+  "last_close": "2026-09-28"
 }
