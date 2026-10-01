@@ -106,7 +106,7 @@ new ResizeObserver(draw).observe(cv.parentElement);draw();
 <h2>Today&rsquo;s breakouts &mdash; momentum ranked</h2>
 <p class="sub">Breakouts are ranked solely by the percentile of their trailing
 63-day return. The top 5 fill the available slots.</p>
-<table><tr><th>#</th><th>Ticker</th><th class="n">Price</th><th class="n">3-mo mom</th><th class="n">Momentum idx</th><th class="n">ATR stop</th></tr><tr class="hold"><td>1</td><td><b>MRNA</b> <span class="tag">held</span></td><td class="n">$203.46</td><td class="n">+191%</td><td class="n"><b>100</b></td><td class="n">$183.76</td></tr><tr><td>2</td><td><b>ILMN</b> <span class="tag" style="color:var(--green);background:#eef7f2">top pick</span></td><td class="n">$272.00</td><td class="n">+55%</td><td class="n"><b>67</b></td><td class="n">$254.60</td></tr><tr><td>3</td><td><b>WBD</b> <span class="tag" style="color:var(--green);background:#eef7f2">top pick</span></td><td class="n">$30.85</td><td class="n">+16%</td><td class="n"><b>33</b></td><td class="n">$30.25</td></tr></table>
+<table><tr><th>#</th><th>Ticker</th><th class="n">Price</th><th class="n">3-mo mom</th><th class="n">Momentum idx</th><th class="n">ATR stop</th></tr><tr class="hold"><td>1</td><td><b>MRNA</b> <span class="tag">held</span></td><td class="n">$203.46</td><td class="n">+191%</td><td class="n"><b>100</b></td><td class="n">$183.76</td></tr><tr><td>2</td><td><b>ILMN</b> <span class="tag" style="color:var(--green);background:#eef7f2">top pick</span></td><td class="n">$272.00</td><td class="n">+55%</td><td class="n"><b>67</b></td><td class="n">$254.59</td></tr><tr><td>3</td><td><b>WBD</b> <span class="tag" style="color:var(--green);background:#eef7f2">top pick</span></td><td class="n">$30.85</td><td class="n">+16%</td><td class="n"><b>33</b></td><td class="n">$30.25</td></tr></table>
 
 <h2>Current positions</h2>
 <p class="sub">Stop = live exit trigger (higher of the 1.5-ATR trail and the 10-day low). Room = cushion to that stop.</p>
@@ -118,7 +118,7 @@ new ResizeObserver(draw).observe(cv.parentElement);draw();
 <h2>Strategy measures</h2><div class="cards"><div class="card"><div class="l">Total return</div><div class="v pos">+0.7%</div></div><div class="card"><div class="l">Sharpe</div><div class="v ">0.60</div></div><div class="card"><div class="l">Volatility</div><div class="v ">31%</div></div><div class="card"><div class="l">Max drawdown</div><div class="v ">-10%</div></div><div class="card"><div class="l">Round-trips</div><div class="v ">13</div></div><div class="card"><div class="l">Win rate</div><div class="v ">46%</div></div></div>
 
 <p class="foot">Forward record in data/paper_breakout.json (+ paper_trades.csv, paper_equity.csv). Universe = S&amp;P 500 + Nasdaq-100 + liquid extras, top 223 by dollar volume, weekly.<br>
-Generated 2026-09-29 19:52 by breakout_dashboard.py.
+Generated 2026-09-30 20:02 by breakout_dashboard.py.
 A research tool, not investment advice.</p></div><div class="pane" id="p1" hidden>
 <h1>ETF Breakout &mdash; equal-weight rotation <span class="pill">forward paper test</span></h1>
 <p class="sub">29 sector / thematic / core ETFs (fixed list) &nbsp;·&nbsp; EMA(20) + 3-ATR breakout &nbsp;·&nbsp;
@@ -200,7 +200,7 @@ new ResizeObserver(draw).observe(cv.parentElement);draw();
 <h2>Strategy measures</h2><div class="cards"><div class="card"><div class="l">Total return</div><div class="v neg">-3.0%</div></div><div class="card"><div class="l">Sharpe</div><div class="v ">-1.79</div></div><div class="card"><div class="l">Volatility</div><div class="v ">22%</div></div><div class="card"><div class="l">Max drawdown</div><div class="v ">-5%</div></div><div class="card"><div class="l">Round-trips</div><div class="v ">2</div></div><div class="card"><div class="l">Win rate</div><div class="v ">0%</div></div></div>
 
 <p class="foot">Forward record in data/paper_etf.json (+ paper_etf_trades.csv, paper_etf_equity.csv). Universe is a fixed hand-picked ETF list; see universe_test.py &mdash; on a universe chosen without hindsight these rules underperform SPY.<br>
-Generated 2026-09-29 19:52 by breakout_dashboard.py.
+Generated 2026-09-30 20:02 by breakout_dashboard.py.
 A research tool, not investment advice.</p></div>
 </div>
 <script>
