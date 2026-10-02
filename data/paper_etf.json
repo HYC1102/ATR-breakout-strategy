@@ -8,7 +8,7 @@
       "entry": 48.54,
       "entry_date": "2026-09-22",
       "hi": 48.83000183105469,
-      "last_px": 47.34000015258789
+      "last_px": 47.72999954223633
     }
   },
   "trades": [
@@ -169,9 +169,40 @@
     {
       "date": "2026-09-30",
       "value": 9697.94
+    },
+    {
+      "date": "2026-10-01",
+      "value": 9824.95
+    },
+    {
+      "date": "2026-10-02",
+      "value": 9777.83
     }
   ],
-  "pending": [],
-  "target": {},
-  "last_close": "2026-09-30"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "IBIT",
+      "price_hint": 47.73,
+      "shares_hint": 102.429,
+      "value_hint": 4888.92,
+      "target_weight": 50.0,
+      "reason": "rebalance to equal weight"
+    },
+    {
+      "side": "BUY",
+      "ticker": "SMH",
+      "price_hint": 630.6,
+      "shares_hint": 7.753,
+      "value_hint": 4888.92,
+      "target_weight": 50.0,
+      "reason": "breakout",
+      "momentum": 50.0
+    }
+  ],
+  "target": {
+    "SMH": 0.5,
+    "IBIT": 0.5
+  },
+  "last_close": "2026-10-02"
 }

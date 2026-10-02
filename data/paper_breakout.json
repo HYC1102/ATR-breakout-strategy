@@ -8,28 +8,28 @@
       "entry": 168.5,
       "entry_date": "2026-09-22",
       "hi": 203.46,
-      "last_px": 188.94
+      "last_px": 190.01
     },
     "AMD": {
       "shares": 2.5469370064822296,
       "entry": 621.5,
       "entry_date": "2026-09-23",
-      "hi": 630.63,
-      "last_px": 615.73
+      "hi": 633.91,
+      "last_px": 633.91
     },
     "ILMN": {
       "shares": 6.417362755636085,
       "entry": 272.71,
       "entry_date": "2026-09-30",
       "hi": 273.68,
-      "last_px": 265.72
+      "last_px": 273.04
     },
     "WBD": {
       "shares": 56.72865468685629,
       "entry": 30.85,
       "entry_date": "2026-09-30",
       "hi": 30.95,
-      "last_px": 30.95
+      "last_px": 30.94
     }
   },
   "trades": [
@@ -582,8 +582,22 @@
     {
       "date": "2026-10-01",
       "value": 8677.25
+    },
+    {
+      "date": "2026-10-02",
+      "value": 8781.28
     }
   ],
-  "pending": [],
-  "last_close": "2026-10-01"
+  "pending": [
+    {
+      "side": "BUY",
+      "ticker": "ACN",
+      "price_hint": 198.9,
+      "shares_hint": 8.292,
+      "value_hint": 1649.22,
+      "cost_hint": 0.0,
+      "momentum": 100.0
+    }
+  ],
+  "last_close": "2026-10-02"
 }
