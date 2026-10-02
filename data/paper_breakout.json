@@ -1,28 +1,35 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 3535.5524872689266,
+  "cash": 1649.2161572653713,
   "positions": {
     "MRNA": {
       "shares": 10.579193278587756,
       "entry": 168.5,
       "entry_date": "2026-09-22",
       "hi": 203.46,
-      "last_px": 203.46
-    },
-    "MSTR": {
-      "shares": 10.49128336860379,
-      "entry": 167.54,
-      "entry_date": "2026-09-22",
-      "hi": 167.33,
-      "last_px": 154.67
+      "last_px": 188.94
     },
     "AMD": {
       "shares": 2.5469370064822296,
       "entry": 621.5,
       "entry_date": "2026-09-23",
       "hi": 630.63,
-      "last_px": 607.57
+      "last_px": 615.73
+    },
+    "ILMN": {
+      "shares": 6.417362755636085,
+      "entry": 272.71,
+      "entry_date": "2026-09-30",
+      "hi": 273.68,
+      "last_px": 265.72
+    },
+    "WBD": {
+      "shares": 56.72865468685629,
+      "entry": 30.85,
+      "entry_date": "2026-09-30",
+      "hi": 30.95,
+      "last_px": 30.95
     }
   },
   "trades": [
@@ -373,6 +380,42 @@
       "momentum": "",
       "sentiment": "",
       "combined": ""
+    },
+    {
+      "date": "2026-09-30",
+      "side": "BUY",
+      "ticker": "ILMN",
+      "shares": 6.417,
+      "price": 272.71,
+      "value": 1750.08,
+      "reason": "breakout",
+      "momentum": 66.7,
+      "sentiment": null,
+      "combined": null
+    },
+    {
+      "date": "2026-09-30",
+      "side": "BUY",
+      "ticker": "WBD",
+      "shares": 56.729,
+      "price": 30.85,
+      "value": 1750.08,
+      "reason": "breakout",
+      "momentum": 33.3,
+      "sentiment": null,
+      "combined": null
+    },
+    {
+      "date": "2026-10-01",
+      "side": "SELL",
+      "ticker": "MSTR",
+      "shares": 10.491,
+      "price": 153.82,
+      "value": 1613.82,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
     }
   ],
   "equity": [
@@ -531,27 +574,16 @@
     {
       "date": "2026-09-29",
       "value": 8858.12
-    }
-  ],
-  "pending": [
-    {
-      "side": "BUY",
-      "ticker": "ILMN",
-      "price_hint": 272.0,
-      "shares_hint": 6.513,
-      "value_hint": 1771.62,
-      "cost_hint": 0.0,
-      "momentum": 66.7
     },
     {
-      "side": "BUY",
-      "ticker": "WBD",
-      "price_hint": 30.85,
-      "shares_hint": 57.178,
-      "value_hint": 1763.93,
-      "cost_hint": 0.0,
-      "momentum": 33.3
+      "date": "2026-09-30",
+      "value": 8748.91
+    },
+    {
+      "date": "2026-10-01",
+      "value": 8677.25
     }
   ],
-  "last_close": "2026-09-29"
+  "pending": [],
+  "last_close": "2026-10-01"
 }
