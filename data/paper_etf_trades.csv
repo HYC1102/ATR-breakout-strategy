@@ -7,3 +7,5 @@ date,side,ticker,shares,price,value,reason
 2026-09-16,BUY,VT,61.728,158.67,9794.39,default holding
 2026-09-22,BUY,IBIT,204.857,48.54,9943.77,breakout
 2026-09-22,SELL,VT,61.728,161.09,9943.77,default holding
+2026-10-05,SELL,IBIT,102.429,48.74,4992.37,rebalance
+2026-10-05,BUY,SMH,7.906,631.47,4992.37,breakout
