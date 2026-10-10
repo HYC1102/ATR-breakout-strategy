@@ -1,28 +1,21 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 0.0,
+  "cash": 2.2737367544323206e-13,
   "positions": {
     "MRNA": {
       "shares": 10.579193278587756,
       "entry": 168.5,
       "entry_date": "2026-09-22",
-      "hi": 203.46,
-      "last_px": 196.48
+      "hi": 225.0,
+      "last_px": 225.0
     },
     "AMD": {
       "shares": 2.5469370064822296,
       "entry": 621.5,
       "entry_date": "2026-09-23",
       "hi": 649.42,
-      "last_px": 645.86
-    },
-    "ILMN": {
-      "shares": 6.417362755636085,
-      "entry": 272.71,
-      "entry_date": "2026-09-30",
-      "hi": 293.69,
-      "last_px": 267.76
+      "last_px": 608.1
     },
     "WBD": {
       "shares": 56.72865468685629,
@@ -35,8 +28,15 @@
       "shares": 8.401508697225529,
       "entry": 196.3,
       "entry_date": "2026-10-05",
-      "hi": 196.64,
-      "last_px": 196.64
+      "hi": 209.06,
+      "last_px": 209.06
+    },
+    "HPE": {
+      "shares": 24.019792548384373,
+      "entry": 70.45,
+      "entry_date": "2026-10-08",
+      "hi": 73.46,
+      "last_px": 73.46
     }
   },
   "trades": [
@@ -435,6 +435,30 @@
       "momentum": 100.0,
       "sentiment": null,
       "combined": null
+    },
+    {
+      "date": "2026-10-08",
+      "side": "SELL",
+      "ticker": "ILMN",
+      "shares": 6.417,
+      "price": 263.69,
+      "value": 1692.19,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-10-08",
+      "side": "BUY",
+      "ticker": "HPE",
+      "shares": 24.02,
+      "price": 70.45,
+      "value": 1692.19,
+      "reason": "breakout",
+      "momentum": 100.0,
+      "sentiment": null,
+      "combined": null
     }
   ],
   "equity": [
@@ -617,23 +641,22 @@
     {
       "date": "2026-10-07",
       "value": 8849.7
+    },
+    {
+      "date": "2026-10-08",
+      "value": 8876.63
+    },
+    {
+      "date": "2026-10-09",
+      "value": 9205.78
     }
   ],
   "pending": [
     {
       "side": "SELL",
-      "ticker": "ILMN",
+      "ticker": "AMD",
       "reason": "1.5-ATR trail"
-    },
-    {
-      "side": "BUY",
-      "ticker": "HPE",
-      "price_hint": 72.09,
-      "shares_hint": 23.836,
-      "value_hint": 1718.31,
-      "cost_hint": 0.0,
-      "momentum": 100.0
     }
   ],
-  "last_close": "2026-10-07"
+  "last_close": "2026-10-09"
 }
