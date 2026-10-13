@@ -3,26 +3,12 @@
   "capital": 10000.0,
   "cash": 0.0,
   "positions": {
-    "IBIT": {
-      "shares": 68.87960276710825,
-      "entry": 48.54,
-      "entry_date": "2026-09-22",
-      "hi": 48.83000183105469,
-      "last_px": 46.2599983215332
-    },
-    "SMH": {
-      "shares": 5.225578709374324,
-      "entry": 631.47,
-      "entry_date": "2026-10-05",
-      "hi": 633.9000244140625,
-      "last_px": 607.27001953125
-    },
     "CIBR": {
-      "shares": 30.233878481118072,
+      "shares": 90.28121672902768,
       "entry": 107.35,
       "entry_date": "2026-10-07",
-      "hi": 106.56999969482422,
-      "last_px": 106.19999694824219
+      "hi": 110.0,
+      "last_px": 107.80000305175781
     }
   },
   "trades": [
@@ -142,6 +128,33 @@
       "price": 621.1,
       "value": 1664.78,
       "reason": "rebalance"
+    },
+    {
+      "date": "2026-10-09",
+      "side": "BUY",
+      "ticker": "CIBR",
+      "shares": 60.047,
+      "price": 107.36,
+      "value": 6446.98,
+      "reason": "rebalance"
+    },
+    {
+      "date": "2026-10-09",
+      "side": "SELL",
+      "ticker": "IBIT",
+      "shares": 68.88,
+      "price": 46.93,
+      "value": 3232.52,
+      "reason": "exit"
+    },
+    {
+      "date": "2026-10-09",
+      "side": "SELL",
+      "ticker": "SMH",
+      "shares": 5.226,
+      "price": 615.14,
+      "value": 3214.46,
+      "reason": "exit"
     }
   ],
   "equity": [
@@ -252,39 +265,17 @@
     {
       "date": "2026-10-08",
       "value": 9570.55
-    }
-  ],
-  "pending": [
-    {
-      "side": "SELL",
-      "ticker": "IBIT",
-      "price_hint": 46.26,
-      "shares_hint": 68.88,
-      "value_hint": 3186.37,
-      "target_weight": 0.0,
-      "reason": "exit \u2014 1.5-ATR trail"
     },
     {
-      "side": "SELL",
-      "ticker": "SMH",
-      "price_hint": 607.27,
-      "shares_hint": 5.226,
-      "value_hint": 3173.34,
-      "target_weight": 0.0,
-      "reason": "exit \u2014 1.5-ATR trail"
+      "date": "2026-10-09",
+      "value": 9930.93
     },
     {
-      "side": "BUY",
-      "ticker": "CIBR",
-      "price_hint": 106.2,
-      "shares_hint": 59.884,
-      "value_hint": 6359.71,
-      "target_weight": 100.0,
-      "reason": "rebalance to equal weight"
+      "date": "2026-10-12",
+      "value": 9732.32
     }
   ],
-  "target": {
-    "CIBR": 1.0
-  },
-  "last_close": "2026-10-08"
+  "pending": [],
+  "target": {},
+  "last_close": "2026-10-12"
 }

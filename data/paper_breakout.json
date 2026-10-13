@@ -1,21 +1,14 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 2.2737367544323206e-13,
+  "cash": 1527.9839182988842,
   "positions": {
     "MRNA": {
       "shares": 10.579193278587756,
       "entry": 168.5,
       "entry_date": "2026-09-22",
       "hi": 225.0,
-      "last_px": 225.0
-    },
-    "AMD": {
-      "shares": 2.5469370064822296,
-      "entry": 621.5,
-      "entry_date": "2026-09-23",
-      "hi": 649.42,
-      "last_px": 608.1
+      "last_px": 213.74
     },
     "WBD": {
       "shares": 56.72865468685629,
@@ -28,15 +21,15 @@
       "shares": 8.401508697225529,
       "entry": 196.3,
       "entry_date": "2026-10-05",
-      "hi": 209.06,
-      "last_px": 209.06
+      "hi": 214.87,
+      "last_px": 214.87
     },
     "HPE": {
       "shares": 24.019792548384373,
       "entry": 70.45,
       "entry_date": "2026-10-08",
       "hi": 73.46,
-      "last_px": 73.46
+      "last_px": 70.33
     }
   },
   "trades": [
@@ -459,6 +452,18 @@
       "momentum": 100.0,
       "sentiment": null,
       "combined": null
+    },
+    {
+      "date": "2026-10-12",
+      "side": "SELL",
+      "ticker": "AMD",
+      "shares": 2.547,
+      "price": 599.93,
+      "value": 1527.98,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
     }
   ],
   "equity": [
@@ -649,14 +654,22 @@
     {
       "date": "2026-10-09",
       "value": 9205.78
+    },
+    {
+      "date": "2026-10-12",
+      "value": 9039.48
     }
   ],
   "pending": [
     {
-      "side": "SELL",
-      "ticker": "AMD",
-      "reason": "1.5-ATR trail"
+      "side": "BUY",
+      "ticker": "PLTR",
+      "price_hint": 209.0,
+      "shares_hint": 7.311,
+      "value_hint": 1527.98,
+      "cost_hint": 0.0,
+      "momentum": 90.9
     }
   ],
-  "last_close": "2026-10-09"
+  "last_close": "2026-10-12"
 }
