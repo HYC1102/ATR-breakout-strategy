@@ -8,7 +8,7 @@
       "entry": 107.35,
       "entry_date": "2026-10-07",
       "hi": 110.0,
-      "last_px": 107.47000122070312
+      "last_px": 103.73999786376953
     }
   },
   "trades": [
@@ -277,9 +277,35 @@
     {
       "date": "2026-10-13",
       "value": 9702.52
+    },
+    {
+      "date": "2026-10-14",
+      "value": 9365.77
     }
   ],
-  "pending": [],
-  "target": {},
-  "last_close": "2026-10-13"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "CIBR",
+      "price_hint": 103.74,
+      "shares_hint": 90.281,
+      "value_hint": 9365.77,
+      "target_weight": 0.0,
+      "reason": "exit \u2014 1.5-ATR trail"
+    },
+    {
+      "side": "BUY",
+      "ticker": "XLP",
+      "price_hint": 86.06,
+      "shares_hint": 108.828,
+      "value_hint": 9365.77,
+      "target_weight": 100.0,
+      "reason": "breakout",
+      "momentum": 50.0
+    }
+  ],
+  "target": {
+    "XLP": 1.0
+  },
+  "last_close": "2026-10-14"
 }

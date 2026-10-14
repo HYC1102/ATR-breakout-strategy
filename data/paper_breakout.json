@@ -7,8 +7,8 @@
       "shares": 10.579193278587756,
       "entry": 168.5,
       "entry_date": "2026-09-22",
-      "hi": 225.0,
-      "last_px": 216.25
+      "hi": 226.3,
+      "last_px": 226.3
     },
     "WBD": {
       "shares": 56.72865468685629,
@@ -21,22 +21,22 @@
       "shares": 8.401508697225529,
       "entry": 196.3,
       "entry_date": "2026-10-05",
-      "hi": 214.87,
-      "last_px": 213.56
+      "hi": 214.96,
+      "last_px": 214.96
     },
     "HPE": {
       "shares": 24.019792548384373,
       "entry": 70.45,
       "entry_date": "2026-10-08",
       "hi": 73.46,
-      "last_px": 68.81
+      "last_px": 63.11
     },
     "PLTR": {
       "shares": 7.3432522025128995,
       "entry": 208.08,
       "entry_date": "2026-10-13",
       "hi": 208.67,
-      "last_px": 208.67
+      "last_px": 200.97
     }
   },
   "trades": [
@@ -681,8 +681,27 @@
     {
       "date": "2026-10-13",
       "value": 9022.85
+    },
+    {
+      "date": "2026-10-14",
+      "value": 8947.47
     }
   ],
-  "pending": [],
-  "last_close": "2026-10-13"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "HPE",
+      "reason": "1.5-ATR trail"
+    },
+    {
+      "side": "BUY",
+      "ticker": "P",
+      "price_hint": 141.49,
+      "shares_hint": 10.714,
+      "value_hint": 1515.89,
+      "cost_hint": 0.0,
+      "momentum": 100.0
+    }
+  ],
+  "last_close": "2026-10-14"
 }
