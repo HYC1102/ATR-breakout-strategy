@@ -3,12 +3,12 @@
   "capital": 10000.0,
   "cash": 0.0,
   "positions": {
-    "CIBR": {
-      "shares": 90.28121672902768,
-      "entry": 107.35,
-      "entry_date": "2026-10-07",
-      "hi": 110.0,
-      "last_px": 103.73999786376953
+    "XLP": {
+      "shares": 104.89052179619337,
+      "entry": 87.69,
+      "entry_date": "2026-10-15",
+      "hi": 86.68000030517578,
+      "last_px": 86.68000030517578
     }
   },
   "trades": [
@@ -155,6 +155,24 @@
       "price": 615.14,
       "value": 3214.46,
       "reason": "exit"
+    },
+    {
+      "date": "2026-10-15",
+      "side": "SELL",
+      "ticker": "CIBR",
+      "shares": 90.281,
+      "price": 101.88,
+      "value": 9197.85,
+      "reason": "exit"
+    },
+    {
+      "date": "2026-10-15",
+      "side": "BUY",
+      "ticker": "XLP",
+      "shares": 104.891,
+      "price": 87.69,
+      "value": 9197.85,
+      "reason": "breakout"
     }
   ],
   "equity": [
@@ -281,31 +299,36 @@
     {
       "date": "2026-10-14",
       "value": 9365.77
+    },
+    {
+      "date": "2026-10-15",
+      "value": 9091.91
     }
   ],
   "pending": [
     {
       "side": "SELL",
-      "ticker": "CIBR",
-      "price_hint": 103.74,
-      "shares_hint": 90.281,
-      "value_hint": 9365.77,
-      "target_weight": 0.0,
-      "reason": "exit \u2014 1.5-ATR trail"
+      "ticker": "XLP",
+      "price_hint": 86.68,
+      "shares_hint": 52.445,
+      "value_hint": 4545.96,
+      "target_weight": 50.0,
+      "reason": "rebalance to equal weight"
     },
     {
       "side": "BUY",
-      "ticker": "XLP",
-      "price_hint": 86.06,
-      "shares_hint": 108.828,
-      "value_hint": 9365.77,
-      "target_weight": 100.0,
+      "ticker": "ESPO",
+      "price_hint": 101.58,
+      "shares_hint": 44.752,
+      "value_hint": 4545.96,
+      "target_weight": 50.0,
       "reason": "breakout",
-      "momentum": 50.0
+      "momentum": 100.0
     }
   ],
   "target": {
-    "XLP": 1.0
+    "XLP": 0.5,
+    "ESPO": 0.5
   },
-  "last_close": "2026-10-14"
+  "last_close": "2026-10-15"
 }

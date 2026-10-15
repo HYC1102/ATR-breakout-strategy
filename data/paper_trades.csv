@@ -36,3 +36,5 @@ date,side,ticker,shares,price,value,reason,momentum,sentiment,combined
 2026-10-08,BUY,HPE,24.02,70.45,1692.19,breakout,100.0,,
 2026-10-12,SELL,AMD,2.547,599.93,1527.98,1.5-ATR trail,,,
 2026-10-13,BUY,PLTR,7.343,208.08,1527.98,breakout,90.9,,
+2026-10-15,SELL,HPE,24.02,59.91,1439.03,1.5-ATR trail,,,
+2026-10-15,BUY,P,10.68,134.74,1439.03,breakout,100.0,,
