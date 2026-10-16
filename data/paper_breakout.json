@@ -8,7 +8,7 @@
       "entry": 168.5,
       "entry_date": "2026-09-22",
       "hi": 236.5,
-      "last_px": 236.5
+      "last_px": 218.01
     },
     "WBD": {
       "shares": 56.72865468685629,
@@ -21,22 +21,22 @@
       "shares": 8.401508697225529,
       "entry": 196.3,
       "entry_date": "2026-10-05",
-      "hi": 224.92,
-      "last_px": 224.92
+      "hi": 229.68,
+      "last_px": 229.68
     },
     "PLTR": {
       "shares": 7.3432522025128995,
       "entry": 208.08,
       "entry_date": "2026-10-13",
       "hi": 208.67,
-      "last_px": 200.5
+      "last_px": 186.03
     },
     "P": {
       "shares": 10.680415419703177,
       "entry": 134.74,
       "entry_date": "2026-10-15",
       "hi": 133.4,
-      "last_px": 133.4
+      "last_px": 124.01
     }
   },
   "trades": [
@@ -713,8 +713,41 @@
     {
       "date": "2026-10-15",
       "value": 9044.49
+    },
+    {
+      "date": "2026-10-16",
+      "value": 8682.32
     }
   ],
-  "pending": [],
-  "last_close": "2026-10-15"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "PLTR",
+      "reason": "1.5-ATR trail"
+    },
+    {
+      "side": "SELL",
+      "ticker": "P",
+      "reason": "10-day low"
+    },
+    {
+      "side": "BUY",
+      "ticker": "TEAM",
+      "price_hint": 207.82,
+      "shares_hint": 8.356,
+      "value_hint": 1736.46,
+      "cost_hint": 0.0,
+      "momentum": 100.0
+    },
+    {
+      "side": "BUY",
+      "ticker": "MPC",
+      "price_hint": 478.07,
+      "shares_hint": 1.996,
+      "value_hint": 954.08,
+      "cost_hint": 0.0,
+      "momentum": 91.7
+    }
+  ],
+  "last_close": "2026-10-16"
 }

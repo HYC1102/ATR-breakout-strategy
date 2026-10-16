@@ -4,11 +4,18 @@
   "cash": 0.0,
   "positions": {
     "XLP": {
-      "shares": 104.89052179619337,
+      "shares": 52.44526089809668,
       "entry": 87.69,
       "entry_date": "2026-10-15",
-      "hi": 86.68000030517578,
-      "last_px": 86.68000030517578
+      "hi": 87.62000274658203,
+      "last_px": 87.62000274658203
+    },
+    "ESPO": {
+      "shares": 44.76709253754217,
+      "entry": 102.32,
+      "entry_date": "2026-10-16",
+      "hi": 100.7593994140625,
+      "last_px": 100.7593994140625
     }
   },
   "trades": [
@@ -173,6 +180,24 @@
       "price": 87.69,
       "value": 9197.85,
       "reason": "breakout"
+    },
+    {
+      "date": "2026-10-16",
+      "side": "BUY",
+      "ticker": "ESPO",
+      "shares": 44.767,
+      "price": 102.32,
+      "value": 4580.57,
+      "reason": "breakout"
+    },
+    {
+      "date": "2026-10-16",
+      "side": "SELL",
+      "ticker": "XLP",
+      "shares": 52.445,
+      "price": 87.34,
+      "value": 4580.57,
+      "reason": "rebalance"
     }
   ],
   "equity": [
@@ -303,32 +328,46 @@
     {
       "date": "2026-10-15",
       "value": 9091.91
+    },
+    {
+      "date": "2026-10-16",
+      "value": 9105.96
     }
   ],
   "pending": [
     {
       "side": "SELL",
       "ticker": "XLP",
-      "price_hint": 86.68,
-      "shares_hint": 52.445,
-      "value_hint": 4545.96,
-      "target_weight": 50.0,
+      "price_hint": 87.62,
+      "shares_hint": 17.803,
+      "value_hint": 1559.93,
+      "target_weight": 33.3,
+      "reason": "rebalance to equal weight"
+    },
+    {
+      "side": "SELL",
+      "ticker": "ESPO",
+      "price_hint": 100.76,
+      "shares_hint": 14.643,
+      "value_hint": 1475.39,
+      "target_weight": 33.3,
       "reason": "rebalance to equal weight"
     },
     {
       "side": "BUY",
-      "ticker": "ESPO",
-      "price_hint": 101.58,
-      "shares_hint": 44.752,
-      "value_hint": 4545.96,
-      "target_weight": 50.0,
+      "ticker": "XLE",
+      "price_hint": 68.24,
+      "shares_hint": 44.48,
+      "value_hint": 3035.32,
+      "target_weight": 33.3,
       "reason": "breakout",
       "momentum": 100.0
     }
   ],
   "target": {
-    "XLP": 0.5,
-    "ESPO": 0.5
+    "XLE": 0.3333333333333333,
+    "ESPO": 0.3333333333333333,
+    "XLP": 0.3333333333333333
   },
-  "last_close": "2026-10-15"
+  "last_close": "2026-10-16"
 }
