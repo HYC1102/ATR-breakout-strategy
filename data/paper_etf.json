@@ -4,18 +4,25 @@
   "cash": 0.0,
   "positions": {
     "XLP": {
-      "shares": 52.44526089809668,
+      "shares": 34.887880154159724,
       "entry": 87.69,
       "entry_date": "2026-10-15",
       "hi": 87.62000274658203,
-      "last_px": 87.62000274658203
+      "last_px": 87.20999908447266
     },
     "ESPO": {
-      "shares": 44.76709253754217,
+      "shares": 29.909563880171675,
       "entry": 102.32,
       "entry_date": "2026-10-16",
       "hi": 100.7593994140625,
-      "last_px": 100.7593994140625
+      "last_px": 100.4800033569336
+    },
+    "XLE": {
+      "shares": 44.59179505868213,
+      "entry": 67.95,
+      "entry_date": "2026-10-19",
+      "hi": 67.80000305175781,
+      "last_px": 67.80000305175781
     }
   },
   "trades": [
@@ -198,6 +205,33 @@
       "price": 87.34,
       "value": 4580.57,
       "reason": "rebalance"
+    },
+    {
+      "date": "2026-10-19",
+      "side": "SELL",
+      "ticker": "ESPO",
+      "shares": 14.858,
+      "price": 101.31,
+      "value": 1505.15,
+      "reason": "rebalance"
+    },
+    {
+      "date": "2026-10-19",
+      "side": "BUY",
+      "ticker": "XLE",
+      "shares": 44.592,
+      "price": 67.95,
+      "value": 3030.01,
+      "reason": "breakout"
+    },
+    {
+      "date": "2026-10-19",
+      "side": "SELL",
+      "ticker": "XLP",
+      "shares": 17.557,
+      "price": 86.85,
+      "value": 1524.86,
+      "reason": "rebalance"
     }
   ],
   "equity": [
@@ -332,42 +366,13 @@
     {
       "date": "2026-10-16",
       "value": 9105.96
-    }
-  ],
-  "pending": [
-    {
-      "side": "SELL",
-      "ticker": "XLP",
-      "price_hint": 87.62,
-      "shares_hint": 17.803,
-      "value_hint": 1559.93,
-      "target_weight": 33.3,
-      "reason": "rebalance to equal weight"
     },
     {
-      "side": "SELL",
-      "ticker": "ESPO",
-      "price_hint": 100.76,
-      "shares_hint": 14.643,
-      "value_hint": 1475.39,
-      "target_weight": 33.3,
-      "reason": "rebalance to equal weight"
-    },
-    {
-      "side": "BUY",
-      "ticker": "XLE",
-      "price_hint": 68.24,
-      "shares_hint": 44.48,
-      "value_hint": 3035.32,
-      "target_weight": 33.3,
-      "reason": "breakout",
-      "momentum": 100.0
+      "date": "2026-10-19",
+      "value": 9071.21
     }
   ],
-  "target": {
-    "XLE": 0.3333333333333333,
-    "ESPO": 0.3333333333333333,
-    "XLP": 0.3333333333333333
-  },
-  "last_close": "2026-10-16"
+  "pending": [],
+  "target": {},
+  "last_close": "2026-10-19"
 }

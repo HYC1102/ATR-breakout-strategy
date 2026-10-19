@@ -38,3 +38,7 @@ date,side,ticker,shares,price,value,reason,momentum,sentiment,combined
 2026-10-13,BUY,PLTR,7.343,208.08,1527.98,breakout,90.9,,
 2026-10-15,SELL,HPE,24.02,59.91,1439.03,1.5-ATR trail,,,
 2026-10-15,BUY,P,10.68,134.74,1439.03,breakout,100.0,,
+2026-10-19,SELL,PLTR,7.343,187.0,1373.15,1.5-ATR trail,,,
+2026-10-19,SELL,P,10.68,129.2,1379.91,10-day low,,,
+2026-10-19,BUY,TEAM,8.387,208.11,1745.39,breakout,100.0,,
+2026-10-19,BUY,MPC,2.108,478.0,1007.67,breakout,91.7,,
