@@ -8,7 +8,7 @@
       "entry": 168.5,
       "entry_date": "2026-09-22",
       "hi": 245.81,
-      "last_px": 245.81
+      "last_px": 202.63
     },
     "WBD": {
       "shares": 56.72865468685629,
@@ -21,22 +21,22 @@
       "shares": 8.401508697225529,
       "entry": 196.3,
       "entry_date": "2026-10-05",
-      "hi": 240.26,
-      "last_px": 240.26
+      "hi": 258.74,
+      "last_px": 258.74
     },
     "TEAM": {
       "shares": 8.38684446799635,
       "entry": 208.11,
       "entry_date": "2026-10-19",
       "hi": 225.505,
-      "last_px": 225.505
+      "last_px": 223.16
     },
     "MPC": {
       "shares": 2.108106517991275,
       "entry": 478.0,
       "entry_date": "2026-10-19",
       "hi": 475.04,
-      "last_px": 467.98
+      "last_px": 459.28
     }
   },
   "trades": [
@@ -777,8 +777,27 @@
     {
       "date": "2026-10-21",
       "value": 9252.6
+    },
+    {
+      "date": "2026-10-22",
+      "value": 8913.04
     }
   ],
-  "pending": [],
-  "last_close": "2026-10-21"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "MRNA",
+      "reason": "1.5-ATR trail"
+    },
+    {
+      "side": "BUY",
+      "ticker": "PFE",
+      "price_hint": 30.42,
+      "shares_hint": 58.6,
+      "value_hint": 1782.61,
+      "cost_hint": 0.0,
+      "momentum": 96.8
+    }
+  ],
+  "last_close": "2026-10-22"
 }

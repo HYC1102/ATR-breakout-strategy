@@ -7,22 +7,22 @@
       "shares": 34.887880154159724,
       "entry": 87.69,
       "entry_date": "2026-10-15",
-      "hi": 87.75,
-      "last_px": 87.11000061035156
+      "hi": 89.98999786376953,
+      "last_px": 89.98999786376953
     },
     "ESPO": {
       "shares": 29.909563880171675,
       "entry": 102.32,
       "entry_date": "2026-10-16",
       "hi": 102.1500015258789,
-      "last_px": 101.5999984741211
+      "last_px": 100.63999938964844
     },
     "XLE": {
       "shares": 44.59179505868213,
       "entry": 67.95,
       "entry_date": "2026-10-19",
       "hi": 68.16000366210938,
-      "last_px": 68.16000366210938
+      "last_px": 67.56999969482422
     }
   },
   "trades": [
@@ -378,9 +378,67 @@
     {
       "date": "2026-10-21",
       "value": 9117.27
+    },
+    {
+      "date": "2026-10-22",
+      "value": 9162.73
     }
   ],
-  "pending": [],
-  "target": {},
-  "last_close": "2026-10-21"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "XLP",
+      "price_hint": 89.99,
+      "shares_hint": 14.524,
+      "value_hint": 1307.01,
+      "target_weight": 20.0,
+      "reason": "rebalance to equal weight"
+    },
+    {
+      "side": "SELL",
+      "ticker": "XLE",
+      "price_hint": 67.57,
+      "shares_hint": 17.471,
+      "value_hint": 1180.52,
+      "target_weight": 20.0,
+      "reason": "rebalance to equal weight"
+    },
+    {
+      "side": "SELL",
+      "ticker": "ESPO",
+      "price_hint": 100.64,
+      "shares_hint": 11.701,
+      "value_hint": 1177.55,
+      "target_weight": 20.0,
+      "reason": "rebalance to equal weight"
+    },
+    {
+      "side": "BUY",
+      "ticker": "FIW",
+      "price_hint": 110.49,
+      "shares_hint": 16.586,
+      "value_hint": 1832.55,
+      "target_weight": 20.0,
+      "reason": "breakout",
+      "momentum": 66.7
+    },
+    {
+      "side": "BUY",
+      "ticker": "TLT",
+      "price_hint": 81.74,
+      "shares_hint": 22.419,
+      "value_hint": 1832.55,
+      "target_weight": 20.0,
+      "reason": "breakout",
+      "momentum": 33.3
+    }
+  ],
+  "target": {
+    "XLP": 0.2,
+    "TLT": 0.2,
+    "XLE": 0.2,
+    "FIW": 0.2,
+    "ESPO": 0.2
+  },
+  "last_close": "2026-10-22"
 }
