@@ -1,28 +1,42 @@
 {
   "start_date": "2026-09-01",
   "capital": 10000.0,
-  "cash": 0.0,
+  "cash": -4.547473508864641e-13,
   "positions": {
     "XLP": {
-      "shares": 34.887880154159724,
+      "shares": 20.38093531254296,
       "entry": 87.69,
       "entry_date": "2026-10-15",
       "hi": 89.98999786376953,
-      "last_px": 89.98999786376953
+      "last_px": 88.26000213623047
     },
     "ESPO": {
-      "shares": 29.909563880171675,
+      "shares": 18.399112850849,
       "entry": 102.32,
       "entry_date": "2026-10-16",
       "hi": 102.1500015258789,
-      "last_px": 100.63999938964844
+      "last_px": 99.08999633789062
     },
     "XLE": {
-      "shares": 44.59179505868213,
+      "shares": 26.820327128437484,
       "entry": 67.95,
       "entry_date": "2026-10-19",
-      "hi": 68.16000366210938,
-      "last_px": 67.56999969482422
+      "hi": 69.33000183105469,
+      "last_px": 69.33000183105469
+    },
+    "FIW": {
+      "shares": 16.576739852196205,
+      "entry": 110.15,
+      "entry_date": "2026-10-23",
+      "hi": 110.08999633789062,
+      "last_px": 110.08999633789062
+    },
+    "TLT": {
+      "shares": 22.33004763328845,
+      "entry": 81.77,
+      "entry_date": "2026-10-23",
+      "hi": 81.33999633789062,
+      "last_px": 81.33999633789062
     }
   },
   "trades": [
@@ -232,6 +246,51 @@
       "price": 86.85,
       "value": 1524.86,
       "reason": "rebalance"
+    },
+    {
+      "date": "2026-10-23",
+      "side": "SELL",
+      "ticker": "ESPO",
+      "shares": 11.51,
+      "price": 99.24,
+      "value": 1142.3,
+      "reason": "rebalance"
+    },
+    {
+      "date": "2026-10-23",
+      "side": "BUY",
+      "ticker": "FIW",
+      "shares": 16.577,
+      "price": 110.15,
+      "value": 1825.93,
+      "reason": "breakout"
+    },
+    {
+      "date": "2026-10-23",
+      "side": "BUY",
+      "ticker": "TLT",
+      "shares": 22.33,
+      "price": 81.77,
+      "value": 1825.93,
+      "reason": "breakout"
+    },
+    {
+      "date": "2026-10-23",
+      "side": "SELL",
+      "ticker": "XLE",
+      "shares": 17.771,
+      "price": 68.08,
+      "value": 1209.88,
+      "reason": "rebalance"
+    },
+    {
+      "date": "2026-10-23",
+      "side": "SELL",
+      "ticker": "XLP",
+      "shares": 14.507,
+      "price": 89.59,
+      "value": 1299.68,
+      "reason": "rebalance"
     }
   ],
   "equity": [
@@ -382,63 +441,64 @@
     {
       "date": "2026-10-22",
       "value": 9162.73
+    },
+    {
+      "date": "2026-10-23",
+      "value": 9122.7
     }
   ],
   "pending": [
     {
       "side": "SELL",
-      "ticker": "XLP",
-      "price_hint": 89.99,
-      "shares_hint": 14.524,
-      "value_hint": 1307.01,
-      "target_weight": 20.0,
-      "reason": "rebalance to equal weight"
-    },
-    {
-      "side": "SELL",
-      "ticker": "XLE",
-      "price_hint": 67.57,
-      "shares_hint": 17.471,
-      "value_hint": 1180.52,
-      "target_weight": 20.0,
-      "reason": "rebalance to equal weight"
-    },
-    {
-      "side": "SELL",
       "ticker": "ESPO",
-      "price_hint": 100.64,
-      "shares_hint": 11.701,
-      "value_hint": 1177.55,
-      "target_weight": 20.0,
+      "price_hint": 99.09,
+      "shares_hint": 18.399,
+      "value_hint": 1823.17,
+      "target_weight": 0.0,
+      "reason": "exit \u2014 1.5-ATR trail"
+    },
+    {
+      "side": "BUY",
+      "ticker": "XLP",
+      "price_hint": 88.26,
+      "shares_hint": 5.459,
+      "value_hint": 481.85,
+      "target_weight": 25.0,
+      "reason": "rebalance to equal weight"
+    },
+    {
+      "side": "BUY",
+      "ticker": "TLT",
+      "price_hint": 81.34,
+      "shares_hint": 5.709,
+      "value_hint": 464.35,
+      "target_weight": 25.0,
       "reason": "rebalance to equal weight"
     },
     {
       "side": "BUY",
       "ticker": "FIW",
-      "price_hint": 110.49,
-      "shares_hint": 16.586,
-      "value_hint": 1832.55,
-      "target_weight": 20.0,
-      "reason": "breakout",
-      "momentum": 66.7
+      "price_hint": 110.09,
+      "shares_hint": 4.14,
+      "value_hint": 455.74,
+      "target_weight": 25.0,
+      "reason": "rebalance to equal weight"
     },
     {
       "side": "BUY",
-      "ticker": "TLT",
-      "price_hint": 81.74,
-      "shares_hint": 22.419,
-      "value_hint": 1832.55,
-      "target_weight": 20.0,
-      "reason": "breakout",
-      "momentum": 33.3
+      "ticker": "XLE",
+      "price_hint": 69.33,
+      "shares_hint": 6.076,
+      "value_hint": 421.22,
+      "target_weight": 25.0,
+      "reason": "rebalance to equal weight"
     }
   ],
   "target": {
-    "XLP": 0.2,
-    "TLT": 0.2,
-    "XLE": 0.2,
-    "FIW": 0.2,
-    "ESPO": 0.2
+    "TLT": 0.25,
+    "XLP": 0.25,
+    "XLE": 0.25,
+    "FIW": 0.25
   },
-  "last_close": "2026-10-22"
+  "last_close": "2026-10-23"
 }

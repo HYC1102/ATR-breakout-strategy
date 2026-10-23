@@ -1,15 +1,8 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 1.1368683772161603e-13,
+  "cash": 321.829137146462,
   "positions": {
-    "MRNA": {
-      "shares": 10.579193278587756,
-      "entry": 168.5,
-      "entry_date": "2026-09-22",
-      "hi": 245.81,
-      "last_px": 202.63
-    },
     "WBD": {
       "shares": 56.72865468685629,
       "entry": 30.85,
@@ -22,21 +15,28 @@
       "entry": 196.3,
       "entry_date": "2026-10-05",
       "hi": 258.74,
-      "last_px": 258.74
+      "last_px": 249.37
     },
     "TEAM": {
       "shares": 8.38684446799635,
       "entry": 208.11,
       "entry_date": "2026-10-19",
-      "hi": 225.505,
-      "last_px": 223.16
+      "hi": 227.61,
+      "last_px": 227.61
     },
     "MPC": {
       "shares": 2.108106517991275,
       "entry": 478.0,
       "entry_date": "2026-10-19",
       "hi": 475.04,
-      "last_px": 459.28
+      "last_px": 457.22
+    },
+    "PFE": {
+      "shares": 58.09089791344002,
+      "entry": 30.28,
+      "entry_date": "2026-10-23",
+      "hi": 30.03,
+      "last_px": 30.03
     }
   },
   "trades": [
@@ -555,6 +555,30 @@
       "momentum": 91.7,
       "sentiment": null,
       "combined": null
+    },
+    {
+      "date": "2026-10-23",
+      "side": "SELL",
+      "ticker": "MRNA",
+      "shares": 10.579,
+      "price": 196.69,
+      "value": 2080.82,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-10-23",
+      "side": "BUY",
+      "ticker": "PFE",
+      "shares": 58.091,
+      "price": 30.28,
+      "value": 1758.99,
+      "reason": "breakout",
+      "momentum": 96.8,
+      "sentiment": null,
+      "combined": null
     }
   ],
   "equity": [
@@ -781,23 +805,12 @@
     {
       "date": "2026-10-22",
       "value": 8913.04
-    }
-  ],
-  "pending": [
-    {
-      "side": "SELL",
-      "ticker": "MRNA",
-      "reason": "1.5-ATR trail"
     },
     {
-      "side": "BUY",
-      "ticker": "PFE",
-      "price_hint": 30.42,
-      "shares_hint": 58.6,
-      "value_hint": 1782.61,
-      "cost_hint": 0.0,
-      "momentum": 96.8
+      "date": "2026-10-23",
+      "value": 8789.93
     }
   ],
-  "last_close": "2026-10-22"
+  "pending": [],
+  "last_close": "2026-10-23"
 }
