@@ -15,28 +15,28 @@
       "entry": 196.3,
       "entry_date": "2026-10-05",
       "hi": 258.74,
-      "last_px": 247.23
+      "last_px": 235.16
     },
     "TEAM": {
       "shares": 8.38684446799635,
       "entry": 208.11,
       "entry_date": "2026-10-19",
       "hi": 227.61,
-      "last_px": 223.415
+      "last_px": 219.41
     },
     "MPC": {
       "shares": 2.108106517991275,
       "entry": 478.0,
       "entry_date": "2026-10-19",
       "hi": 475.04,
-      "last_px": 470.64
+      "last_px": 435.98
     },
     "PFE": {
       "shares": 58.09089791344002,
       "entry": 30.28,
       "entry_date": "2026-10-23",
       "hi": 30.03,
-      "last_px": 29.79
+      "last_px": 29.8
     }
   },
   "trades": [
@@ -813,8 +813,41 @@
     {
       "date": "2026-10-26",
       "value": 8751.12
+    },
+    {
+      "date": "2026-10-27",
+      "value": 8543.64
     }
   ],
-  "pending": [],
-  "last_close": "2026-10-26"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "ACN",
+      "reason": "1.5-ATR trail"
+    },
+    {
+      "side": "SELL",
+      "ticker": "MPC",
+      "reason": "10-day low"
+    },
+    {
+      "side": "BUY",
+      "ticker": "ZS",
+      "price_hint": 260.15,
+      "shares_hint": 6.568,
+      "value_hint": 1708.73,
+      "cost_hint": 0.0,
+      "momentum": 100.0
+    },
+    {
+      "side": "BUY",
+      "ticker": "COP",
+      "price_hint": 147.96,
+      "shares_hint": 10.191,
+      "value_hint": 1507.89,
+      "cost_hint": 0.0,
+      "momentum": 83.3
+    }
+  ],
+  "last_close": "2026-10-27"
 }
