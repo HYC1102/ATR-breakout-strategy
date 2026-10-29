@@ -1,7 +1,7 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 321.829137146462,
+  "cash": 0.0,
   "positions": {
     "WBD": {
       "shares": 56.72865468685629,
@@ -10,33 +10,33 @@
       "hi": 30.95,
       "last_px": 30.95
     },
-    "ACN": {
-      "shares": 8.401508697225529,
-      "entry": 196.3,
-      "entry_date": "2026-10-05",
-      "hi": 258.74,
-      "last_px": 235.16
-    },
     "TEAM": {
       "shares": 8.38684446799635,
       "entry": 208.11,
       "entry_date": "2026-10-19",
       "hi": 227.61,
-      "last_px": 219.41
-    },
-    "MPC": {
-      "shares": 2.108106517991275,
-      "entry": 478.0,
-      "entry_date": "2026-10-19",
-      "hi": 475.04,
-      "last_px": 435.98
+      "last_px": 220.12
     },
     "PFE": {
       "shares": 58.09089791344002,
       "entry": 30.28,
       "entry_date": "2026-10-23",
       "hi": 30.03,
-      "last_px": 29.8
+      "last_px": 29.45
+    },
+    "ZS": {
+      "shares": 6.53218497875693,
+      "entry": 260.21,
+      "entry_date": "2026-10-28",
+      "hi": 255.8,
+      "last_px": 255.8
+    },
+    "COP": {
+      "shares": 10.134150013525526,
+      "entry": 148.79,
+      "entry_date": "2026-10-28",
+      "hi": 149.06,
+      "last_px": 149.06
     }
   },
   "trades": [
@@ -579,6 +579,54 @@
       "momentum": 96.8,
       "sentiment": null,
       "combined": null
+    },
+    {
+      "date": "2026-10-28",
+      "side": "SELL",
+      "ticker": "ACN",
+      "shares": 8.402,
+      "price": 233.34,
+      "value": 1960.41,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-10-28",
+      "side": "SELL",
+      "ticker": "MPC",
+      "shares": 2.108,
+      "price": 438.97,
+      "value": 925.4,
+      "reason": "10-day low",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-10-28",
+      "side": "BUY",
+      "ticker": "ZS",
+      "shares": 6.532,
+      "price": 260.21,
+      "value": 1699.77,
+      "reason": "breakout",
+      "momentum": 100.0,
+      "sentiment": null,
+      "combined": null
+    },
+    {
+      "date": "2026-10-28",
+      "side": "BUY",
+      "ticker": "COP",
+      "shares": 10.134,
+      "price": 148.79,
+      "value": 1507.86,
+      "reason": "breakout",
+      "momentum": 83.3,
+      "sentiment": null,
+      "combined": null
     }
   ],
   "equity": [
@@ -817,37 +865,12 @@
     {
       "date": "2026-10-27",
       "value": 8543.64
+    },
+    {
+      "date": "2026-10-28",
+      "value": 8494.17
     }
   ],
-  "pending": [
-    {
-      "side": "SELL",
-      "ticker": "ACN",
-      "reason": "1.5-ATR trail"
-    },
-    {
-      "side": "SELL",
-      "ticker": "MPC",
-      "reason": "10-day low"
-    },
-    {
-      "side": "BUY",
-      "ticker": "ZS",
-      "price_hint": 260.15,
-      "shares_hint": 6.568,
-      "value_hint": 1708.73,
-      "cost_hint": 0.0,
-      "momentum": 100.0
-    },
-    {
-      "side": "BUY",
-      "ticker": "COP",
-      "price_hint": 147.96,
-      "shares_hint": 10.191,
-      "value_hint": 1507.89,
-      "cost_hint": 0.0,
-      "momentum": 83.3
-    }
-  ],
-  "last_close": "2026-10-27"
+  "pending": [],
+  "last_close": "2026-10-28"
 }
