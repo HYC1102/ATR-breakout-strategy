@@ -7,22 +7,22 @@
       "shares": 43.8528788924355,
       "entry": 67.95,
       "entry_date": "2026-10-19",
-      "hi": 69.63999938964844,
-      "last_px": 68.44999694824219
+      "hi": 70.0199966430664,
+      "last_px": 70.0199966430664
     },
     "FIW": {
       "shares": 27.559211311768976,
       "entry": 110.15,
       "entry_date": "2026-10-23",
-      "hi": 110.30999755859375,
-      "last_px": 109.97000122070312
+      "hi": 112.23999786376953,
+      "last_px": 112.23999786376953
     },
     "TLT": {
       "shares": 37.20459539418672,
       "entry": 81.77,
       "entry_date": "2026-10-23",
-      "hi": 81.68000030517578,
-      "last_px": 80.98999786376953
+      "hi": 81.83999633789062,
+      "last_px": 81.83999633789062
     }
   },
   "trades": [
@@ -524,9 +524,60 @@
     {
       "date": "2026-10-28",
       "value": 9045.62
+    },
+    {
+      "date": "2026-10-29",
+      "value": 9134.87
+    },
+    {
+      "date": "2026-10-30",
+      "value": 9208.65
     }
   ],
-  "pending": [],
-  "target": {},
-  "last_close": "2026-10-28"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "FIW",
+      "price_hint": 112.24,
+      "shares_hint": 7.048,
+      "value_hint": 791.08,
+      "target_weight": 25.0,
+      "reason": "rebalance to equal weight"
+    },
+    {
+      "side": "SELL",
+      "ticker": "XLE",
+      "price_hint": 70.02,
+      "shares_hint": 10.974,
+      "value_hint": 768.42,
+      "target_weight": 25.0,
+      "reason": "rebalance to equal weight"
+    },
+    {
+      "side": "SELL",
+      "ticker": "TLT",
+      "price_hint": 81.84,
+      "shares_hint": 9.075,
+      "value_hint": 742.66,
+      "target_weight": 25.0,
+      "reason": "rebalance to equal weight"
+    },
+    {
+      "side": "BUY",
+      "ticker": "XLP",
+      "price_hint": 89.42,
+      "shares_hint": 25.745,
+      "value_hint": 2302.16,
+      "target_weight": 25.0,
+      "reason": "breakout",
+      "momentum": 100.0
+    }
+  ],
+  "target": {
+    "XLE": 0.25,
+    "XLP": 0.25,
+    "TLT": 0.25,
+    "FIW": 0.25
+  },
+  "last_close": "2026-10-30"
 }

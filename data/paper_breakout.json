@@ -1,7 +1,7 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 0.0,
+  "cash": 24.90602939618543,
   "positions": {
     "WBD": {
       "shares": 56.72865468685629,
@@ -10,33 +10,33 @@
       "hi": 30.95,
       "last_px": 30.95
     },
-    "TEAM": {
-      "shares": 8.38684446799635,
-      "entry": 208.11,
-      "entry_date": "2026-10-19",
-      "hi": 227.61,
-      "last_px": 220.12
-    },
     "PFE": {
       "shares": 58.09089791344002,
       "entry": 30.28,
       "entry_date": "2026-10-23",
-      "hi": 30.03,
-      "last_px": 29.45
+      "hi": 30.52,
+      "last_px": 30.52
     },
     "ZS": {
       "shares": 6.53218497875693,
       "entry": 260.21,
       "entry_date": "2026-10-28",
       "hi": 255.8,
-      "last_px": 255.8
+      "last_px": 237.83
     },
     "COP": {
       "shares": 10.134150013525526,
       "entry": 148.79,
       "entry_date": "2026-10-28",
-      "hi": 149.06,
-      "last_px": 149.06
+      "hi": 154.03,
+      "last_px": 154.03
+    },
+    "GILD": {
+      "shares": 9.843705737488678,
+      "entry": 170.0,
+      "entry_date": "2026-10-30",
+      "hi": 170.67999267578125,
+      "last_px": 170.67999267578125
     }
   },
   "trades": [
@@ -627,6 +627,30 @@
       "momentum": 83.3,
       "sentiment": null,
       "combined": null
+    },
+    {
+      "date": "2026-10-30",
+      "side": "SELL",
+      "ticker": "TEAM",
+      "shares": 8.387,
+      "price": 202.5,
+      "value": 1698.34,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-10-30",
+      "side": "BUY",
+      "ticker": "GILD",
+      "shares": 9.844,
+      "price": 170.0,
+      "value": 1673.43,
+      "reason": "breakout",
+      "momentum": 100.0,
+      "sentiment": null,
+      "combined": null
     }
   ],
   "equity": [
@@ -869,8 +893,16 @@
     {
       "date": "2026-10-28",
       "value": 8494.17
+    },
+    {
+      "date": "2026-10-29",
+      "value": 8346.56
+    },
+    {
+      "date": "2026-10-30",
+      "value": 8348.23
     }
   ],
   "pending": [],
-  "last_close": "2026-10-28"
+  "last_close": "2026-10-30"
 }

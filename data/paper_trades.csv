@@ -48,3 +48,5 @@ date,side,ticker,shares,price,value,reason,momentum,sentiment,combined
 2026-10-28,SELL,MPC,2.108,438.97,925.4,10-day low,,,
 2026-10-28,BUY,ZS,6.532,260.21,1699.77,breakout,100.0,,
 2026-10-28,BUY,COP,10.134,148.79,1507.86,breakout,83.3,,
+2026-10-30,SELL,TEAM,8.387,202.5,1698.34,1.5-ATR trail,,,
+2026-10-30,BUY,GILD,9.844,170.0,1673.43,breakout,100.0,,
