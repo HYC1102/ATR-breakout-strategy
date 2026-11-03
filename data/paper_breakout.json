@@ -14,29 +14,29 @@
       "shares": 58.09089791344002,
       "entry": 30.28,
       "entry_date": "2026-10-23",
-      "hi": 30.52,
-      "last_px": 30.52
+      "hi": 30.67,
+      "last_px": 30.67
     },
     "ZS": {
       "shares": 6.53218497875693,
       "entry": 260.21,
       "entry_date": "2026-10-28",
       "hi": 255.8,
-      "last_px": 237.83
+      "last_px": 223.79
     },
     "COP": {
       "shares": 10.134150013525526,
       "entry": 148.79,
       "entry_date": "2026-10-28",
       "hi": 154.03,
-      "last_px": 154.03
+      "last_px": 146.84
     },
     "GILD": {
       "shares": 9.843705737488678,
       "entry": 170.0,
       "entry_date": "2026-10-30",
       "hi": 170.67999267578125,
-      "last_px": 170.67999267578125
+      "last_px": 170.33
     }
   },
   "trades": [
@@ -901,8 +901,41 @@
     {
       "date": "2026-10-30",
       "value": 8348.23
+    },
+    {
+      "date": "2026-11-02",
+      "value": 8188.92
     }
   ],
-  "pending": [],
-  "last_close": "2026-10-30"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "ZS",
+      "reason": "1.5-ATR trail"
+    },
+    {
+      "side": "SELL",
+      "ticker": "COP",
+      "reason": "1.5-ATR trail"
+    },
+    {
+      "side": "BUY",
+      "ticker": "ACN",
+      "price_hint": 260.94,
+      "shares_hint": 6.276,
+      "value_hint": 1637.78,
+      "cost_hint": 0.0,
+      "momentum": 100.0
+    },
+    {
+      "side": "BUY",
+      "ticker": "LLY",
+      "price_hint": 1410.99,
+      "shares_hint": 0.948,
+      "value_hint": 1337.06,
+      "cost_hint": 0.0,
+      "momentum": 96.0
+    }
+  ],
+  "last_close": "2026-11-02"
 }
