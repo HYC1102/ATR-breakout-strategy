@@ -50,3 +50,7 @@ date,side,ticker,shares,price,value,reason,momentum,sentiment,combined
 2026-10-28,BUY,COP,10.134,148.79,1507.86,breakout,83.3,,
 2026-10-30,SELL,TEAM,8.387,202.5,1698.34,1.5-ATR trail,,,
 2026-10-30,BUY,GILD,9.844,170.0,1673.43,breakout,100.0,,
+2026-11-03,SELL,ZS,6.532,220.79,1442.24,1.5-ATR trail,,,
+2026-11-03,SELL,COP,10.134,145.18,1471.28,1.5-ATR trail,,,
+2026-11-03,BUY,ACN,6.405,254.56,1630.5,breakout,100.0,,
+2026-11-03,BUY,LLY,0.934,1399.63,1307.92,breakout,96.0,,

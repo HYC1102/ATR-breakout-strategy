@@ -40,3 +40,6 @@ date,side,ticker,shares,price,value,reason
 2026-11-02,SELL,TLT,9.134,81.83,747.42,rebalance
 2026-11-02,SELL,XLE,10.49,68.85,722.24,rebalance
 2026-11-02,BUY,XLP,25.568,89.84,2297.03,breakout
+2026-11-03,SELL,FIW,0.462,115.51,53.39,rebalance
+2026-11-03,SELL,XLE,33.363,66.63,2222.96,exit
+2026-11-03,BUY,XLY,19.329,118.32,2287.0,breakout
