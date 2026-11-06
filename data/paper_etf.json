@@ -1,35 +1,42 @@
 {
   "start_date": "2026-09-01",
   "capital": 10000.0,
-  "cash": -10.646410934986307,
+  "cash": -1.3642420526593924e-12,
   "positions": {
     "FIW": {
-      "shares": 19.79913192724879,
+      "shares": 15.736846609553023,
       "entry": 110.15,
       "entry_date": "2026-10-23",
-      "hi": 115.94000244140625,
-      "last_px": 115.58000183105469
+      "hi": 118.55000305175781,
+      "last_px": 118.55000305175781
     },
     "TLT": {
-      "shares": 28.070727149494957,
+      "shares": 22.672121403399395,
       "entry": 81.77,
       "entry_date": "2026-10-23",
       "hi": 81.83999633789062,
-      "last_px": 81.11000061035156
+      "last_px": 81.76000213623047
     },
     "XLP": {
-      "shares": 25.567984724788126,
+      "shares": 20.380365104739088,
       "entry": 89.84,
       "entry_date": "2026-11-02",
-      "hi": 90.83000183105469,
-      "last_px": 88.94999694824219
+      "hi": 91.94000244140625,
+      "last_px": 91.94000244140625
     },
     "XLY": {
-      "shares": 19.32891968484394,
+      "shares": 15.401825009738737,
       "entry": 118.32,
       "entry_date": "2026-11-03",
-      "hi": 117.33000183105469,
-      "last_px": 117.33000183105469
+      "hi": 122.33000183105469,
+      "last_px": 122.33000183105469
+    },
+    "INDA": {
+      "shares": 37.24673180562592,
+      "entry": 49.53,
+      "entry_date": "2026-11-04",
+      "hi": 50.029998779296875,
+      "last_px": 50.029998779296875
     }
   },
   "trades": [
@@ -428,6 +435,51 @@
       "price": 118.32,
       "value": 2287.0,
       "reason": "breakout"
+    },
+    {
+      "date": "2026-11-04",
+      "side": "SELL",
+      "ticker": "FIW",
+      "shares": 4.062,
+      "price": 117.23,
+      "value": 476.22,
+      "reason": "rebalance"
+    },
+    {
+      "date": "2026-11-04",
+      "side": "BUY",
+      "ticker": "INDA",
+      "shares": 37.247,
+      "price": 49.53,
+      "value": 1844.83,
+      "reason": "breakout"
+    },
+    {
+      "date": "2026-11-04",
+      "side": "SELL",
+      "ticker": "TLT",
+      "shares": 5.399,
+      "price": 81.37,
+      "value": 439.28,
+      "reason": "rebalance"
+    },
+    {
+      "date": "2026-11-04",
+      "side": "SELL",
+      "ticker": "XLP",
+      "shares": 5.188,
+      "price": 90.52,
+      "value": 469.58,
+      "reason": "rebalance"
+    },
+    {
+      "date": "2026-11-04",
+      "side": "SELL",
+      "ticker": "XLY",
+      "shares": 3.927,
+      "price": 119.78,
+      "value": 470.39,
+      "reason": "rebalance"
     }
   ],
   "equity": [
@@ -610,62 +662,13 @@
     {
       "date": "2026-11-03",
       "value": 9096.69
+    },
+    {
+      "date": "2026-11-04",
+      "value": 9340.61
     }
   ],
-  "pending": [
-    {
-      "side": "SELL",
-      "ticker": "FIW",
-      "price_hint": 115.58,
-      "shares_hint": 4.058,
-      "value_hint": 469.05,
-      "target_weight": 20.0,
-      "reason": "rebalance to equal weight"
-    },
-    {
-      "side": "SELL",
-      "ticker": "TLT",
-      "price_hint": 81.11,
-      "shares_hint": 5.64,
-      "value_hint": 457.48,
-      "target_weight": 20.0,
-      "reason": "rebalance to equal weight"
-    },
-    {
-      "side": "SELL",
-      "ticker": "XLP",
-      "price_hint": 88.95,
-      "shares_hint": 5.114,
-      "value_hint": 454.93,
-      "target_weight": 20.0,
-      "reason": "rebalance to equal weight"
-    },
-    {
-      "side": "SELL",
-      "ticker": "XLY",
-      "price_hint": 117.33,
-      "shares_hint": 3.823,
-      "value_hint": 448.52,
-      "target_weight": 20.0,
-      "reason": "rebalance to equal weight"
-    },
-    {
-      "side": "BUY",
-      "ticker": "INDA",
-      "price_hint": 48.7,
-      "shares_hint": 37.358,
-      "value_hint": 1819.34,
-      "target_weight": 20.0,
-      "reason": "breakout",
-      "momentum": 50.0
-    }
-  ],
-  "target": {
-    "INDA": 0.2,
-    "XLY": 0.2,
-    "FIW": 0.2,
-    "XLP": 0.2,
-    "TLT": 0.2
-  },
-  "last_close": "2026-11-03"
+  "pending": [],
+  "target": {},
+  "last_close": "2026-11-04"
 }
