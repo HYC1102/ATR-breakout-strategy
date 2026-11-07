@@ -15,28 +15,28 @@
       "entry": 30.28,
       "entry_date": "2026-10-23",
       "hi": 30.79,
-      "last_px": 30.79
+      "last_px": 29.4491348089
     },
     "GILD": {
       "shares": 9.843705737488678,
       "entry": 170.0,
       "entry_date": "2026-10-30",
       "hi": 174.48,
-      "last_px": 174.48
+      "last_px": 167.57
     },
     "ACN": {
       "shares": 6.405162976339019,
       "entry": 254.56,
       "entry_date": "2026-11-03",
-      "hi": 264.27,
-      "last_px": 264.27
+      "hi": 265.16,
+      "last_px": 265.16
     },
     "LLY": {
       "shares": 0.9344789426939284,
       "entry": 1399.63,
       "entry_date": "2026-11-03",
       "hi": 1417.99,
-      "last_px": 1417.99
+      "last_px": 1364.73
     }
   },
   "trades": [
@@ -961,8 +961,27 @@
     {
       "date": "2026-11-04",
       "value": 8279.67
+    },
+    {
+      "date": "2026-11-05",
+      "value": 8089.69
     }
   ],
-  "pending": [],
-  "last_close": "2026-11-04"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "PFE",
+      "reason": "1.5-ATR trail"
+    },
+    {
+      "side": "BUY",
+      "ticker": "SPOT",
+      "price_hint": 614.41,
+      "shares_hint": 2.633,
+      "value_hint": 1617.94,
+      "cost_hint": 0.0,
+      "momentum": 95.7
+    }
+  ],
+  "last_close": "2026-11-05"
 }
