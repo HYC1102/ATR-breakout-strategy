@@ -1,7 +1,7 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 0.0,
+  "cash": 93.13946257919065,
   "positions": {
     "WBD": {
       "shares": 56.72865468685629,
@@ -10,33 +10,33 @@
       "hi": 30.95,
       "last_px": 30.95
     },
-    "PFE": {
-      "shares": 58.09089791344002,
-      "entry": 30.28,
-      "entry_date": "2026-10-23",
-      "hi": 30.79,
-      "last_px": 29.4491348089
-    },
     "GILD": {
       "shares": 9.843705737488678,
       "entry": 170.0,
       "entry_date": "2026-10-30",
       "hi": 174.48,
-      "last_px": 167.57
+      "last_px": 169.32
     },
     "ACN": {
       "shares": 6.405162976339019,
       "entry": 254.56,
       "entry_date": "2026-11-03",
       "hi": 265.16,
-      "last_px": 265.16
+      "last_px": 254.37
     },
     "LLY": {
       "shares": 0.9344789426939284,
       "entry": 1399.63,
       "entry_date": "2026-11-03",
       "hi": 1417.99,
-      "last_px": 1364.73
+      "last_px": 1411.95
+    },
+    "SPOT": {
+      "shares": 2.6941609505842505,
+      "entry": 592.23,
+      "entry_date": "2026-11-06",
+      "hi": 609.1,
+      "last_px": 609.1
     }
   },
   "trades": [
@@ -699,6 +699,30 @@
       "momentum": 96.0,
       "sentiment": null,
       "combined": null
+    },
+    {
+      "date": "2026-11-06",
+      "side": "SELL",
+      "ticker": "PFE",
+      "shares": 58.091,
+      "price": 29.07,
+      "value": 1688.7,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-11-06",
+      "side": "BUY",
+      "ticker": "SPOT",
+      "shares": 2.694,
+      "price": 592.23,
+      "value": 1595.56,
+      "reason": "breakout",
+      "momentum": 95.7,
+      "sentiment": null,
+      "combined": null
     }
   ],
   "equity": [
@@ -965,23 +989,16 @@
     {
       "date": "2026-11-05",
       "value": 8089.69
-    }
-  ],
-  "pending": [
-    {
-      "side": "SELL",
-      "ticker": "PFE",
-      "reason": "1.5-ATR trail"
     },
     {
-      "side": "BUY",
-      "ticker": "SPOT",
-      "price_hint": 614.41,
-      "shares_hint": 2.633,
-      "value_hint": 1617.94,
-      "cost_hint": 0.0,
-      "momentum": 95.7
+      "date": "2026-11-06",
+      "value": 8050.14
+    },
+    {
+      "date": "2026-11-09",
+      "value": 8105.36
     }
   ],
-  "last_close": "2026-11-05"
+  "pending": [],
+  "last_close": "2026-11-09"
 }

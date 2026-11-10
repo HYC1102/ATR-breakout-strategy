@@ -1,42 +1,42 @@
 {
   "start_date": "2026-09-01",
   "capital": 10000.0,
-  "cash": -1.3642420526593924e-12,
+  "cash": -2.9179102998091366,
   "positions": {
-    "FIW": {
-      "shares": 15.736846609553023,
-      "entry": 110.15,
-      "entry_date": "2026-10-23",
-      "hi": 118.55000305175781,
-      "last_px": 115.44000244140625
-    },
     "TLT": {
       "shares": 22.672121403399395,
       "entry": 81.77,
       "entry_date": "2026-10-23",
-      "hi": 81.93000030517578,
-      "last_px": 81.93000030517578
+      "hi": 81.95999908447266,
+      "last_px": 81.95999908447266
     },
     "XLP": {
       "shares": 20.380365104739088,
       "entry": 89.84,
       "entry_date": "2026-11-02",
       "hi": 91.94000244140625,
-      "last_px": 91.25
-    },
-    "XLY": {
-      "shares": 15.401825009738737,
-      "entry": 118.32,
-      "entry_date": "2026-11-03",
-      "hi": 122.33000183105469,
-      "last_px": 117.63999938964844
+      "last_px": 90.88999938964844
     },
     "INDA": {
-      "shares": 37.24673180562592,
+      "shares": 36.081541167688854,
       "entry": 49.53,
       "entry_date": "2026-11-04",
-      "hi": 50.029998779296875,
-      "last_px": 50.02000045776367
+      "hi": 51.40999984741211,
+      "last_px": 51.40999984741211
+    },
+    "ESPO": {
+      "shares": 18.09239209410493,
+      "entry": 101.35,
+      "entry_date": "2026-11-06",
+      "hi": 104.66000366210938,
+      "last_px": 104.66000366210938
+    },
+    "XLF": {
+      "shares": 32.32264984887837,
+      "entry": 56.73,
+      "entry_date": "2026-11-06",
+      "hi": 57.9900016784668,
+      "last_px": 57.9900016784668
     }
   },
   "trades": [
@@ -480,6 +480,51 @@
       "price": 119.78,
       "value": 470.39,
       "reason": "rebalance"
+    },
+    {
+      "date": "2026-11-06",
+      "side": "BUY",
+      "ticker": "ESPO",
+      "shares": 18.092,
+      "price": 101.35,
+      "value": 1833.66,
+      "reason": "breakout"
+    },
+    {
+      "date": "2026-11-06",
+      "side": "SELL",
+      "ticker": "FIW",
+      "shares": 15.737,
+      "price": 114.74,
+      "value": 1805.65,
+      "reason": "exit"
+    },
+    {
+      "date": "2026-11-06",
+      "side": "SELL",
+      "ticker": "INDA",
+      "shares": 1.165,
+      "price": 50.82,
+      "value": 59.21,
+      "reason": "rebalance"
+    },
+    {
+      "date": "2026-11-06",
+      "side": "BUY",
+      "ticker": "XLF",
+      "shares": 32.323,
+      "price": 56.73,
+      "value": 1833.66,
+      "reason": "breakout"
+    },
+    {
+      "date": "2026-11-06",
+      "side": "SELL",
+      "ticker": "XLY",
+      "shares": 15.402,
+      "price": 116.84,
+      "value": 1799.55,
+      "reason": "exit"
     }
   ],
   "equity": [
@@ -670,54 +715,17 @@
     {
       "date": "2026-11-05",
       "value": 9208.85
+    },
+    {
+      "date": "2026-11-06",
+      "value": 9224.31
+    },
+    {
+      "date": "2026-11-09",
+      "value": 9330.55
     }
   ],
-  "pending": [
-    {
-      "side": "SELL",
-      "ticker": "FIW",
-      "price_hint": 115.44,
-      "shares_hint": 15.737,
-      "value_hint": 1816.66,
-      "target_weight": 0.0,
-      "reason": "exit \u2014 1.5-ATR trail"
-    },
-    {
-      "side": "SELL",
-      "ticker": "XLY",
-      "price_hint": 117.64,
-      "shares_hint": 15.402,
-      "value_hint": 1811.87,
-      "target_weight": 0.0,
-      "reason": "exit \u2014 1.5-ATR trail"
-    },
-    {
-      "side": "BUY",
-      "ticker": "ESPO",
-      "price_hint": 102.51,
-      "shares_hint": 17.967,
-      "value_hint": 1841.77,
-      "target_weight": 20.0,
-      "reason": "breakout",
-      "momentum": 83.3
-    },
-    {
-      "side": "BUY",
-      "ticker": "XLF",
-      "price_hint": 57.5,
-      "shares_hint": 32.031,
-      "value_hint": 1841.77,
-      "target_weight": 20.0,
-      "reason": "breakout",
-      "momentum": 50.0
-    }
-  ],
-  "target": {
-    "ESPO": 0.2,
-    "XLF": 0.2,
-    "XLP": 0.2,
-    "TLT": 0.2,
-    "INDA": 0.2
-  },
-  "last_close": "2026-11-05"
+  "pending": [],
+  "target": {},
+  "last_close": "2026-11-09"
 }
