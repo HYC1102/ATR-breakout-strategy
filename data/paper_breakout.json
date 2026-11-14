@@ -1,7 +1,7 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 93.13946257919065,
+  "cash": 1706.9202744678064,
   "positions": {
     "WBD": {
       "shares": 56.72865468685629,
@@ -15,28 +15,21 @@
       "entry": 170.0,
       "entry_date": "2026-10-30",
       "hi": 174.48,
-      "last_px": 169.73
-    },
-    "ACN": {
-      "shares": 6.405162976339019,
-      "entry": 254.56,
-      "entry_date": "2026-11-03",
-      "hi": 265.16,
-      "last_px": 253.66
+      "last_px": 168.08
     },
     "LLY": {
       "shares": 0.9344789426939284,
       "entry": 1399.63,
       "entry_date": "2026-11-03",
-      "hi": 1437.29,
-      "last_px": 1437.29
+      "hi": 1443.5,
+      "last_px": 1443.5
     },
     "SPOT": {
       "shares": 2.6941609505842505,
       "entry": 592.23,
       "entry_date": "2026-11-06",
-      "hi": 609.12,
-      "last_px": 609.12
+      "hi": 612.63,
+      "last_px": 612.63
     }
   },
   "trades": [
@@ -723,6 +716,18 @@
       "momentum": 95.7,
       "sentiment": null,
       "combined": null
+    },
+    {
+      "date": "2026-11-13",
+      "side": "SELL",
+      "ticker": "ACN",
+      "shares": 6.405,
+      "price": 251.95,
+      "value": 1613.78,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
     }
   ],
   "equity": [
@@ -1005,8 +1010,26 @@
     {
       "date": "2026-11-11",
       "value": 8128.58
+    },
+    {
+      "date": "2026-11-12",
+      "value": 8047.76
+    },
+    {
+      "date": "2026-11-13",
+      "value": 8116.65
     }
   ],
-  "pending": [],
-  "last_close": "2026-11-11"
+  "pending": [
+    {
+      "side": "BUY",
+      "ticker": "MCK",
+      "price_hint": 1102.81,
+      "shares_hint": 1.472,
+      "value_hint": 1623.33,
+      "cost_hint": 0.0,
+      "momentum": 100.0
+    }
+  ],
+  "last_close": "2026-11-13"
 }

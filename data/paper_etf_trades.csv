@@ -53,3 +53,6 @@ date,side,ticker,shares,price,value,reason
 2026-11-06,SELL,INDA,1.165,50.82,59.21,rebalance
 2026-11-06,BUY,XLF,32.323,56.73,1833.66,breakout
 2026-11-06,SELL,XLY,15.402,116.84,1799.55,exit
+2026-11-13,SELL,TLT,22.672,79.3,1797.9,exit
+2026-11-13,BUY,XLF,7.262,58.6,425.57,rebalance
+2026-11-13,BUY,XLP,4.944,91.6,452.84,rebalance

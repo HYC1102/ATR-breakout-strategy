@@ -56,3 +56,4 @@ date,side,ticker,shares,price,value,reason,momentum,sentiment,combined
 2026-11-03,BUY,LLY,0.934,1399.63,1307.92,breakout,96.0,,
 2026-11-06,SELL,PFE,58.091,29.07,1688.7,1.5-ATR trail,,,
 2026-11-06,BUY,SPOT,2.694,592.23,1595.56,breakout,95.7,,
+2026-11-13,SELL,ACN,6.405,251.95,1613.78,1.5-ATR trail,,,
