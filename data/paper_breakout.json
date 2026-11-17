@@ -1,7 +1,7 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 1706.9202744678064,
+  "cash": 72.65256908765355,
   "positions": {
     "WBD": {
       "shares": 56.72865468685629,
@@ -15,21 +15,28 @@
       "entry": 170.0,
       "entry_date": "2026-10-30",
       "hi": 174.48,
-      "last_px": 168.08
+      "last_px": 167.58
     },
     "LLY": {
       "shares": 0.9344789426939284,
       "entry": 1399.63,
       "entry_date": "2026-11-03",
       "hi": 1443.5,
-      "last_px": 1443.5
+      "last_px": 1431.67
     },
     "SPOT": {
       "shares": 2.6941609505842505,
       "entry": 592.23,
       "entry_date": "2026-11-06",
       "hi": 612.63,
-      "last_px": 612.63
+      "last_px": 611.73
+    },
+    "MCK": {
+      "shares": 1.4618040621300497,
+      "entry": 1117.98,
+      "entry_date": "2026-11-16",
+      "hi": 1105.04,
+      "last_px": 1105.04
     }
   },
   "trades": [
@@ -728,6 +735,18 @@
       "momentum": "",
       "sentiment": "",
       "combined": ""
+    },
+    {
+      "date": "2026-11-16",
+      "side": "BUY",
+      "ticker": "MCK",
+      "shares": 1.462,
+      "price": 1117.98,
+      "value": 1634.27,
+      "reason": "breakout",
+      "momentum": 100.0,
+      "sentiment": null,
+      "combined": null
     }
   ],
   "equity": [
@@ -1018,18 +1037,27 @@
     {
       "date": "2026-11-13",
       "value": 8116.65
+    },
+    {
+      "date": "2026-11-16",
+      "value": 8079.33
     }
   ],
   "pending": [
     {
+      "side": "SELL",
+      "ticker": "GILD",
+      "reason": "1.5-ATR trail"
+    },
+    {
       "side": "BUY",
-      "ticker": "MCK",
-      "price_hint": 1102.81,
-      "shares_hint": 1.472,
-      "value_hint": 1623.33,
+      "ticker": "APP",
+      "price_hint": 415.22,
+      "shares_hint": 3.892,
+      "value_hint": 1615.87,
       "cost_hint": 0.0,
       "momentum": 100.0
     }
   ],
-  "last_close": "2026-11-13"
+  "last_close": "2026-11-16"
 }
