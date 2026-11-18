@@ -8,28 +8,28 @@
       "entry": 89.84,
       "entry_date": "2026-11-02",
       "hi": 92.5999984741211,
-      "last_px": 92.5999984741211
+      "last_px": 91.45999908447266
     },
     "INDA": {
       "shares": 36.081541167688854,
       "entry": 49.53,
       "entry_date": "2026-11-04",
-      "hi": 51.720001220703125,
-      "last_px": 51.560001373291016
+      "hi": 51.900001525878906,
+      "last_px": 51.900001525878906
     },
     "ESPO": {
       "shares": 18.09239209410493,
       "entry": 101.35,
       "entry_date": "2026-11-06",
       "hi": 104.66000366210938,
-      "last_px": 103.13999938964844
+      "last_px": 100.62999725341797
     },
     "XLF": {
       "shares": 39.58501009052287,
       "entry": 56.73,
       "entry_date": "2026-11-06",
       "hi": 58.68000030517578,
-      "last_px": 58.18000030517578
+      "last_px": 57.06999969482422
     }
   },
   "trades": [
@@ -763,9 +763,53 @@
     {
       "date": "2026-11-16",
       "value": 9291.04
+    },
+    {
+      "date": "2026-11-17",
+      "value": 9185.09
     }
   ],
-  "pending": [],
-  "target": {},
-  "last_close": "2026-11-16"
+  "pending": [
+    {
+      "side": "SELL",
+      "ticker": "XLF",
+      "price_hint": 57.07,
+      "shares_hint": 39.585,
+      "value_hint": 2259.12,
+      "target_weight": 0.0,
+      "reason": "exit \u2014 1.5-ATR trail"
+    },
+    {
+      "side": "SELL",
+      "ticker": "ESPO",
+      "price_hint": 100.63,
+      "shares_hint": 18.092,
+      "value_hint": 1820.64,
+      "target_weight": 0.0,
+      "reason": "exit \u2014 1.5-ATR trail"
+    },
+    {
+      "side": "BUY",
+      "ticker": "INDA",
+      "price_hint": 51.9,
+      "shares_hint": 52.407,
+      "value_hint": 2719.91,
+      "target_weight": 50.0,
+      "reason": "rebalance to equal weight"
+    },
+    {
+      "side": "BUY",
+      "ticker": "XLP",
+      "price_hint": 91.46,
+      "shares_hint": 24.89,
+      "value_hint": 2276.41,
+      "target_weight": 50.0,
+      "reason": "rebalance to equal weight"
+    }
+  ],
+  "target": {
+    "XLP": 0.5,
+    "INDA": 0.5
+  },
+  "last_close": "2026-11-17"
 }

@@ -1,7 +1,7 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 72.65256908765355,
+  "cash": 106.25369990448507,
   "positions": {
     "WBD": {
       "shares": 56.72865468685629,
@@ -10,33 +10,33 @@
       "hi": 30.95,
       "last_px": 30.95
     },
-    "GILD": {
-      "shares": 9.843705737488678,
-      "entry": 170.0,
-      "entry_date": "2026-10-30",
-      "hi": 174.48,
-      "last_px": 167.58
-    },
     "LLY": {
       "shares": 0.9344789426939284,
       "entry": 1399.63,
       "entry_date": "2026-11-03",
       "hi": 1443.5,
-      "last_px": 1431.67
+      "last_px": 1415.55
     },
     "SPOT": {
       "shares": 2.6941609505842505,
       "entry": 592.23,
       "entry_date": "2026-11-06",
       "hi": 612.63,
-      "last_px": 611.73
+      "last_px": 602.01
     },
     "MCK": {
       "shares": 1.4618040621300497,
       "entry": 1117.98,
       "entry_date": "2026-11-16",
       "hi": 1105.04,
-      "last_px": 1105.04
+      "last_px": 1091.67
+    },
+    "APP": {
+      "shares": 3.882187478899524,
+      "entry": 412.56,
+      "entry_date": "2026-11-17",
+      "hi": 398.94,
+      "last_px": 398.94
     }
   },
   "trades": [
@@ -747,6 +747,30 @@
       "momentum": 100.0,
       "sentiment": null,
       "combined": null
+    },
+    {
+      "date": "2026-11-17",
+      "side": "SELL",
+      "ticker": "GILD",
+      "shares": 9.844,
+      "price": 166.12,
+      "value": 1635.24,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-11-17",
+      "side": "BUY",
+      "ticker": "APP",
+      "shares": 3.882,
+      "price": 412.56,
+      "value": 1601.64,
+      "reason": "breakout",
+      "momentum": 100.0,
+      "sentiment": null,
+      "combined": null
     }
   ],
   "equity": [
@@ -1041,23 +1065,12 @@
     {
       "date": "2026-11-16",
       "value": 8079.33
-    }
-  ],
-  "pending": [
-    {
-      "side": "SELL",
-      "ticker": "GILD",
-      "reason": "1.5-ATR trail"
     },
     {
-      "side": "BUY",
-      "ticker": "APP",
-      "price_hint": 415.22,
-      "shares_hint": 3.892,
-      "value_hint": 1615.87,
-      "cost_hint": 0.0,
-      "momentum": 100.0
+      "date": "2026-11-17",
+      "value": 7951.29
     }
   ],
-  "last_close": "2026-11-16"
+  "pending": [],
+  "last_close": "2026-11-17"
 }
