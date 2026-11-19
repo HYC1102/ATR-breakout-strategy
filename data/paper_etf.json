@@ -1,35 +1,21 @@
 {
   "start_date": "2026-09-01",
   "capital": 10000.0,
-  "cash": 916.566968694124,
+  "cash": -4.547473508864641e-13,
   "positions": {
     "XLP": {
-      "shares": 25.324034602010027,
+      "shares": 50.39250473919764,
       "entry": 89.84,
       "entry_date": "2026-11-02",
       "hi": 92.5999984741211,
-      "last_px": 91.45999908447266
+      "last_px": 91.18000030517578
     },
     "INDA": {
-      "shares": 36.081541167688854,
+      "shares": 89.07448754171936,
       "entry": 49.53,
       "entry_date": "2026-11-04",
       "hi": 51.900001525878906,
-      "last_px": 51.900001525878906
-    },
-    "ESPO": {
-      "shares": 18.09239209410493,
-      "entry": 101.35,
-      "entry_date": "2026-11-06",
-      "hi": 104.66000366210938,
-      "last_px": 100.62999725341797
-    },
-    "XLF": {
-      "shares": 39.58501009052287,
-      "entry": 56.73,
-      "entry_date": "2026-11-06",
-      "hi": 58.68000030517578,
-      "last_px": 57.06999969482422
+      "last_px": 51.459999084472656
     }
   },
   "trades": [
@@ -545,6 +531,42 @@
       "price": 91.6,
       "value": 452.84,
       "reason": "rebalance"
+    },
+    {
+      "date": "2026-11-18",
+      "side": "SELL",
+      "ticker": "ESPO",
+      "shares": 18.092,
+      "price": 101.44,
+      "value": 1835.29,
+      "reason": "exit"
+    },
+    {
+      "date": "2026-11-18",
+      "side": "BUY",
+      "ticker": "INDA",
+      "shares": 52.993,
+      "price": 51.38,
+      "value": 2722.78,
+      "reason": "rebalance"
+    },
+    {
+      "date": "2026-11-18",
+      "side": "SELL",
+      "ticker": "XLF",
+      "shares": 39.585,
+      "price": 56.78,
+      "value": 2247.64,
+      "reason": "exit"
+    },
+    {
+      "date": "2026-11-18",
+      "side": "BUY",
+      "ticker": "XLP",
+      "shares": 25.068,
+      "price": 90.82,
+      "value": 2276.72,
+      "reason": "rebalance"
     }
   ],
   "equity": [
@@ -767,49 +789,13 @@
     {
       "date": "2026-11-17",
       "value": 9185.09
+    },
+    {
+      "date": "2026-11-18",
+      "value": 9178.56
     }
   ],
-  "pending": [
-    {
-      "side": "SELL",
-      "ticker": "XLF",
-      "price_hint": 57.07,
-      "shares_hint": 39.585,
-      "value_hint": 2259.12,
-      "target_weight": 0.0,
-      "reason": "exit \u2014 1.5-ATR trail"
-    },
-    {
-      "side": "SELL",
-      "ticker": "ESPO",
-      "price_hint": 100.63,
-      "shares_hint": 18.092,
-      "value_hint": 1820.64,
-      "target_weight": 0.0,
-      "reason": "exit \u2014 1.5-ATR trail"
-    },
-    {
-      "side": "BUY",
-      "ticker": "INDA",
-      "price_hint": 51.9,
-      "shares_hint": 52.407,
-      "value_hint": 2719.91,
-      "target_weight": 50.0,
-      "reason": "rebalance to equal weight"
-    },
-    {
-      "side": "BUY",
-      "ticker": "XLP",
-      "price_hint": 91.46,
-      "shares_hint": 24.89,
-      "value_hint": 2276.41,
-      "target_weight": 50.0,
-      "reason": "rebalance to equal weight"
-    }
-  ],
-  "target": {
-    "XLP": 0.5,
-    "INDA": 0.5
-  },
-  "last_close": "2026-11-17"
+  "pending": [],
+  "target": {},
+  "last_close": "2026-11-18"
 }
