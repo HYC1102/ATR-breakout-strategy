@@ -1,7 +1,7 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 106.25369990448507,
+  "cash": 4527.143852521802,
   "positions": {
     "WBD": {
       "shares": 56.72865468685629,
@@ -10,33 +10,12 @@
       "hi": 30.95,
       "last_px": 30.95
     },
-    "LLY": {
-      "shares": 0.9344789426939284,
-      "entry": 1399.63,
-      "entry_date": "2026-11-03",
-      "hi": 1443.5,
-      "last_px": 1351.12
-    },
-    "SPOT": {
-      "shares": 2.6941609505842505,
-      "entry": 592.23,
-      "entry_date": "2026-11-06",
-      "hi": 612.63,
-      "last_px": 583.85
-    },
-    "MCK": {
-      "shares": 1.4618040621300497,
-      "entry": 1117.98,
-      "entry_date": "2026-11-16",
-      "hi": 1105.04,
-      "last_px": 1062.16
-    },
     "APP": {
       "shares": 3.882187478899524,
       "entry": 412.56,
       "entry_date": "2026-11-17",
       "hi": 398.94,
-      "last_px": 379.02
+      "last_px": 348.29
     }
   },
   "trades": [
@@ -771,6 +750,42 @@
       "momentum": 100.0,
       "sentiment": null,
       "combined": null
+    },
+    {
+      "date": "2026-11-20",
+      "side": "SELL",
+      "ticker": "LLY",
+      "shares": 0.934,
+      "price": 1362.38,
+      "value": 1273.12,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-11-20",
+      "side": "SELL",
+      "ticker": "SPOT",
+      "shares": 2.694,
+      "price": 584.16,
+      "value": 1573.82,
+      "reason": "10-day low",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
+    },
+    {
+      "date": "2026-11-20",
+      "side": "SELL",
+      "ticker": "MCK",
+      "shares": 1.462,
+      "price": 1076.72,
+      "value": 1573.95,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
     }
   ],
   "equity": [
@@ -1077,24 +1092,18 @@
     {
       "date": "2026-11-19",
       "value": 7721.68
+    },
+    {
+      "date": "2026-11-20",
+      "value": 7635.02
     }
   ],
   "pending": [
     {
       "side": "SELL",
-      "ticker": "LLY",
-      "reason": "1.5-ATR trail"
-    },
-    {
-      "side": "SELL",
-      "ticker": "SPOT",
-      "reason": "10-day low"
-    },
-    {
-      "side": "SELL",
-      "ticker": "MCK",
+      "ticker": "APP",
       "reason": "1.5-ATR trail"
     }
   ],
-  "last_close": "2026-11-19"
+  "last_close": "2026-11-20"
 }

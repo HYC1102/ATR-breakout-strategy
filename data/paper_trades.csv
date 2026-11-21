@@ -60,3 +60,6 @@ date,side,ticker,shares,price,value,reason,momentum,sentiment,combined
 2026-11-16,BUY,MCK,1.462,1117.98,1634.27,breakout,100.0,,
 2026-11-17,SELL,GILD,9.844,166.12,1635.24,1.5-ATR trail,,,
 2026-11-17,BUY,APP,3.882,412.56,1601.64,breakout,100.0,,
+2026-11-20,SELL,LLY,0.934,1362.38,1273.12,1.5-ATR trail,,,
+2026-11-20,SELL,SPOT,2.694,584.16,1573.82,10-day low,,,
+2026-11-20,SELL,MCK,1.462,1076.72,1573.95,1.5-ATR trail,,,

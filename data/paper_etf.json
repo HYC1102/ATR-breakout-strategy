@@ -1,21 +1,14 @@
 {
   "start_date": "2026-09-01",
   "capital": 10000.0,
-  "cash": -4.547473508864641e-13,
+  "cash": 0.0,
   "positions": {
-    "XLP": {
-      "shares": 50.39250473919764,
-      "entry": 89.84,
-      "entry_date": "2026-11-02",
-      "hi": 92.5999984741211,
-      "last_px": 89.86000061035156
-    },
     "INDA": {
-      "shares": 89.07448754171936,
+      "shares": 175.61254996458078,
       "entry": 49.53,
       "entry_date": "2026-11-04",
-      "hi": 51.900001525878906,
-      "last_px": 51.459999084472656
+      "hi": 52.900001525878906,
+      "last_px": 52.900001525878906
     }
   },
   "trades": [
@@ -567,6 +560,24 @@
       "price": 90.82,
       "value": 2276.72,
       "reason": "rebalance"
+    },
+    {
+      "date": "2026-11-20",
+      "side": "BUY",
+      "ticker": "INDA",
+      "shares": 86.538,
+      "price": 52.95,
+      "value": 4582.19,
+      "reason": "rebalance"
+    },
+    {
+      "date": "2026-11-20",
+      "side": "SELL",
+      "ticker": "XLP",
+      "shares": 50.393,
+      "price": 90.93,
+      "value": 4582.19,
+      "reason": "exit"
     }
   ],
   "equity": [
@@ -797,30 +808,13 @@
     {
       "date": "2026-11-19",
       "value": 9112.04
-    }
-  ],
-  "pending": [
-    {
-      "side": "SELL",
-      "ticker": "XLP",
-      "price_hint": 89.86,
-      "shares_hint": 50.393,
-      "value_hint": 4528.27,
-      "target_weight": 0.0,
-      "reason": "exit \u2014 1.5-ATR trail"
     },
     {
-      "side": "BUY",
-      "ticker": "INDA",
-      "price_hint": 51.46,
-      "shares_hint": 87.996,
-      "value_hint": 4528.27,
-      "target_weight": 100.0,
-      "reason": "rebalance to equal weight"
+      "date": "2026-11-20",
+      "value": 9289.9
     }
   ],
-  "target": {
-    "INDA": 1.0
-  },
-  "last_close": "2026-11-19"
+  "pending": [],
+  "target": {},
+  "last_close": "2026-11-20"
 }
