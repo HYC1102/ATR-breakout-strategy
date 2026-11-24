@@ -1,7 +1,7 @@
 {
   "start_date": "2026-08-05",
   "capital": 8800.0,
-  "cash": 4527.143852521802,
+  "cash": 5999.424632019657,
   "positions": {
     "WBD": {
       "shares": 56.72865468685629,
@@ -9,13 +9,6 @@
       "entry_date": "2026-09-30",
       "hi": 30.95,
       "last_px": 30.95
-    },
-    "APP": {
-      "shares": 3.882187478899524,
-      "entry": 412.56,
-      "entry_date": "2026-11-17",
-      "hi": 398.94,
-      "last_px": 348.29
     }
   },
   "trades": [
@@ -786,6 +779,18 @@
       "momentum": "",
       "sentiment": "",
       "combined": ""
+    },
+    {
+      "date": "2026-11-23",
+      "side": "SELL",
+      "ticker": "APP",
+      "shares": 3.882,
+      "price": 379.24,
+      "value": 1472.28,
+      "reason": "1.5-ATR trail",
+      "momentum": "",
+      "sentiment": "",
+      "combined": ""
     }
   ],
   "equity": [
@@ -1096,14 +1101,12 @@
     {
       "date": "2026-11-20",
       "value": 7635.02
-    }
-  ],
-  "pending": [
+    },
     {
-      "side": "SELL",
-      "ticker": "APP",
-      "reason": "1.5-ATR trail"
+      "date": "2026-11-23",
+      "value": 7755.18
     }
   ],
-  "last_close": "2026-11-20"
+  "pending": [],
+  "last_close": "2026-11-23"
 }
